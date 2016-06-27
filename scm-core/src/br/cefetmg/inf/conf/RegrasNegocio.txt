@@ -1,0 +1,21 @@
+- Aluno
+RN001: O nome do aluno é obrigatório.
+RN002: O nome do aluno deve ter pelo menos duas palavras.
+RN003: O cpf do aluno deve ser um número válido.
+RN004: O endereço do aluno é obrigatório
+
+- Curso
+RN007: O nome do curso é obrigatório.
+
+- Turma
+
+RN009: Não pode se matricular mais alunos que o limite de vagas por turma.
+
+RN EXTRA 1: Toda Turma deve pertencer a um Curso.                
+RN EXTRA 2: A turma deve existir...         
+RN EXTRA 3: Não se deve matricular turmas que o limite de alunos seja 0.        
+
+- Matricula
+RN008: Aluno não pode se matricular mais de uma vez na mesma turma.                                             ok
+RN010: Data da matrícula não pode ser posterior à data de início da turma.                                      ok
+RN006: Um aluno não pode se matricular em um curso no qual já tenha se matriculado anteriormente.               ok
