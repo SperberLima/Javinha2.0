@@ -59,7 +59,7 @@ public class AlunoDAO implements IAlunoDAO {
                             " WHERE id = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
-
+            
             statement.setString(1, aluno.getNome());
             statement.setLong(2, aluno.getCpf());
             statement.setString(3, aluno.getEndereco());
