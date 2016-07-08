@@ -1,5 +1,7 @@
 package br.cefetmg.inf.model.domain;
 
+import java.util.ArrayList;
+
 public class Departamento {
     
     private Long Id;
@@ -10,7 +12,8 @@ public class Departamento {
                    Telefone,
                    CEP,
                    Site;
-
+    
+    
     public Long getId() {
         return Id;
     }

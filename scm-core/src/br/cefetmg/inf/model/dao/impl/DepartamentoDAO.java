@@ -7,8 +7,8 @@ import br.cefetmg.inf.util.db.exception.PersistenciaException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DepartamentoDAO implements IDepartamentoDAO {
 
@@ -20,7 +20,7 @@ public class DepartamentoDAO implements IDepartamentoDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "INSERT INTO `Departamento` ( `txt_nome`, cod_sigla`, txt_email`, nro_telefone`, cod_cep`, txt_site` ) " + "VALUES( ?, ?, ?, ?, ?, ? ) RETURNING id";
+            String sql = "INSERT INTO `Departamento` ( `txt_nome`, `cod_sigla`, `txt_email`, `nro_telefone`, `cod_cep`, `txt_site` ) " + "VALUES( ?, ?, ?, ?, ?, ? ) RETURNING id_departamento";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                        
@@ -33,13 +33,12 @@ public class DepartamentoDAO implements IDepartamentoDAO {
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                id = resultSet.getLong("id");
+                id = resultSet.getLong("id_departamento");
                 departamento.setId(id);
             }
 
             connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
 
@@ -60,7 +59,7 @@ public class DepartamentoDAO implements IDepartamentoDAO {
                     + "`nro_telefone` = ?, "
                     + "`cod_cep` = ?, "
                     + "`txt_site` = ? "
-                    + " WHERE id = ?";
+                    + " WHERE id_departamento = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -74,8 +73,7 @@ public class DepartamentoDAO implements IDepartamentoDAO {
             statement.execute();
 
             connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
     }
@@ -86,7 +84,7 @@ public class DepartamentoDAO implements IDepartamentoDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM `Departamento` WHERE id = ?";
+            String sql = "SELECT * FROM `Departamento` WHERE id_departamento = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setLong(1, id);
@@ -95,19 +93,19 @@ public class DepartamentoDAO implements IDepartamentoDAO {
 
             if (resultSet.next()) {
                 Departamento departamento = new Departamento();
-                departamento.setId(resultSet.getLong("id"));
+                departamento.setId(resultSet.getLong("id_departamento"));
                 departamento.setNome(resultSet.getString("txt_nome"));
                 departamento.setSigla(resultSet.getString("cod_sigla"));
                 departamento.setEmail(resultSet.getString("txt_email"));
                 departamento.setTelefone(resultSet.getString("nro_telefone"));
                 departamento.setCEP(resultSet.getString("cod_cep"));
                 departamento.setSite(resultSet.getString("txt_site"));
+                
                 dpto = departamento;
             }
             connection.close();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
         return dpto;
@@ -119,7 +117,7 @@ public class DepartamentoDAO implements IDepartamentoDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "DELETE FROM `Departamento` WHERE id = ?";
+            String sql = "DELETE FROM `Departamento` WHERE id_departamento = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -127,17 +125,17 @@ public class DepartamentoDAO implements IDepartamentoDAO {
 
             statement.execute();
             connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+            
+        } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
 
     }
 
     @Override
-    public List<Departamento> listarTodos() throws PersistenciaException {
+    public ArrayList<Departamento> listarTodos() throws PersistenciaException {
 
-        List<Departamento> departamentoList = new ArrayList<Departamento>();
+        ArrayList<Departamento> departamentoList = new ArrayList<>();
 
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
@@ -150,20 +148,21 @@ public class DepartamentoDAO implements IDepartamentoDAO {
 
             while (resultSet.next()) {
                 Departamento departamento = new Departamento();
-                departamento.setId(resultSet.getLong("id"));
+                departamento.setId(resultSet.getLong("id_departamento"));
                 departamento.setNome(resultSet.getString("txt_nome"));
                 departamento.setSigla(resultSet.getString("cod_sigla"));
                 departamento.setEmail(resultSet.getString("txt_email"));
                 departamento.setTelefone(resultSet.getString("nro_telefone"));
                 departamento.setCEP(resultSet.getString("cod_cep"));
                 departamento.setSite(resultSet.getString("txt_site"));
+                
                 departamentoList.add(departamento);
             }
             connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        
         return departamentoList;
     }
 

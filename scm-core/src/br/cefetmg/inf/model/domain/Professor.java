@@ -1,11 +1,40 @@
 package br.cefetmg.inf.model.domain;
 
+import java.util.ArrayList;
+
 public class Professor {
+
     private Long Id;
     private Departamento Dpto;
-    private String Nome, 
-                   Descricao,
-                   Telefone;
+    private String Nome,
+            Descricao,
+            Telefone,
+            CPF;
+
+    public String getCPF() {
+        return CPF;
+    }
+
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
+    }
+    private ArrayList<Disciplina> Disciplinas;
+
+    public String getDescricao() {
+        return Descricao;
+    }
+
+    public void setDescricao(String Descricao) {
+        this.Descricao = Descricao;
+    }
+
+    public ArrayList<Disciplina> getDisciplinas() {
+        return Disciplinas;
+    }
+
+    public void setDisciplinas(ArrayList<Disciplina> Disciplinas) {
+        this.Disciplinas = Disciplinas;
+    }
 
     public Long getId() {
         return Id;
@@ -38,6 +67,4 @@ public class Professor {
     public void setTelefone(String telefone) {
         this.Telefone = telefone;
     }
-    
-    
 }

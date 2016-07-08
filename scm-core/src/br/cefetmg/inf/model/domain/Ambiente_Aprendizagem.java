@@ -7,11 +7,19 @@ public class Ambiente_Aprendizagem {
                 Sala;
     
     private String Descricao;
-    private Unidade_de_Ensino U_Ensino;
+    private UnidadeEnsino U_Ensino;
     
     
     public Long getId() {
         return Id;
+    }
+
+    public int getSala() {
+        return Sala;
+    }
+
+    public void setSala(int Sala) {
+        this.Sala = Sala;
     }
 
     public void setId(Long id) {
@@ -34,11 +42,11 @@ public class Ambiente_Aprendizagem {
         this.Descricao = descricao;
     }
 
-    public Unidade_de_Ensino getU_ensino() {
+    public UnidadeEnsino getU_ensino() {
         return U_Ensino;
     }
 
-    public void setU_ensino(Unidade_de_Ensino u_ensino) {
+    public void setU_ensino(UnidadeEnsino u_ensino) {
         this.U_Ensino = u_ensino;
     }
 }

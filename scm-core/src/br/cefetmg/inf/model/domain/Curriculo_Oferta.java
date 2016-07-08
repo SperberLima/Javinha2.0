@@ -6,7 +6,6 @@ public class Curriculo_Oferta {
     private Curso Curso;
     private Periodo_Letivo Periodo;
     private Professor Prof;
-    private Curso_Disciplina C_Disciplina;
 
     public Ambiente_Aprendizagem getAmbiente() {
         return Ambiente;
@@ -38,14 +37,6 @@ public class Curriculo_Oferta {
 
     public void setProf(Professor Prof) {
         this.Prof = Prof;
-    }
-
-    public Curso_Disciplina getC_Disciplina() {
-        return C_Disciplina;
-    }
-
-    public void setC_Disciplina(Curso_Disciplina C_Disciplina) {
-        this.C_Disciplina = C_Disciplina;
     }
     
 }

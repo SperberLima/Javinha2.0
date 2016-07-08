@@ -1,9 +1,10 @@
 package br.cefetmg.inf.model.domain;
 
 public class Disciplina {
+
     private Long Id;
-    private String Nome, 
-                   Descricao;
+    private String Nome,
+            Descricao;
     private int CargaHoraria;
 
     public Long getId() {
@@ -37,5 +38,4 @@ public class Disciplina {
     public void setCargaHoraria(int CargaHoraria) {
         this.CargaHoraria = CargaHoraria;
     }
-    
 }
