@@ -6,6 +6,7 @@
 package br.cefetmg.inf.model.service.impl;
 
 import br.cefetmg.inf.model.dao.IProfessorDAO;
+import br.cefetmg.inf.model.dao.impl.ProfessorDAO;
 import br.cefetmg.inf.model.domain.Professor;
 import br.cefetmg.inf.model.service.IManterProfessor;
 import br.cefetmg.inf.util.db.exception.NegocioException;

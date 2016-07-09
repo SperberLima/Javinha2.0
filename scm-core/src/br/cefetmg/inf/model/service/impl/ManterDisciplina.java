@@ -6,6 +6,7 @@
 package br.cefetmg.inf.model.service.impl;
 
 import br.cefetmg.inf.model.dao.IDisciplinaDAO;
+import br.cefetmg.inf.model.dao.impl.DisciplinaDAO;
 import br.cefetmg.inf.model.domain.Disciplina;
 import br.cefetmg.inf.model.service.IManterDisciplina;
 import br.cefetmg.inf.util.db.exception.NegocioException;
@@ -30,11 +31,6 @@ public class ManterDisciplina implements IManterDisciplina{
             throw new NegocioException("A disciplina deve ter nome");
         }
         
-        //Disciplina deve ter professor
-        if (disciplina.getProfs() == null){
-            throw new NegocioException("A disciplina deve ter professor");
-        }
-        
         IDisciplinaDAO disciplinaDAO = new DisciplinaDAO();
         Long id = disciplinaDAO.inserir(disciplina);
         disciplina.setId(id);
@@ -50,11 +46,6 @@ public class ManterDisciplina implements IManterDisciplina{
         //Disciplina deve ter Nome
         if (disciplina.getNome() == null){
             throw new NegocioException("A disciplina deve ter nome");
-        }
-        
-        //Disciplina deve ter professor
-        if (disciplina.getProfs() == null){
-            throw new NegocioException("A disciplina deve ter professor");
         }
         
         IDisciplinaDAO disciplinaDAO = new DisciplinaDAO();

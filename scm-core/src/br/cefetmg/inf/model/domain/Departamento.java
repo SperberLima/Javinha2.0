@@ -13,6 +13,16 @@ public class Departamento {
                    CEP,
                    Site;
     
+    UnidadeEnsino UnidadeEnsino;
+
+    public UnidadeEnsino getUnidadeEnsino() {
+        return UnidadeEnsino;
+    }
+
+    public void setUnidadeEnsino(UnidadeEnsino UnidadeEnsino) {
+        this.UnidadeEnsino = UnidadeEnsino;
+    }
+    
     
     public Long getId() {
         return Id;

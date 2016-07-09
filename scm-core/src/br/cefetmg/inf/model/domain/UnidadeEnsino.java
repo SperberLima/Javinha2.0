@@ -74,14 +74,6 @@ public class UnidadeEnsino {
         this.Telefone = telefone;
     }
 
-    public Long getCep() {
-        return CEP;
-    }
-
-    public void setCep(Long cep) {
-        this.CEP = cep;
-    }
-
     public String getSite() {
         return Site;
     }

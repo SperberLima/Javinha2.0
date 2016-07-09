@@ -12,6 +12,16 @@ public class GradeCurricular {
     private Periodo_Letivo PeriodoLetivo;
     
     private ArrayList<Disciplina> Disciplinas;
+    
+    private Curso curso;
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
 
     public GradeCurricular() {
     }
