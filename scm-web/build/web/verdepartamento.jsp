@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-
+<%@page import="br.cefetmg.inf.model.domain.*" %>
+<%@page import="java.util.List" %>
 
 
 <html lang="en" style="
@@ -40,7 +41,7 @@
 <div class="form_container">
   <h1 class="form_title">Lista de departamentos</h1>
 
-            <form name="fmCurso" method="post" action="">
+            <form name="frmDepartamento" method="post" action="">
                 <table class="view">
                     <tbody><tr style="
 ">
