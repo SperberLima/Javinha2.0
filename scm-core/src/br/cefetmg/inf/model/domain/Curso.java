@@ -4,12 +4,11 @@ import java.util.ArrayList;
 
 public class Curso {
 
-    private Long Id;
+    private Integer Id;
     private Departamento Dpto;
     private String Tipo,
             Nome,
             Sigla;
-    private ArrayList<GradeCurricular> Grades;
 
     public String getSigla() {
         return Sigla;
@@ -27,20 +26,11 @@ public class Curso {
         this.Tipo = Tipo;
     }
 
-    public ArrayList<GradeCurricular> getGrades() {
-        return Grades;
-    }
-
-    public void setGrades(ArrayList<GradeCurricular> Grades) {
-        this.Grades = Grades;
-    }
-
-
-    public Long getId() {
+    public Integer getId() {
         return Id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.Id = id;
     }
 

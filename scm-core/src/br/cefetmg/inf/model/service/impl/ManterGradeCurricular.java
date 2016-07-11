@@ -5,8 +5,11 @@
  */
 package br.cefetmg.inf.model.service.impl;
 
+import br.cefetmg.inf.model.dao.IDisciplinaDAO;
 import br.cefetmg.inf.model.dao.IGradeCurricularDAO;
+import br.cefetmg.inf.model.dao.impl.DisciplinaDAO;
 import br.cefetmg.inf.model.dao.impl.GradeCurricularDAO;
+import br.cefetmg.inf.model.domain.Disciplina;
 import br.cefetmg.inf.model.domain.GradeCurricular;
 import br.cefetmg.inf.model.service.IManterGradeCurricular;
 import br.cefetmg.inf.util.db.exception.NegocioException;
@@ -31,17 +34,8 @@ public class ManterGradeCurricular implements IManterGradeCurricular{
             throw new NegocioException("O curso deve ter nome");
         }
         
-        //Curso deve ter sigla
-        if (GradeCurricular.getPeriodoLetivo() == null){
-            throw new NegocioException("O curso deve ter sigla");
-        }
-        
-        if(GradeCurricular.getDisciplinas() == null){
-            throw new NegocioException("O curso deve ter sigla");
-        }
-        
         IGradeCurricularDAO GradeCurricularDAO = new GradeCurricularDAO();
-        Long id = GradeCurricularDAO.inserir(GradeCurricular);
+        Integer id = GradeCurricularDAO.inserir(GradeCurricular);
         GradeCurricular.setId(id);
     }
 
@@ -57,21 +51,12 @@ public class ManterGradeCurricular implements IManterGradeCurricular{
             throw new NegocioException("O curso deve ter nome");
         }
         
-        //Curso deve ter sigla
-        if (GradeCurricular.getPeriodoLetivo() == null){
-            throw new NegocioException("O curso deve ter sigla");
-        }
-        
-        if(GradeCurricular.getDisciplinas() == null){
-            throw new NegocioException("O curso deve ter sigla");
-        }
-        
         IGradeCurricularDAO GradeCurricularDAO = new GradeCurricularDAO();
         GradeCurricularDAO.atualizar(GradeCurricular);
     }
 
     @Override
-    public GradeCurricular buscarPorId(Long id) throws PersistenciaException, NegocioException {
+    public GradeCurricular buscarPorId(Integer id) throws PersistenciaException, NegocioException {
         
         IGradeCurricularDAO GradeCurricularDAO = new GradeCurricularDAO();
         GradeCurricular GradeCurricular = GradeCurricularDAO.consultarPorId(id);
@@ -90,6 +75,12 @@ public class ManterGradeCurricular implements IManterGradeCurricular{
         IGradeCurricularDAO GradeCurricularDAO = new GradeCurricularDAO();
         List<GradeCurricular> listGrade = GradeCurricularDAO.listarTodos();
         return listGrade;
+    }
+    
+    public List<Disciplina> listarDisciplinas(GradeCurricular gradeCurricular) throws PersistenciaException, NegocioException {
+        IDisciplinaDAO disciplinaDAO = new DisciplinaDAO();
+        List<Disciplina> listDisciplina = disciplinaDAO.listarPorGrade();
+        return listDisciplina;
     }
     
 }

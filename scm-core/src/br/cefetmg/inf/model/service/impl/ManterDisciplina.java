@@ -32,7 +32,7 @@ public class ManterDisciplina implements IManterDisciplina{
         }
         
         IDisciplinaDAO disciplinaDAO = new DisciplinaDAO();
-        Long id = disciplinaDAO.inserir(disciplina);
+        Integer id = disciplinaDAO.inserir(disciplina);
         disciplina.setId(id);
     }
 
@@ -53,7 +53,7 @@ public class ManterDisciplina implements IManterDisciplina{
     }
 
     @Override
-    public Disciplina buscarPorId(Long id) throws PersistenciaException, NegocioException {
+    public Disciplina buscarPorId(Integer id) throws PersistenciaException, NegocioException {
         
         IDisciplinaDAO dsiciplinaDAO = new DisciplinaDAO();
         Disciplina disciplina = new Disciplina();
@@ -65,7 +65,7 @@ public class ManterDisciplina implements IManterDisciplina{
     public void excluir(Disciplina disciplina) throws PersistenciaException, NegocioException {
         
         IDisciplinaDAO disciplinaDAO = new DisciplinaDAO();
-        Long id = disciplina.getId();
+        Integer id = disciplina.getId();
         disciplinaDAO.excluir(id);
         
     }

@@ -13,30 +13,43 @@ import java.util.ArrayList;
 public class CursoDAO implements ICursoDAO {
 
     @Override
-    public Long inserir(Curso curso) throws PersistenciaException {
+    public Integer inserir(Curso curso) throws PersistenciaException {
 
-        Long id = null;
+        Integer id = null;
 
         try {
             // Abre a única conexão possível com o Banco de Dados.
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
+            
+            // Busca o maior id
+            
+            PreparedStatement search = connection.prepareStatement("SELECT MAX(`id_curso`) as id FROM Curso");
+            
+            ResultSet resultSearch = search.executeQuery();
 
+            if (resultSearch.next()) {
+                id = resultSearch.getInt("id");
+                if(id == null) id = 1;
+                curso.setId(id);
+            }
+            
             // Comando sql a ser executado.
-            String sql = "INSERT INTO Curso (`txt_nome`, `idt_tipo`, `txt_sigla`, `id_departamento`) " + "VALUES(?, ?, ?, ?) RETURNING id_curso";
+            String sql = "INSERT INTO Curso (`id_curso`, `txt_nome`, `idt_tipo`, `txt_sigla`, `id_departamento`) " + "VALUES(?, ?, ?, ?, ?) RETURNING id_curso";
 
             // Prepara o comando sql, a fim de evitar injeção de sql.
             PreparedStatement inserir = connection.prepareStatement(sql); // por culpa das interrogções;
             // assim se evita a injeção de SQL                        
-            inserir.setString(1, curso.getNome());                        // 1ª  interrogação                    
-            inserir.setString(2, curso.getTipo());                        // 1ª  interrogação                    
-            inserir.setString(3, curso.getSigla());                       // 1ª  interrogação
-            inserir.setLong(4, curso.getDpto().getId());                  // 1ª  interrogação
+            inserir.setInt(1, curso.getId());
+            inserir.setString(2, curso.getNome());                        // 1ª  interrogação                    
+            inserir.setString(3, curso.getTipo());                        // 1ª  interrogação                    
+            inserir.setString(4, curso.getSigla());                       // 1ª  interrogação
+            inserir.setInt(5, curso.getDpto().getId());                  // 1ª  interrogação
 
             // Executa a query.
             ResultSet resultSet = inserir.executeQuery();
 
             if (resultSet.next()) {
-                id = resultSet.getLong("id_curso");
+                id = resultSet.getInt("id_curso");
                 curso.setId(id);
             }
 
@@ -88,7 +101,7 @@ public class CursoDAO implements ICursoDAO {
     }
 
     @Override
-    public void excluir(Long id) throws PersistenciaException {
+    public void excluir(Integer id) throws PersistenciaException {
 
         try {
             // Abre a única conexão possível com o Banco de Dados.
@@ -133,16 +146,13 @@ public class CursoDAO implements ICursoDAO {
             // Percorre toda a 'lista'
             while (lista.next()) {
                 Curso curso = new Curso();
-                curso.setId(lista.getLong("id_curso"));
+                curso.setId(lista.getInt("id_curso"));
                 curso.setNome(lista.getString("txt_nome"));
                 curso.setSigla(lista.getString("txt_sigla"));
                 curso.setTipo(lista.getString("idt_tipo"));
 
                 DepartamentoDAO dpto = new DepartamentoDAO();
-                curso.setDpto(dpto.consultarPorId(lista.getLong("id_departamento")));
-
-                GradeCurricularDAO grade = new GradeCurricularDAO();
-                curso.setGrades( grade.listarTodos());
+                curso.setDpto(dpto.consultarPorId(lista.getInt("id_departamento")));
                 
                 cursoList.add(curso);
             }
@@ -156,7 +166,7 @@ public class CursoDAO implements ICursoDAO {
     }
 
     @Override
-    public Curso consultarPorId(Long id) throws PersistenciaException {
+    public Curso consultarPorId(Integer id) throws PersistenciaException {
 
         Curso curso = null;
 
@@ -175,16 +185,15 @@ public class CursoDAO implements ICursoDAO {
 
             if (registro.next()) {
                 curso = new Curso();
-                curso.setId(registro.getLong("id_curso"));
+                curso.setId(registro.getInt("id_curso"));
                 curso.setNome(registro.getString("txt_nome"));
                 curso.setSigla(registro.getString("txt_sigla"));
                 curso.setTipo(registro.getString("idt_tipo"));
                 
                 DepartamentoDAO dpto = new DepartamentoDAO();
-                curso.setDpto(dpto.consultarPorId(registro.getLong("id_departamento")));
+                curso.setDpto(dpto.consultarPorId(registro.getInt("id_departamento")));
                 
                 GradeCurricularDAO grade = new GradeCurricularDAO();
-                curso.setGrades( grade.listarTodos());
             }
             // Fecha a conexao com o BD.
             connection.close();
@@ -217,13 +226,13 @@ public class CursoDAO implements ICursoDAO {
 
             if (registro.next()) {
                 curso = new Curso();
-                curso.setId(registro.getLong("id_curso"));
+                curso.setId(registro.getInt("id_curso"));
                 curso.setNome(registro.getString("txt_nome"));
                 curso.setSigla(registro.getString("txt_sigla"));
                 curso.setTipo(registro.getString("idt_tipo"));
 
                 DepartamentoDAO dpto = new DepartamentoDAO  ();
-                curso.setDpto(dpto.consultarPorId(registro.getLong("id_departamento")));
+                curso.setDpto(dpto.consultarPorId(registro.getInt("id_departamento")));
             }
             
             // Fecha a conexao com o BD.

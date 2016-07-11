@@ -6,8 +6,11 @@
 package br.cefetmg.inf.model.service.impl;
 
 import br.cefetmg.inf.model.dao.ICursoDAO;
+import br.cefetmg.inf.model.dao.IGradeCurricularDAO;
 import br.cefetmg.inf.model.dao.impl.CursoDAO;
+import br.cefetmg.inf.model.dao.impl.GradeCurricularDAO;
 import br.cefetmg.inf.model.domain.Curso;
+import br.cefetmg.inf.model.domain.GradeCurricular;
 import br.cefetmg.inf.model.service.IManterCurso;
 import br.cefetmg.inf.util.db.exception.NegocioException;
 import br.cefetmg.inf.util.db.exception.PersistenciaException;
@@ -42,7 +45,7 @@ public class ManterCurso implements IManterCurso{
         }
         
         ICursoDAO cursoDAO = new CursoDAO();
-        Long id = cursoDAO.inserir(curso);
+        Integer id = cursoDAO.inserir(curso);
         curso.setId(id);
     }
 
@@ -73,7 +76,7 @@ public class ManterCurso implements IManterCurso{
     }
 
     @Override
-    public Curso buscarPorId(Long id) throws PersistenciaException, NegocioException {
+    public Curso buscarPorId(Integer id) throws PersistenciaException, NegocioException {
         
         ICursoDAO cursoDAO = new CursoDAO();
         Curso curso = cursoDAO.consultarPorId(id);
@@ -94,4 +97,9 @@ public class ManterCurso implements IManterCurso{
         return listCurso;
     }
     
+    public List<GradeCurricular> listarGrades(Curso curso) throws PersistenciaException, NegocioException {
+        IGradeCurricularDAO gradeDAO = new GradeCurricularDAO();
+        List<GradeCurricular> listGrade = gradeDAO.listarPorCurso(curso.getId());
+        return listGrade;
+    }
 }

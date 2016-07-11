@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Professor {
 
-    private Long Id;
+    private Integer Id;
     private Departamento Dpto;
     private String Nome,
             Descricao,
@@ -18,7 +18,6 @@ public class Professor {
     public void setCPF(String CPF) {
         this.CPF = CPF;
     }
-    private ArrayList<Disciplina> Disciplinas;
 
     public String getDescricao() {
         return Descricao;
@@ -28,19 +27,11 @@ public class Professor {
         this.Descricao = Descricao;
     }
 
-    public ArrayList<Disciplina> getDisciplinas() {
-        return Disciplinas;
-    }
-
-    public void setDisciplinas(ArrayList<Disciplina> Disciplinas) {
-        this.Disciplinas = Disciplinas;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return Id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.Id = id;
     }
 

@@ -13,27 +13,40 @@ import java.util.ArrayList;
 public class DepartamentoDAO implements IDepartamentoDAO {
 
     @Override
-    public Long inserir(Departamento departamento) throws PersistenciaException {
+    public Integer inserir(Departamento departamento) throws PersistenciaException {
 
-        Long id = null;
+        Integer id = null;
 
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
+            
+            // Busca o maior id
+            
+            PreparedStatement search = connection.prepareStatement("SELECT MAX(`id_departamento`) as id FROM Departamento ");
+            
+            ResultSet resultSearch = search.executeQuery();
 
-            String sql = "INSERT INTO `Departamento` ( `txt_nome`, `cod_sigla`, `txt_email`, `nro_telefone`, `cod_cep`, `txt_site` ) " + "VALUES( ?, ?, ?, ?, ?, ? ) RETURNING id_departamento";
+            if (resultSearch.next()) {
+                id = resultSearch.getInt("id");
+                if(id == null) id = 1;
+                departamento.setId(id);
+            }
+            
+            String sql = "INSERT INTO `Departamento` ( `id_departamento`, `txt_nome`, `cod_sigla`, `txt_email`, `nro_telefone`, `cod_cep`, `txt_site` ) " + "VALUES(?, ?, ?, ?, ?, ?, ? ) RETURNING id_departamento";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
-            // assim se evita a injeção de SQL                        
-            statement.setString(1, departamento.getNome());                        // 0  interrogação.
-            statement.setString(2, departamento.getSigla());                        // 1  interrogação.
-            statement.setString(3, departamento.getEmail());                        // 2  interrogação.
-            statement.setString(4, departamento.getTelefone());                        // 3  interrogação.
-            statement.setString(5, departamento.getCEP());                        // 4  interrogação.
-            statement.setString(6, departamento.getSite());                        // 5  interrogação.
+            // assim se evita a injeção de SQL 
+            statement.setInt(1, departamento.getId());
+            statement.setString(2, departamento.getNome());                        // 0  interrogação.
+            statement.setString(3, departamento.getSigla());                        // 1  interrogação.
+            statement.setString(4, departamento.getEmail());                        // 2  interrogação.
+            statement.setString(5, departamento.getTelefone());                        // 3  interrogação.
+            statement.setString(6, departamento.getCEP());                        // 4  interrogação.
+            statement.setString(7, departamento.getSite());                        // 5  interrogação.
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                id = resultSet.getLong("id_departamento");
+                id = resultSet.getInt("id_departamento");
                 departamento.setId(id);
             }
 
@@ -79,7 +92,7 @@ public class DepartamentoDAO implements IDepartamentoDAO {
     }
 
     @Override
-    public Departamento consultarPorId(Long id) throws PersistenciaException {
+    public Departamento consultarPorId(Integer id) throws PersistenciaException {
         Departamento dpto = null;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
@@ -93,7 +106,7 @@ public class DepartamentoDAO implements IDepartamentoDAO {
 
             if (resultSet.next()) {
                 Departamento departamento = new Departamento();
-                departamento.setId(resultSet.getLong("id_departamento"));
+                departamento.setId(resultSet.getInt("id_departamento"));
                 departamento.setNome(resultSet.getString("txt_nome"));
                 departamento.setSigla(resultSet.getString("cod_sigla"));
                 departamento.setEmail(resultSet.getString("txt_email"));
@@ -112,7 +125,7 @@ public class DepartamentoDAO implements IDepartamentoDAO {
     }
 
     @Override
-    public void excluir(Long id) throws PersistenciaException {
+    public void excluir(Integer id) throws PersistenciaException {
 
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
@@ -148,7 +161,7 @@ public class DepartamentoDAO implements IDepartamentoDAO {
 
             while (resultSet.next()) {
                 Departamento departamento = new Departamento();
-                departamento.setId(resultSet.getLong("id_departamento"));
+                departamento.setId(resultSet.getInt("id_departamento"));
                 departamento.setNome(resultSet.getString("txt_nome"));
                 departamento.setSigla(resultSet.getString("cod_sigla"));
                 departamento.setEmail(resultSet.getString("txt_email"));

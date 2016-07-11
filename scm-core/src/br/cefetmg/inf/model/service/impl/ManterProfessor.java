@@ -42,7 +42,7 @@ public class ManterProfessor implements IManterProfessor{
         }
         
         IProfessorDAO professorDAO = new ProfessorDAO();
-        Long id = professorDAO.inserir(professor);
+        Integer id = professorDAO.inserir(professor);
         professor.setId(id);
     }
 
@@ -73,7 +73,7 @@ public class ManterProfessor implements IManterProfessor{
     }
 
     @Override
-    public Professor buscarPorId(Long id) throws PersistenciaException, NegocioException {
+    public Professor buscarPorId(Integer id) throws PersistenciaException, NegocioException {
         
         IProfessorDAO professorDAO = new ProfessorDAO();
         Professor professor = new Professor();
@@ -85,7 +85,7 @@ public class ManterProfessor implements IManterProfessor{
     public void excluir(Professor professor) throws PersistenciaException, NegocioException {
         
         IProfessorDAO professorDAO = new ProfessorDAO();
-        Long id = professor.getId();
+        Integer id = professor.getId();
         professorDAO.excluir(id);
     }
 

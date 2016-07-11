@@ -47,7 +47,7 @@ public class ManterUnidadeEnsino implements IManterUnidadeEnsino{
         }
         
         IUnidadeEnsinoDAO UnidadeEnsinoDAO = new UnidadeEnsinoDAO();
-        Long id = UnidadeEnsinoDAO.inserir(UnidadeEnsino);
+        Integer id = UnidadeEnsinoDAO.inserir(UnidadeEnsino);
         UnidadeEnsino.setId(id);
     }
 
@@ -83,7 +83,7 @@ public class ManterUnidadeEnsino implements IManterUnidadeEnsino{
     }
 
     @Override
-    public UnidadeEnsino buscarPorId(Long id) throws PersistenciaException, NegocioException {
+    public UnidadeEnsino buscarPorId(Integer id) throws PersistenciaException, NegocioException {
         
         IUnidadeEnsinoDAO UnidadeEnsinoDAO = new UnidadeEnsinoDAO();
         UnidadeEnsino UnidadeEnsino = UnidadeEnsinoDAO.consultarPorId(id);

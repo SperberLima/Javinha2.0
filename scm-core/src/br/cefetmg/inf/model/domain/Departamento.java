@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Departamento {
     
-    private Long Id;
+    private Integer Id;
     
     private String Sigla,
                    Nome,
@@ -24,11 +24,11 @@ public class Departamento {
     }
     
     
-    public Long getId() {
+    public Integer getId() {
         return Id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.Id = id;
     }
 

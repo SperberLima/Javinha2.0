@@ -5,40 +5,30 @@ import java.util.Objects;
 
 public class UnidadeEnsino {
 
-    private Long Id;
+    private Integer Id;
     private String Sigla;
     private String Nome;
     private String Email;
     private String Telefone;
-    private Long CEP;
+    private String CEP;
     private String Site;
-    private ArrayList<Ambiente_Aprendizagem> Ambientes;
-    private ArrayList<Departamento> Departamentos;
 
     public UnidadeEnsino() {
     }
 
-    public Long getCEP() {
+    public String getCEP() {
         return CEP;
     }
 
-    public void setCEP(Long CEP) {
+    public void setCEP(String CEP) {
         this.CEP = CEP;
     }
 
-    public ArrayList<Ambiente_Aprendizagem> getAmbientes() {
-        return Ambientes;
-    }
-
-    public void setAmbientes(ArrayList<Ambiente_Aprendizagem> Ambientes) {
-        this.Ambientes = Ambientes;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return Id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.Id = id;
     }
 
@@ -80,14 +70,6 @@ public class UnidadeEnsino {
 
     public void setSite(String site) {
         this.Site = site;
-    }
-
-    public ArrayList<Departamento> getDepartamentos() {
-        return Departamentos;
-    }
-
-    public void setDepartamentos(ArrayList<Departamento> departamentos) {
-        this.Departamentos = departamentos;
     }
 
     @Override

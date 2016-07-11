@@ -52,7 +52,7 @@ public class ManterDepartamento implements IManterDepartamento{
         }
         
         IDepartamentoDAO departamentoDAO = new DepartamentoDAO();
-        Long id = departamentoDAO.inserir(departamento);
+        Integer id = departamentoDAO.inserir(departamento);
         departamento.setId(id);
     }
 
@@ -93,7 +93,7 @@ public class ManterDepartamento implements IManterDepartamento{
     }
 
     @Override
-    public Departamento buscarPorId(Long id) throws PersistenciaException, NegocioException {
+    public Departamento buscarPorId(Integer id) throws PersistenciaException, NegocioException {
         
         IDepartamentoDAO departamentoDAO = new DepartamentoDAO();
         Departamento departamento = departamentoDAO.consultarPorId(id);

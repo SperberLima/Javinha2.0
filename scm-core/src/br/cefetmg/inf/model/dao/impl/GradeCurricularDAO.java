@@ -4,11 +4,12 @@ import br.cefetmg.inf.model.dao.IGradeCurricularDAO;
 import br.cefetmg.inf.model.domain.GradeCurricular;
 import br.cefetmg.inf.util.db.exception.PersistenciaException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GradeCurricularDAO implements IGradeCurricularDAO {
 
     @Override
-    public Long inserir(GradeCurricular obj) throws PersistenciaException {
+    public Integer inserir(GradeCurricular obj) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -18,18 +19,23 @@ public class GradeCurricularDAO implements IGradeCurricularDAO {
     }
 
     @Override
-    public void excluir(Long id) throws PersistenciaException {
+    public void excluir(Integer id) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public GradeCurricular consultarPorId(Long id) throws PersistenciaException {
+    public GradeCurricular consultarPorId(Integer id) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public ArrayList<GradeCurricular> listarTodos() throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<GradeCurricular> listarPorCurso(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

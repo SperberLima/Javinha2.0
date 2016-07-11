@@ -2,16 +2,17 @@ package br.cefetmg.inf.model.domain;
 
 public class Disciplina {
 
-    private Long Id;
+    private Integer Id;
     private String Nome,
-            Descricao;
+            Ementa;
     private int CargaHoraria;
+    private Departamento departamento;
 
-    public Long getId() {
+    public Integer getId() {
         return Id;
     }
 
-    public void setId(Long Id) {
+    public void setId(Integer Id) {
         this.Id = Id;
     }
 
@@ -23,12 +24,12 @@ public class Disciplina {
         this.Nome = Nome;
     }
 
-    public String getDescricao() {
-        return Descricao;
+    public String getEmenta() {
+        return Ementa;
     }
 
-    public void setDescricao(String Descricao) {
-        this.Descricao = Descricao;
+    public void setEmenta(String Ementa) {
+        this.Ementa = Ementa;
     }
 
     public int getCargaHoraria() {
@@ -37,5 +38,13 @@ public class Disciplina {
 
     public void setCargaHoraria(int CargaHoraria) {
         this.CargaHoraria = CargaHoraria;
+    }
+
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
 }

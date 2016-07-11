@@ -15,7 +15,7 @@ import java.util.List;
 public class UnidadeEnsinoDAO implements IUnidadeEnsinoDAO {
 
     @Override
-    public Long inserir(UnidadeEnsino obj) throws PersistenciaException {
+    public Integer inserir(UnidadeEnsino obj) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -25,12 +25,12 @@ public class UnidadeEnsinoDAO implements IUnidadeEnsinoDAO {
     }
 
     @Override
-    public void excluir(Long id) throws PersistenciaException {
+    public void excluir(Integer id) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public UnidadeEnsino consultarPorId(Long id) throws PersistenciaException {
+    public UnidadeEnsino consultarPorId(Integer id) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
