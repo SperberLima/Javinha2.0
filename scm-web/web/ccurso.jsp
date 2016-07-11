@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-
+<%@page import="br.cefetmg.inf.model.domain.*" %>
+<%@page import="java.util.List" %>
 
 
 <html lang="en" style="
@@ -42,37 +43,36 @@
 
 
 
-<form><table style="
-">
+<form name="frmCCurso" method='post'><table>
   <tbody>
   <tr style="">
     <td id="field" style="
 "><span style="
     font-size: 16px;
 ">ID</span></td>
-    <td><input class="form_input" type="text" placeholder="ID"></td>
+    <td><input class="form_input" name="" type="text" name="id" placeholder="ID"></td>
   </tr>
   <tr>
     <td id="field"><span>Departamento</span></td>
-    <td><input class="form_input" type="text" placeholder="Departamento"></td>
+    <td><input class="form_input" name="" type="text" name="departamento" placeholder="Departamento"></td>
   </tr>
   <tr style="
 ">
     <td id="field"><span>Nome</span></td> 
-    <td><input class="form_input" type="text" placeholder="Nome"></td>
+    <td><input class="form_input" name="" type="text" name="nome" placeholder="Nome"></td>
   </tr>
 </tbody></table>
+
   <div class="butcontainer">
-  <button class="cancela __web-inspector-hide-shortcut__" style="
-    height: 35px;
-    width: 120px;
-">CANCELA</button><button class="confirma" style="
+  </form>  
+  <input type="reset" value="CANCELAR" class="cancela" style=" height: 35px; width: 120px;">
+<button onclick="" onclick="" class="confirma" style="
     height: 35px;
     width: 120px;
     margin-left: 15px;
 ">CONFIRMA</button> 
 
-  </div>
+ </div>
 </div>
  
         </div>

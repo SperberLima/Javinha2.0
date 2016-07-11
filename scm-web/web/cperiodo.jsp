@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-
+<%@page import="br.cefetmg.inf.model.domain.*" %>
+<%@page import="java.util.List" %>
 
 
 <html lang="en" style="
@@ -42,13 +43,13 @@
 
 
 
-<form><table style="
+<form name="frmCPeriodo" method='post'><table style="
 ">
   <tbody>
    <t">
     <td id="field" style="
 "><span>ID</span></td>
-    <td><input class="form_input" type="text" placeholder="ID" style="
+    <td><input class="form_input" name="id" type="text" placeholder="ID" style="
 "></td>
   </tr>
   <tr style="">
@@ -56,23 +57,22 @@
 "><span style="
     font-size: 16px;
 ">Data de Início</span></td>
-    <td><input class="form_input" type="text" placeholder="DD/MM/AAAA"></td>
+    <td><input class="form_input" name="datai" type="text" placeholder="DD/MM/AAAA"></td>
   </tr>
   <tr>
     <td id="field"><span>Data do Fim</span></td>
-    <td><input class="form_input" type="text" placeholder="DD/MM/AAAA"></td>
+    <td><input class="form_input" name="dataf" type="text" placeholder="DD/MM/AAAA"></td>
   </tr>
   <tr style="
 ">
-    <td id="field"><span>Descrição</span></td>
-    <td><input class="form_input" type="text" placeholder="Descrição"></td>
+    <td id="field"><span>Descrição</span></td> 
+    <td><input class="form_input" name="descricao" type="text" placeholder="Descrição"></td>
   </tr> 
 </tbody></table>
+  </form>
   <div class="butcontainer">
-  <button class="cancela __web-inspector-hide-shortcut__" style="
-    height: 35px;
-    width: 120px;
-">CANCELA</button><button class="confirma" style="
+  <input type="reset" value="CANCELAR" class="cancela" style=" height: 35px; width: 120px;">
+  <button onclick="" class="confirma" style="
     height: 35px;
     width: 120px;
     margin-left: 15px;

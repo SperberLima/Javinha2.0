@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 
-
+ 
 <html lang="en" style="
     min-width: 100%;
 "><head>
@@ -40,8 +40,9 @@
 <div class="opt_container" style="
     text-align: center;
 ">
+<form name="frmEscolha" method='post'>
   <h1 class="form_title" style="
-">Selecione uma operação para <select style="
+">Selecione uma operação para <select name="select" style="
     border: none;
     background: inherit;
     border-bottom: 1px solid #41a599;
@@ -56,7 +57,7 @@
   <option value="periodo">Período</option>
   <option value="professor">Professor</option>
   <option value="unidade">Unidade de ensino</option>
-</select></h1> 
+</select></h1> </form>
   <ul class="opt" style="">
    <li onclick="alert('I am an alert box!')" style="
 "><span style="

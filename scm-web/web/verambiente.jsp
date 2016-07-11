@@ -1,7 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-
-
-
+<%@page import="br.cefetmg.inf.model.domain.*" %>
+<%@page import="java.util.List" %>
+        
+<% Ambiente_Aprendizagem a = new Ambiente_Aprendizagem();%>
 <html lang="en" style="
     min-width: 100%;
 "><head>
@@ -40,10 +41,9 @@
 <div class="form_container">
   <h1 class="form_title">Lista de ambientes</h1>
 
-            <form name="fmCurso" method="post" action="">
+            <form name="frmAmbiente" method="post" action="">
                 <table class="view">
-                    <tbody><tr style="
-">
+                    <tbody><tr style="">
                         <th>
                             ID
                         </th>
@@ -57,33 +57,32 @@
                             Número da sala
                         </th>
 						
-  <th style="
-    padding-right: 0px;
-"></th><th style="
-    padding-right: 0px;
-"></th>
-                    </tr>			
-					<tr style="
-">
-						<td>
-                          sample
-						</td>
-						<td>
-							sample
-						</td>
-						<td>
-							sample
-						</td>
-						<td>
-							sample
-						</td>
-						<td style="padding-right: 10px;">                            
-							<button id="alterar" onclick=""></button>
-						</td>
-  						<td style="padding-right: 0px;">                            
-							<button id="excluir" onclick=""></button>
-						</td>
-					</tr>
+                        <th style="
+                          padding-right: 0px;
+                      "></th><th style="
+                          padding-right: 0px;
+                      "></th>
+                          </tr>			
+                         <tr>
+                                <td>
+                                        sample
+                                </td>
+                                <td>
+                                        sample
+                                </td>
+                                <td>
+                                        sample
+                                </td>
+                                <td>
+                                        sample
+                                </td>
+                                <td style="padding-right: 10px;">                            
+                                        <button id="alterar" onclick=""></button>
+                                </td>
+                                <td style="padding-right: 0px;">                            
+                                        <button id="excluir" onclick=""></button>
+                                </td>
+                        </tr>
                 </tbody></table>
             </form>
 </div>

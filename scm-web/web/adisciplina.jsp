@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-
+<%@page import="br.cefetmg.inf.model.domain.*" %>
+<%@page import="java.util.List" %>
 
 
 <html lang="en" style="
@@ -39,7 +40,7 @@
 
 
 
-<form><table style="
+<form name="frmDisciplina" method="post" action=""><table style="
 ">
   <tbody>
   <tr style="">
@@ -47,29 +48,26 @@
 "><span style="
     font-size: 16px;
 ">ID</span></td>
-    <td><input class="form_input" type="text" value="" placeholder="ID"></td>
+    <td><input class="form_input" name="id" type="text" value="" placeholder="ID"></td>
   </tr>
   <tr>
     <td id="field"><span>Carga Horária</span></td>
-    <td><input class="form_input" type="text" value="" placeholder="Carga Horária"></td>
+    <td><input class="form_input" name="carga" type="text" value="" placeholder="Carga Horária"></td>
   </tr>
   <tr style="
 ">
     <td id="field"><span>Nome</span></td>
-    <td><input class="form_input" type="text" value="" placeholder="Nome"></td>
+    <td><input class="form_input" name="nome" type="text" value="" placeholder="Nome"></td>
   </tr>
   <tr style="border: 1px solid gray;">
     <td id="field" style="
 "><span>Ementa</span></td>
-    <td><input class="form_input" type="text" value="" placeholder="Ementa" style="
+    <td><input class="form_input" name="ementa" type="text" value="" placeholder="Ementa" style="
 "></td>
   </tr>
 </tbody></table>
   <div class="butcontainer">
-  <button class="cancela" style="
-    height: 35px;
-    width: 120px;
-">CANCELA</button><button class="redefine" style="
+  <input type="reset" value="CANCELAR" class="cancela" style=" height: 35px; width: 120px;"><button class="redefine" style="
     height: 35px;
     width: 120px;
     margin-left: 15px;

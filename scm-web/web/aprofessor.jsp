@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-
+<%@page import="br.cefetmg.inf.model.domain.*" %>
+<%@page import="java.util.List" %>
 
 
 <html lang="en" style="
@@ -42,7 +43,7 @@
 
 
 
-<form><table style="
+<form name="frmProfessor" method="post" action=""><table style="
 ">
   <tbody>
   <tr style="">
@@ -50,29 +51,26 @@
 "><span style="
     font-size: 16px;
 ">CPF</span></td>
-    <td><input class="form_input" type="text" value="" placeholder="CPF"></td>
+    <td><input class="form_input" name="cpf" type="text" value="" placeholder="CPF"></td>
   </tr>
   <tr>
     <td id="field"><span>Departamento</span></td>
-    <td><input class="form_input" type="text" value="" placeholder="Departamento"></td>
+    <td><input class="form_input" name="departamento" type="text" value="" placeholder="Departamento"></td>
   </tr>
   <tr style="
 ">
     <td id="field"><span>Nome</span></td>
-    <td><input class="form_input" type="text" value="" placeholder="Nome"></td>
+    <td><input class="form_input" name="nome" type="text" value="" placeholder="Nome"></td>
   </tr>
   <tr style="border: 1px solid gray;">
     <td id="field" style="
 "><span>Telefone</span></td>
-    <td><input class="form_input" type="text" value="" placeholder="Telefone" style="
+    <td><input class="form_input" name="telefone" type="text" value="" placeholder="Telefone" style="
 "></td>
   </tr>
 </tbody> </table></form>
   <div class="butcontainer">
-  <button class="cancela" style="
-    height: 35px;
-    width: 120px;
-">CANCELA</button><button class="redefine" style="
+  <input type="reset" value="CANCELAR" class="cancela" style=" height: 35px; width: 120px;"><button class="redefine" style="
     height: 35px;
     width: 120px;
     margin-left: 15px;

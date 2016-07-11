@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-
+<%@page import="br.cefetmg.inf.model.domain.*" %>
+<%@page import="java.util.List" %>
 
 
 <html lang="en" style="
@@ -40,13 +41,13 @@
 <div class="form_container"> 
   <h1 class="form_title">Alterar dados de período letivo</h1>
  
-<form><table style="
+<form name="frmPeriodo" method="post" action=""><table style="
 ">
   <tbody>
    <t">
     <td id="field" style="
 "><span>ID</span></td>
-    <td><input class="form_input" type="text" value="" placeholder="ID" style="
+    <td><input class="form_input" name="id" type="text" value="" placeholder="ID" style="
 "></td>
   </tr>
   <tr style="">
@@ -54,23 +55,20 @@
 "><span style="
     font-size: 16px;
 ">Data de Início</span></td>
-    <td><input class="form_input" type="text" value="" placeholder="DD/MM/AAAA"></td>
+    <td><input class="form_input" name="datai" type="text" value="" placeholder="DD/MM/AAAA"></td>
   </tr>
   <tr>
     <td id="field"><span>Data do Fim</span></td>
-    <td><input class="form_input" type="text" value="" placeholder="DD/MM/AAAA"></td>
+    <td><input class="form_input" name="dataf" type="text" value="" placeholder="DD/MM/AAAA"></td>
   </tr>
   <tr style="
 ">
     <td id="field"><span>Descrição</span></td>
-    <td><input class="form_input" type="text" value="" placeholder="Descrição"></td>
+    <td><input class="form_input" name="descricao" type="text" value="" placeholder="Descrição"></td>
   </tr> 
 </tbody></table>
   <div class="butcontainer">
-  <button class="cancela" style="
-    height: 35px;
-    width: 120px;
-">CANCELA</button><button class="redefine" style="
+  <input type="reset" value="CANCELAR" class="cancela" style=" height: 35px; width: 120px;"><button class="redefine" style="
     height: 35px;
     width: 120px;
     margin-left: 15px;
