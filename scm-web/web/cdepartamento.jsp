@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-
+<%@page import="br.cefetmg.inf.model.domain.*" %>
+<%@page import="java.util.List" %>
 
 
 <html lang="en" style="
@@ -42,7 +43,7 @@
 
 
 
-<form><table style="
+<form name="frmCDepartamento" method='post'><table style="
 ">
   <tbody>
 <tr style="">
@@ -50,47 +51,46 @@
 "><span style="
     font-size: 16px;
 ">ID</span></td>
-    <td><input class="form_input" type="text" placeholder="ID"></td>
+    <td><input class="form_input" name="id" type="text" placeholder="ID"></td>
   </tr>
   <tr>
     <td id="field"><span>Sigla</span></td>
-    <td><input class="form_input" type="text" placeholder="Sigla"></td>
+    <td><input class="form_input" name="sigla" type="text" placeholder="Sigla"></td>
   </tr>
   <tr style="
 ">
     <td id="field"><span>Nome</span></td>
-    <td><input class="form_input" type="text" placeholder="Nome"></td>
+    <td><input class="form_input" name="nome" type="text" placeholder="Nome"></td>
   </tr>
   <tr>
     <td id="field" style="
 "><span>E-mail</span></td>
-    <td><input class="form_input" type="text" placeholder="E-mail" style="
+    <td><input class="form_input" name="email" type="text" placeholder="E-mail" style="
 "></td>
   </tr>
    <tr>
     <td id="field" style="
 "><span>Telefone</span></td>
-    <td><input class="form_input" type="text" placeholder="Telefone" style="
+    <td><input class="form_input" name="telefone" type="text" placeholder="Telefone" style="
 "></td>
   </tr>
    <tr>
     <td id="field" style="
 "><span>CEP</span></td>
-    <td><input class="form_input" type="text" placeholder="CEP" style="
+    <td><input class="form_input" name="cep"  type="text" placeholder="CEP" style="
 "></td>
   </tr> 
    <tr style="border: 1px solid gray;">
     <td id="field" style="
 "><span>Site</span></td>
-    <td><input class="form_input" type="text" placeholder="Site" style="
+    <td><input class="form_input" name="site" type="text" placeholder="Site" style="
 "></td>
   </tr>  
 </tbody></table>
+  </form>
   <div class="butcontainer">
-  <button class="cancela __web-inspector-hide-shortcut__" style="
-    height: 35px;
-    width: 120px;
-">CANCELA</button><button class="confirma" style="
+  <input type="reset" value="CANCELAR" class="cancela" style=" height: 35px; width: 120px;">
+  <button onclick="" class="confirma" style="
     height: 35px;
     width: 120px;
     margin-left: 15px;
