@@ -23,17 +23,17 @@ public class ManterAmbienteAprendizagem implements IManterAmbienteAprendizagem{
     public void cadastrar(AmbienteAprendizagem Ambiente_Aprendizagem) throws PersistenciaException, NegocioException {
          // Curso deve ter departamento
         if (Ambiente_Aprendizagem.getU_ensino()== null){
-            throw new NegocioException("O curso deve pertencer a um departamento");
+            throw new NegocioException("Todo ambiente de aprendizagem deve estar associado a uma unidade de ensino");
         }
         
         //Curso deve ter Nome
         if (Ambiente_Aprendizagem.getDescricao()== null){
-            throw new NegocioException("O curso deve ter nome");
+            throw new NegocioException("Todo ambiente de aprendizagem necessita de uma descricao");
         }
         
         //Curso deve ter sigla
-        if (Ambiente_Aprendizagem.getCapacidade() == 0){
-            throw new NegocioException("O curso deve ter sigla");
+        if (Ambiente_Aprendizagem.getCapacidade() <= 0){
+            throw new NegocioException("Um ambiente de aprendizagem só pode ter capacidade superior a zero");
         }
         
         IAmbienteAprendizagemDAO Ambiente_AprendizagemDAO = new AmbienteAprendizagemDAO();

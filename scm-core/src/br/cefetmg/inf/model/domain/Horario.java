@@ -5,6 +5,8 @@
  */
 package br.cefetmg.inf.model.domain;
 
+import java.sql.Date;
+
 /**
  *
  * @author Nome
@@ -14,6 +16,8 @@ public class Horario {
     private AmbienteAprendizagem ambiente;
     private Turma turma;
     private ProfessorDisciplina professorDisciplina;
+    private Date inicio;
+    private Date fim;
 
     public Integer getId() {
         return id;
@@ -45,6 +49,22 @@ public class Horario {
 
     public void setProfessorDisciplina(ProfessorDisciplina professorDisciplina) {
         this.professorDisciplina = professorDisciplina;
+    }
+
+    public Date getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
+    }
+
+    public Date getFim() {
+        return fim;
+    }
+
+    public void setFim(Date fim) {
+        this.fim = fim;
     }
     
     

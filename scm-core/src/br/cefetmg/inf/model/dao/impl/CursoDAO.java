@@ -2,6 +2,7 @@ package br.cefetmg.inf.model.dao.impl;
 
 import br.cefetmg.inf.model.dao.ICursoDAO;
 import br.cefetmg.inf.model.domain.Curso;
+import br.cefetmg.inf.model.domain.Departamento;
 import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import br.cefetmg.inf.util.db.exception.PersistenciaException;
 import java.sql.Connection;
@@ -29,8 +30,9 @@ public class CursoDAO implements ICursoDAO {
 
             if (resultSearch.next()) {
                 id = resultSearch.getInt("id");
-                if(id == null) id = 1;
-                curso.setId(id);
+                curso.setId(id+1);
+            }else{
+                id = 1;
             }
             
             // Comando sql a ser executado.
@@ -49,8 +51,9 @@ public class CursoDAO implements ICursoDAO {
             ResultSet resultSet = inserir.executeQuery();
 
             if (resultSet.next()) {
-                id = resultSet.getInt("id_curso");
-                curso.setId(id);
+                id = resultSet.getInt("id_curriculo_oferta");
+            }else{
+                id = null;
             }
 
             // Fecha a conexao com o BD.
@@ -85,8 +88,8 @@ public class CursoDAO implements ICursoDAO {
             atualiza.setString(1, curso.getNome());                        // 1ª  interrogação                    
             atualiza.setString(2, curso.getTipo());                        // 1ª  interrogação                    
             atualiza.setString(3, curso.getSigla());                        // 1ª  interrogação
-            atualiza.setLong(4, curso.getDpto().getId());                        // 1ª  interrogação
-            atualiza.setLong(5, curso.getId());                        // 1ª  interrogação
+            atualiza.setInt(4, curso.getDpto().getId());                        // 1ª  interrogação
+            atualiza.setInt(5, curso.getId());                        // 1ª  interrogação
 
 
             // Executa a query.
@@ -243,5 +246,36 @@ public class CursoDAO implements ICursoDAO {
         }
         
         return curso;
+    }
+    
+    public ArrayList<Curso> listarPorDepartamento(Departamento departamento) throws PersistenciaException{
+        ArrayList<Curso> cursos = new ArrayList<>();
+
+        try {
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM `Curso` WHERE `id_departamento` = ?";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+            statement.setInt(1, departamento.getId()); 
+            
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Curso curso = new Curso();
+                curso.setId(resultSet.getInt("id_curso"));
+                curso.setNome(resultSet.getString("txt_nome"));
+                curso.setSigla(resultSet.getString("txt_sigla"));
+                curso.setTipo(resultSet.getString("idt_tipo"));
+                DepartamentoDAO dpto = new DepartamentoDAO  ();
+                curso.setDpto(dpto.consultarPorId(resultSet.getInt("id_departamento")));
+                cursos.add(curso);
+            }
+            connection.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new PersistenciaException(e.getMessage(), e);
+        }
+        return cursos;
     }
 }

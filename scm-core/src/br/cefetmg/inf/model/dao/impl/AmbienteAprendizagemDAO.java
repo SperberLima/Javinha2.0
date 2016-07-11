@@ -28,12 +28,12 @@ public class AmbienteAprendizagemDAO implements IAmbienteAprendizagemDAO {
 
             if (resultSearch.next()) {
                 id = resultSearch.getInt("id");
-                if(id == null) id = 1;
-                ambienteAprendizagem.setId(id);
-                
+                ambienteAprendizagem.setId(id+1);
+            }else{
+                id = 1;
             }
             
-            String sql = "INSERT INTO `Ambiente_Aprendizagem` (`id_ambiente`, `id_unidade_ensino`, `des_ambiente`, `qtd_capacidade`, `nro_sala`) " + "VALUES ( ?, ?, ?, ?, ? ) RETURNING id_ambiente";
+            String sql = "INSERT INTO `Ambiente_Aprendizagem` (`id_ambiente`, `id_unidade_de_ensino`, `des_ambiente`, `qtd_capacidade`, `nro_sala`) " + "VALUES ( ?, ?, ?, ?, ? ) RETURNING id_ambiente";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                        
@@ -45,7 +45,9 @@ public class AmbienteAprendizagemDAO implements IAmbienteAprendizagemDAO {
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                id = resultSet.getInt("id_ambiente");
+                id = resultSet.getInt("id_curriculo_oferta");
+            }else{
+                id = null;
             }
 
             connection.close();
@@ -96,7 +98,7 @@ public class AmbienteAprendizagemDAO implements IAmbienteAprendizagemDAO {
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
-            statement.setLong(1, id);
+            statement.setInt(1, id);
 
             statement.execute();
             connection.close();
@@ -115,7 +117,7 @@ public class AmbienteAprendizagemDAO implements IAmbienteAprendizagemDAO {
             String sql = "SELECT * FROM `Ambiente_Aprendizagem` WHERE id_ambiente = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setLong(1, id);
+            statement.setInt(1, id);
 
             ResultSet resultSet = statement.executeQuery();
 

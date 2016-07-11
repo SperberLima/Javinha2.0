@@ -1,7 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.cefetmg.inf.model.dao.impl;
 
-import br.cefetmg.inf.model.dao.ICurriculoOfertaDAO;
+import br.cefetmg.inf.model.dao.ITurmaDAO;
 import br.cefetmg.inf.model.domain.CurriculoOferta;
+import br.cefetmg.inf.model.domain.Turma;
 import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import br.cefetmg.inf.util.db.exception.PersistenciaException;
 import java.sql.Connection;
@@ -9,11 +15,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
+public class TurmaDAO implements ITurmaDAO{
 
     @Override
-    public Integer inserir(CurriculoOferta curriculoOferta) throws PersistenciaException {
+    public Integer inserir(Turma turma) throws PersistenciaException {
         Integer id = null;
 
         try {
@@ -21,28 +28,28 @@ public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
             
             // Busca o maior id
             
-            PreparedStatement search = connection.prepareStatement("SELECT MAX(`id_curriculo_oferta`) as id FROM Curriculo_em_Oferta");
+            PreparedStatement search = connection.prepareStatement("SELECT MAX(`id_turma`) as id FROM Turma");
             
             ResultSet resultSearch = search.executeQuery();
 
             if (resultSearch.next()) {
                 id = resultSearch.getInt("id");
-                curriculoOferta.setId(id+1);
+                turma.setId(id+1);
             }else{
                 id = 1;
             }
             
-            String sql = "INSERT INTO `Curriculo_em_Oferta` (`id_curriculo_oferta`, `id_periodo`, `id_grade`) " + "VALUES ( ?, ?, ? ) RETURNING id_curriculo_oferta";
+            String sql = "INSERT INTO `Turma` (`id_turma`, `id_curriculo_oferta`, `txt_nome`) " + "VALUES ( ?, ?, ? ) RETURNING id_turma";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                        
-            statement.setInt(1, curriculoOferta.getId());                        
-            statement.setInt(2, curriculoOferta.getPeriodoLetivo().getId());  
-            statement.setInt(3, curriculoOferta.getGradeCurricular().getId());                                                                    
+            statement.setInt(1, turma.getId());                        
+            statement.setInt(2, turma.getCurriculoOferta().getId());  
+            statement.setString(3, turma.getNome());                                                                    
             ResultSet resultSet = statement.executeQuery();
             
             if (resultSet.next()) {
-                id = resultSet.getInt("id_curriculo_oferta");
+                id = resultSet.getInt("id_turma");
             }else{
                 id = null;
             }
@@ -56,21 +63,21 @@ public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
     }
 
     @Override
-    public void atualizar(CurriculoOferta curriculoOferta) throws PersistenciaException {
+    public void atualizar(Turma turma) throws PersistenciaException {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             String sql = "UPDATE `Curriculo_em_Oferta` "
                     + " SET  "
-                    + "`id_periodo` = ?, "
-                    + "`id_grade` = ?, "
-                    + " WHERE id_curriculo_oferta = ?";
+                    + "`id_curriculo_oferta` = ?, "
+                    + "`txt_nome` = ? "
+                    + " WHERE id_turma = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
-            statement.setInt(1, curriculoOferta.getPeriodoLetivo().getId());                        // 1  interrogação.
-            statement.setInt(2, curriculoOferta.getGradeCurricular().getId());                          // 2  interrogação.
-            statement.setInt(3, curriculoOferta.getId());
+            statement.setInt(1, turma.getCurriculoOferta().getId());                        // 1  interrogação.
+            statement.setString(2, turma.getNome());                          // 2  interrogação.
+            statement.setInt(3, turma.getId());
             statement.execute();
 
             connection.close();
@@ -84,7 +91,7 @@ public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "DELETE FROM `Curriculo_em_Oferta` WHERE id_curriculo_oferta = ?";
+            String sql = "DELETE FROM `Turma` WHERE id_turma = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -98,8 +105,8 @@ public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
     }
 
     @Override
-    public CurriculoOferta consultarPorId(Integer id) throws PersistenciaException {
-        CurriculoOferta curriculoOferta = null;
+    public Turma consultarPorId(Integer id) throws PersistenciaException {
+        Turma turma = null;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -111,49 +118,47 @@ public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                GradeCurricularDAO daoGrade = new GradeCurricularDAO();
-                PeriodoLetivoDAO daoPeriodo = new PeriodoLetivoDAO();
-                curriculoOferta = new CurriculoOferta();
-                curriculoOferta.setId(resultSet.getInt("id_curriculo_oferta"));
-                curriculoOferta.setGradeCurricular(daoGrade.consultarPorId(resultSet.getInt("id_grade")));
-                curriculoOferta.setPeriodoLetivo(daoPeriodo.consultarPorId(resultSet.getInt("id_periodo")));
+                CurriculoOfertaDAO curriculoOfertaDAO = new CurriculoOfertaDAO();
+                turma = new Turma();
+                turma.setId(resultSet.getInt("id_turma"));
+                turma.setCurriculoOferta(curriculoOfertaDAO.consultarPorId(resultSet.getInt("id_curriculo_oferta")));
+                turma.setNome(resultSet.getString("txt_nome"));
             }
             connection.close();
 
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
-        return curriculoOferta;
+        return turma;
     }
 
     @Override
-    public ArrayList<CurriculoOferta> listarTodos() throws PersistenciaException {
-        ArrayList<CurriculoOferta> curriculoOfertas = new ArrayList<>();
+    public List<Turma> listarTodos() throws PersistenciaException {
+        ArrayList<Turma> turmas = new ArrayList<>();
 
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM `Curriculo_em_Oferta`";
+            String sql = "SELECT * FROM `Turma`";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                GradeCurricularDAO daoGrade = new GradeCurricularDAO();
-                PeriodoLetivoDAO daoPeriodo = new PeriodoLetivoDAO();
-                CurriculoOferta curriculoOferta = new CurriculoOferta();
-                curriculoOferta.setId(resultSet.getInt("id_curriculo_oferta"));
-                curriculoOferta.setGradeCurricular(daoGrade.consultarPorId(resultSet.getInt("id_grade")));
-                curriculoOferta.setPeriodoLetivo(daoPeriodo.consultarPorId(resultSet.getInt("id_periodo")));
+                CurriculoOfertaDAO curriculoOfertaDAO = new CurriculoOfertaDAO();
+                Turma turma = new Turma();
+                turma.setId(resultSet.getInt("id_turma"));
+                turma.setCurriculoOferta(curriculoOfertaDAO.consultarPorId(resultSet.getInt("id_curriculo_oferta")));
+                turma.setNome(resultSet.getString("txt_nome"));
                 
-                curriculoOfertas.add(curriculoOferta);
+                turmas.add(turma);
             }
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
-        return curriculoOfertas;
+        return turmas;
     }
     
 }

@@ -7,13 +7,10 @@ package controle.cadastro;
 
 import br.cefetmg.inf.model.domain.Curso;
 import br.cefetmg.inf.model.domain.Departamento;
-import br.cefetmg.inf.model.domain.UnidadeEnsino;
 import br.cefetmg.inf.model.service.IManterCurso;
 import br.cefetmg.inf.model.service.IManterDepartamento;
-import br.cefetmg.inf.model.service.IManterUnidadeEnsino;
 import br.cefetmg.inf.model.service.impl.ManterCurso;
 import br.cefetmg.inf.model.service.impl.ManterDepartamento;
-import br.cefetmg.inf.model.service.impl.ManterUnidadeEnsino;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +30,6 @@ public class curso extends HttpServlet {
             curso.setId(Integer.parseInt(request.getParameter("id")));
             curso.setSigla(request.getParameter("sigla"));
             curso.setNome(request.getParameter("nome"));
-            curso.setGrades(null);
             
             curso.setDpto(departamento);
             manterCurso.cadastrar(curso);

@@ -5,11 +5,11 @@
  */
 package controle.cadastro;
 
-import br.cefetmg.inf.model.domain.Ambiente_Aprendizagem;
+import br.cefetmg.inf.model.domain.AmbienteAprendizagem;
 import br.cefetmg.inf.model.domain.UnidadeEnsino;
 import br.cefetmg.inf.model.service.IManterUnidadeEnsino;
-import br.cefetmg.inf.model.service.IManterAmbiente_Aprendizagem;
-import br.cefetmg.inf.model.service.impl.ManterAmbiente_Aprendizagem;
+import br.cefetmg.inf.model.service.IManterAmbienteAprendizagem;
+import br.cefetmg.inf.model.service.impl.ManterAmbienteAprendizagem;
 import br.cefetmg.inf.model.service.impl.ManterUnidadeEnsino;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -21,10 +21,10 @@ public class ambiente extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{        
-            IManterAmbiente_Aprendizagem manterAmbiente = (IManterAmbiente_Aprendizagem) new ManterAmbiente_Aprendizagem();
+            IManterAmbienteAprendizagem manterAmbiente = (IManterAmbienteAprendizagem) new ManterAmbienteAprendizagem();
             IManterUnidadeEnsino manterUnidade = new ManterUnidadeEnsino();
 
-            Ambiente_Aprendizagem ambiente = new Ambiente_Aprendizagem();
+            AmbienteAprendizagem ambiente = new AmbienteAprendizagem();
             UnidadeEnsino unidade = manterUnidade.buscarPorId(Integer.parseInt(request.getParameter("unidadeensino")));
 
             ambiente.setId(Integer.parseInt(request.getParameter("id")));
