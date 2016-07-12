@@ -29,8 +29,9 @@ public class PeriodoLetivoDAO implements IPeriodoLetivoDAO {
 
             if (resultSearch.next()) {
                 id = resultSearch.getInt("id");
-                if(id == null) id = 1;
-                periodoLetivo.setId(id);
+                periodoLetivo.setId(id+1);
+            }else{
+                id = 1;
             }
             
             String sql = "INSERT INTO `Periodo_Letivo` ( `id_periodo`, `dat_inicio`, `dat_fim`, `txt_descricao` ) " + "VALUES( ?, ?, ?, ? ) RETURNING id_periodo";
@@ -44,8 +45,9 @@ public class PeriodoLetivoDAO implements IPeriodoLetivoDAO {
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                id = resultSet.getInt("id_periodo");
-                periodoLetivo.setId(id);
+                id = resultSet.getInt("id_disciplina");
+            }else{
+                id = null;
             }
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {

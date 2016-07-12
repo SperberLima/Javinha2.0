@@ -1,6 +1,7 @@
 package br.cefetmg.inf.model.dao.impl;
 
 import br.cefetmg.inf.model.dao.IDepartamentoDAO;
+import br.cefetmg.inf.model.dao.IUnidadeEnsinoDAO;
 import br.cefetmg.inf.model.domain.Departamento;
 import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import br.cefetmg.inf.util.db.exception.PersistenciaException;
@@ -28,26 +29,29 @@ public class DepartamentoDAO implements IDepartamentoDAO {
 
             if (resultSearch.next()) {
                 id = resultSearch.getInt("id");
-                if(id == null) id = 1;
-                departamento.setId(id);
+                departamento.setId(id+1);
+            }else{
+                id = 1;
             }
             
-            String sql = "INSERT INTO `Departamento` ( `id_departamento`, `txt_nome`, `cod_sigla`, `txt_email`, `nro_telefone`, `cod_cep`, `txt_site` ) " + "VALUES(?, ?, ?, ?, ?, ?, ? ) RETURNING id_departamento";
+            String sql = "INSERT INTO `Departamento` ( `id_departamento`, `id_unidade_de_ensino`, `txt_nome`, `cod_sigla`, `txt_email`, `nro_telefone`, `cod_cep`, `txt_site` ) " + "VALUES(?, ?, ?, ?, ?, ?, ?, ? ) RETURNING id_departamento";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL 
             statement.setInt(1, departamento.getId());
-            statement.setString(2, departamento.getNome());                        // 0  interrogação.
-            statement.setString(3, departamento.getSigla());                        // 1  interrogação.
-            statement.setString(4, departamento.getEmail());                        // 2  interrogação.
-            statement.setString(5, departamento.getTelefone());                        // 3  interrogação.
-            statement.setString(6, departamento.getCEP());                        // 4  interrogação.
-            statement.setString(7, departamento.getSite());                        // 5  interrogação.
+            statement.setInt(2, departamento.getUnidadeEnsino().getId());
+            statement.setString(3, departamento.getNome());                        // 0  interrogação.
+            statement.setString(4, departamento.getSigla());                        // 1  interrogação.
+            statement.setString(5, departamento.getEmail());                        // 2  interrogação.
+            statement.setString(6, departamento.getTelefone());                        // 3  interrogação.
+            statement.setString(7, departamento.getCEP());                        // 4  interrogação.
+            statement.setString(8, departamento.getSite());                        // 5  interrogação.
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                id = resultSet.getInt("id_departamento");
-                departamento.setId(id);
+                id = resultSet.getInt("id_disciplina");
+            }else{
+                id = null;
             }
 
             connection.close();
@@ -67,6 +71,7 @@ public class DepartamentoDAO implements IDepartamentoDAO {
             String sql = "UPDATE `Departamento` "
                     + " SET  "
                     + "`txt_nome` = ?, "
+                    + "`id_unidade_de_ensino` = ?, "
                     + "`cod_sigla` = ?, "
                     + "`txt_email` = ?, "
                     + "`nro_telefone` = ?, "
@@ -77,12 +82,13 @@ public class DepartamentoDAO implements IDepartamentoDAO {
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setString(1, departamento.getNome());                        // 1  interrogação.
-            statement.setString(2, departamento.getSigla());                        // 2  interrogação.
-            statement.setString(3, departamento.getEmail());                        // 3  interrogação.
-            statement.setString(4, departamento.getTelefone());                        // 4  interrogação.
-            statement.setString(5, departamento.getCEP());                        // 5  interrogação.
-            statement.setString(6, departamento.getSite());                        // 6  interrogação.
-
+            statement.setInt(2, departamento.getUnidadeEnsino().getId());
+            statement.setString(3, departamento.getSigla());                        // 2  interrogação.
+            statement.setString(4, departamento.getEmail());                        // 3  interrogação.
+            statement.setString(5, departamento.getTelefone());                        // 4  interrogação.
+            statement.setString(6, departamento.getCEP());                        // 5  interrogação.
+            statement.setString(7, departamento.getSite());                        // 6  interrogação.
+            statement.setInt(8, departamento.getId());
             statement.execute();
 
             connection.close();
@@ -114,6 +120,9 @@ public class DepartamentoDAO implements IDepartamentoDAO {
                 departamento.setCEP(resultSet.getString("cod_cep"));
                 departamento.setSite(resultSet.getString("txt_site"));
                 
+                IUnidadeEnsinoDAO unidadeEnsinoDAO = new UnidadeEnsinoDAO();
+                departamento.setUnidadeEnsino(unidadeEnsinoDAO.consultarPorId(resultSet.getInt("id_unidade_de_ensino")));
+                
                 dpto = departamento;
             }
             connection.close();
@@ -134,7 +143,7 @@ public class DepartamentoDAO implements IDepartamentoDAO {
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
-            statement.setLong(1, id);
+            statement.setInt(1, id);
 
             statement.execute();
             connection.close();
@@ -168,7 +177,8 @@ public class DepartamentoDAO implements IDepartamentoDAO {
                 departamento.setTelefone(resultSet.getString("nro_telefone"));
                 departamento.setCEP(resultSet.getString("cod_cep"));
                 departamento.setSite(resultSet.getString("txt_site"));
-                
+                IUnidadeEnsinoDAO unidadeEnsinoDAO = new UnidadeEnsinoDAO();
+                departamento.setUnidadeEnsino(unidadeEnsinoDAO.consultarPorId(resultSet.getInt("id_unidade_de_ensino")));
                 departamentoList.add(departamento);
             }
             connection.close();

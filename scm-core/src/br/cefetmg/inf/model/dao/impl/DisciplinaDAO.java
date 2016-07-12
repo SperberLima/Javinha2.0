@@ -1,7 +1,9 @@
 package br.cefetmg.inf.model.dao.impl;
 
 import br.cefetmg.inf.model.dao.IDisciplinaDAO;
+import br.cefetmg.inf.model.domain.Departamento;
 import br.cefetmg.inf.model.domain.Disciplina;
+import br.cefetmg.inf.model.domain.GradeCurricular;
 import br.cefetmg.inf.util.db.JDBCConnectionManager;
 import br.cefetmg.inf.util.db.exception.PersistenciaException;
 import java.sql.Connection;
@@ -28,11 +30,12 @@ public class DisciplinaDAO implements IDisciplinaDAO {
 
             if (resultSearch.next()) {
                 id = resultSearch.getInt("id");
-                if(id == null) id = 1;
-                disciplina.setId(id);
+                disciplina.setId(id+1);
+            }else{
+                id = 1;
             }
             
-            String sql = "INSERT INTO `Curriculo_em_Oferta` (`id_disciplina`, `id_departamento`, `txt_nome`, `qtd_carga_horaria`, `txt_ementa`) " + "VALUES ( ?, ?, ?, ? ,? ) RETURNING id_disciplina";
+            String sql = "INSERT INTO `Disciplina` (`id_disciplina`, `id_departamento`, `txt_nome`, `qtd_carga_horaria`, `txt_ementa`) " + "VALUES ( ?, ?, ?, ? ,? ) RETURNING id_disciplina";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                        
@@ -46,6 +49,8 @@ public class DisciplinaDAO implements IDisciplinaDAO {
 
             if (resultSet.next()) {
                 id = resultSet.getInt("id_disciplina");
+            }else{
+                id = null;
             }
 
             connection.close();
@@ -86,22 +91,114 @@ public class DisciplinaDAO implements IDisciplinaDAO {
 
     @Override
     public void excluir(Integer id) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "DELETE FROM `Disciplina` WHERE id_disciplina = ?";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setInt(1, id);
+
+            statement.execute();
+            connection.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new PersistenciaException(e.getMessage(), e);
+        }
     }
 
     @Override
     public Disciplina consultarPorId(Integer id) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Disciplina disciplina = null;
+        try {
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM `Disciplina` WHERE id_disciplina = ?";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                DepartamentoDAO daoDepartamento = new DepartamentoDAO();
+                disciplina = new Disciplina();
+                disciplina.setId(resultSet.getInt("id_disciplina"));
+                disciplina.setCargaHoraria(resultSet.getInt("qtd_carga_horaria"));
+                disciplina.setEmenta(resultSet.getString("txt_ementa"));
+                disciplina.setNome(resultSet.getString("txt_nome"));
+                disciplina.setDepartamento(daoDepartamento.consultarPorId(resultSet.getInt("id_departamento")));
+            }
+            connection.close();
+
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new PersistenciaException(e.getMessage(), e);
+        }
+        return disciplina;
     }
 
     @Override
     public ArrayList<Disciplina> listarTodos() throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+        ArrayList<Disciplina> disciplinas = new ArrayList<>();
 
+        try {
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM `Disciplina`";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                DepartamentoDAO daoDepartamento = new DepartamentoDAO();
+                Disciplina disciplina = new Disciplina();
+                disciplina.setId(resultSet.getInt("id_disciplina"));
+                disciplina.setCargaHoraria(resultSet.getInt("qtd_carga_horaria"));
+                disciplina.setEmenta(resultSet.getString("txt_ementa"));
+                disciplina.setNome(resultSet.getString("txt_nome"));
+                disciplina.setDepartamento(daoDepartamento.consultarPorId(resultSet.getInt("id_departamento")));
+                
+                disciplinas.add(disciplina);
+            }
+            connection.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new PersistenciaException(e.getMessage(), e);
+        }
+        return disciplinas;
+    }
+    
     @Override
-    public List<Disciplina> listarPorGrade() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Disciplina> listarPorDepartamento(Departamento departamento) throws PersistenciaException{
+        ArrayList<Disciplina> disciplinas = new ArrayList<>();
+
+        try {
+            Connection connection = JDBCConnectionManager.getInstance().getConnection();
+
+            String sql = "SELECT * FROM `Disciplina` WHERE `id_departamento` = ?";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+            statement.setInt(1, departamento.getId()); 
+            
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                DepartamentoDAO daoDepartamento = new DepartamentoDAO();
+                Disciplina disciplina = new Disciplina();
+                disciplina.setId(resultSet.getInt("id_disciplina"));
+                disciplina.setCargaHoraria(resultSet.getInt("qtd_carga_horaria"));
+                disciplina.setEmenta(resultSet.getString("txt_ementa"));
+                disciplina.setNome(resultSet.getString("txt_nome"));
+                disciplina.setDepartamento(daoDepartamento.consultarPorId(resultSet.getInt("id_departamento")));
+                
+                disciplinas.add(disciplina);
+            }
+            connection.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new PersistenciaException(e.getMessage(), e);
+        }
+        return disciplinas;
     }
     
 }

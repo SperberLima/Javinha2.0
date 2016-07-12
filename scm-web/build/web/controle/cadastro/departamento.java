@@ -5,11 +5,11 @@
  */
 package controle.cadastro;
 
-import br.cefetmg.inf.model.domain.AmbienteAprendizagem;
+import br.cefetmg.inf.model.domain.Departamento;
 import br.cefetmg.inf.model.domain.UnidadeEnsino;
+import br.cefetmg.inf.model.service.IManterDepartamento;
 import br.cefetmg.inf.model.service.IManterUnidadeEnsino;
-import br.cefetmg.inf.model.service.IManterAmbienteAprendizagem;
-import br.cefetmg.inf.model.service.impl.ManterAmbienteAprendizagem;
+import br.cefetmg.inf.model.service.impl.ManterDepartamento;
 import br.cefetmg.inf.model.service.impl.ManterUnidadeEnsino;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -17,23 +17,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ambiente extends HttpServlet {
+public class departamento extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{        
-            IManterAmbienteAprendizagem manterAmbiente = (IManterAmbienteAprendizagem) new ManterAmbienteAprendizagem();
+            IManterDepartamento manterDepartamento = (IManterDepartamento) new ManterDepartamento();
             IManterUnidadeEnsino manterUnidade = new ManterUnidadeEnsino();
 
-            AmbienteAprendizagem ambiente = new AmbienteAprendizagem();
+            Departamento departamento = new Departamento();
             UnidadeEnsino unidade = manterUnidade.buscarPorId(Integer.parseInt(request.getParameter("unidadeensino")));
 
-            ambiente.setId(Integer.parseInt(request.getParameter("id")));
-            ambiente.setDescricao(request.getParameter("descricao"));
-            ambiente.setCapacidade(Integer.parseInt(request.getParameter("capacidade")));
-            ambiente.setSala(Integer.parseInt(request.getParameter("capacidade")));
-            ambiente.setU_ensino(unidade);
-            manterAmbiente.cadastrar(ambiente);
-            request.getRequestDispatcher("../../verambiente.jsp").forward(null, null);
+            departamento.setId(Integer.parseInt(request.getParameter("id")));
+            departamento.setCEP(request.getParameter("cep"));
+            departamento.setEmail(request.getParameter("email"));
+            departamento.setSigla(request.getParameter("sigla"));
+            departamento.setNome(request.getParameter("nome"));
+            departamento.setSite(request.getParameter("site"));
+            departamento.setTelefone(request.getParameter("telefone"));
+            
+            departamento.setUnidadeEnsino(unidade);
+            manterDepartamento.cadastrar(departamento);
+            request.getRequestDispatcher("../../verdepartamento.jsp").forward(null, null);
         }catch(Exception e){
         }
     }
