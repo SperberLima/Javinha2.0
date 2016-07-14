@@ -24,7 +24,7 @@ import java.util.List;
 public class ManterGradeCurricular implements IManterGradeCurricular{
     
     @Override
-    public void cadastrar(GradeCurricular GradeCurricular) throws PersistenciaException, NegocioException {
+    public Integer cadastrar(GradeCurricular GradeCurricular) throws PersistenciaException, NegocioException {
          // Curso deve ter departamento
         if (GradeCurricular.getCurso()== null){
             throw new NegocioException("Toda grade deve estar associada a um curso");
@@ -38,6 +38,8 @@ public class ManterGradeCurricular implements IManterGradeCurricular{
         IGradeCurricularDAO GradeCurricularDAO = new GradeCurricularDAO();
         Integer id = GradeCurricularDAO.inserir(GradeCurricular);
         GradeCurricular.setId(id);
+        
+        return id;
     }
 
     @Override

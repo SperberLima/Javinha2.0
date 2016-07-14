@@ -20,9 +20,11 @@ import java.util.List;
 public class ManterProfessorDisciplina implements IManterProfessorDisciplina{
 
     @Override
-    public void cadastrar(ProfessorDisciplina professorDisciplina) throws PersistenciaException, NegocioException {
+    public Integer cadastrar(ProfessorDisciplina professorDisciplina) throws PersistenciaException, NegocioException {
         IProfessorDisciplinaDAO professorDisciplinaDAO = new ProfessorDisciplinaDAO();
-        professorDisciplinaDAO.inserir(professorDisciplina);
+        Integer id = professorDisciplinaDAO.inserir(professorDisciplina);
+        
+        return id;
     }
 
     @Override

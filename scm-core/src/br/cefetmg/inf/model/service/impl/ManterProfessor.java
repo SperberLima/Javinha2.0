@@ -20,7 +20,7 @@ import java.util.List;
 public class ManterProfessor implements IManterProfessor{
 
     @Override
-    public void cadastrar(Professor professor) throws PersistenciaException, NegocioException {
+    public Integer cadastrar(Professor professor) throws PersistenciaException, NegocioException {
         // Professor deve ter Telefone
         if (professor.getTelefone() == null){
             throw new NegocioException("O professor deve ter telefone");
@@ -44,6 +44,8 @@ public class ManterProfessor implements IManterProfessor{
         IProfessorDAO professorDAO = new ProfessorDAO();
         Integer id = professorDAO.inserir(professor);
         professor.setId(id);
+        
+        return id;
     }
 
     @Override

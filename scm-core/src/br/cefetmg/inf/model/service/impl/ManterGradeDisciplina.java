@@ -18,8 +18,11 @@ import java.util.List;
 public class ManterGradeDisciplina implements IManterGradeDisciplina{
 
     @Override
-    public void cadastrar(GradeDisciplina e) throws PersistenciaException, NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Integer cadastrar(GradeDisciplina e) throws PersistenciaException, NegocioException {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        return 0; // Isso é só um placeholder, pois falta a implementação correta fazendo persistência e
+                 // e respeitando as regras de negócio
     }
 
     @Override

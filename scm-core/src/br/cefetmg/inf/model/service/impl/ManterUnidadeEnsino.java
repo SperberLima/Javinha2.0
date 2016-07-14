@@ -20,7 +20,7 @@ import java.util.List;
 public class ManterUnidadeEnsino implements IManterUnidadeEnsino{
 
     @Override
-    public void cadastrar(UnidadeEnsino UnidadeEnsino) throws PersistenciaException, NegocioException {
+    public Integer cadastrar(UnidadeEnsino UnidadeEnsino) throws PersistenciaException, NegocioException {
         //Professor deve ter CPF
         if (UnidadeEnsino.getSigla()== null){
             throw new NegocioException("A Unidade de Ensino deve ter sigla");
@@ -49,6 +49,8 @@ public class ManterUnidadeEnsino implements IManterUnidadeEnsino{
         IUnidadeEnsinoDAO UnidadeEnsinoDAO = new UnidadeEnsinoDAO();
         Integer id = UnidadeEnsinoDAO.inserir(UnidadeEnsino);
         UnidadeEnsino.setId(id);
+        
+        return id;
     }
 
     @Override

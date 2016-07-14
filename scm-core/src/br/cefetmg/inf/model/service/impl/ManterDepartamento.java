@@ -20,7 +20,7 @@ import java.util.List;
 public class ManterDepartamento implements IManterDepartamento{
 
     @Override
-    public void cadastrar(Departamento departamento) throws PersistenciaException, NegocioException {
+    public Integer cadastrar(Departamento departamento) throws PersistenciaException, NegocioException {
         //Departamento deve ter sigla
         if (departamento.getSigla() == null){
             throw new NegocioException("Departamento deve ter sigla");
@@ -54,6 +54,8 @@ public class ManterDepartamento implements IManterDepartamento{
         IDepartamentoDAO departamentoDAO = new DepartamentoDAO();
         Integer id = departamentoDAO.inserir(departamento);
         departamento.setId(id);
+        
+        return id;
     }
 
     @Override

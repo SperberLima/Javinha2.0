@@ -23,7 +23,7 @@ import java.util.List;
 public class ManterDisciplina implements IManterDisciplina{
 
     @Override
-    public void cadastrar(Disciplina disciplina) throws PersistenciaException, NegocioException {
+    public Integer cadastrar(Disciplina disciplina) throws PersistenciaException, NegocioException {
         // Disciplina deve ter carga horaria
         if (disciplina.getCargaHoraria() == 0){
             throw new NegocioException("A disciplina deve ter carga horaria");
@@ -37,6 +37,8 @@ public class ManterDisciplina implements IManterDisciplina{
         IDisciplinaDAO disciplinaDAO = new DisciplinaDAO();
         Integer id = disciplinaDAO.inserir(disciplina);
         disciplina.setId(id);
+        
+        return id;
     }
 
     @Override
