@@ -30,7 +30,7 @@
         <div id="content" class="" style="">  
             <div id="menu" class="hide">   
                 <h1>MENU</h1>
-                <ul> <a href="../index.jsp"><li><span>Home</span></li></a> <a href="ajuda.html"><li><span>Ajuda</span></li></a> <a href="about.html"><li><span>Sobre nós</span></li></a> </ul>
+                <ul> <a href="../home.jsp"><li><span>Home</span></li></a> <a href="ajuda.html"><li><span>Ajuda</span></li></a> <a href="about.html"><li><span>Sobre nós</span></li></a> </ul>
             </div>
             <div id="wrapper" class="">
                 <div style="min-width: 100%; height: 63px; padding-top: 16px; background: #668f86; box-shadow: 0px 0px 5px 6px rgba(0, 0, 0, 0.10); position: relative;">
@@ -41,7 +41,7 @@
                 <div class="form_container">
                     <h1 class="form_title">Lista de departamentos</h1>
 
-                    <form name="frmDepartamento" method="post" action="">
+                    <form name="frmDepartamento" method="post" action="/scm/servletweb">
                         <table class="view">
                             <tbody><tr style="
                                        ">
@@ -77,7 +77,7 @@
                                                "></th>
                                 </tr>			
                                 <%
-                                    List<Departamento> listDepto = (List<Departamento>) request.getAttribute("departamento");
+                                    List<Departamento> listDepto = (List<Departamento>) request.getAttribute("listDepartamento");
                                     for (Departamento depto : listDepto) {
                                 %>
                                 <tr style="

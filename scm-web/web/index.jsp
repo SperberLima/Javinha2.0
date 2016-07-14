@@ -1,6 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
 
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <html lang="en" style="
       min-width: 100%;
@@ -13,74 +12,84 @@
         <script type="text/javascript" src="js/script.js"></script>
         <link rel="icon" href="http://i.imgur.com/4LnFIn3.png">
         <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Oswald:400,700|Passion+One|Anton|Source+Sans+Pro" rel="stylesheet" type="text/css">  
-        <style type="text/css"></style><style type="text/css"></style><style type="text/css"></style><style type="text/css"></style><style type="text/css"></style><style type="text/css"></style><style type="text/css"></style><style type="text/css"></style><style type="text/css"></style></head>
+        <style>
+            *{
+                font-family:"HelveticaNeue";
+            }  
+        </style></head>
 
-    <body class="html">  
+    <body class="html" style="
+          background: #20afae;
+          ">  
 
-        <header id="header" class="" style="display: none;">  
-            <nav class="main"> 
+        <div style="
+             height: 500px;
+             width: 1000px;
+             background: aquamarine;
+             margin: 0 auto;
+             margin-top: 180px;
+             box-shadow: 0px 0px 10px 1px rgba(0,0,0,.1);
+             ">
 
-                <div style="margin: 0 auto;">
-                    <img src="http://imgur.com/eqKINnm.png" style="height: 50px;margin-top: 16px;">   
-                </div>
-            </nav>   
-        </header>    
+            <div style="
+                 float: left;
+                 height: 500px;
+                 width: 400px;
+                 ">
 
-        <div id="content" class="" style="">  
-            <div id="menu" class="hide">   
-                <h1>MENU</h1>
-                <ul> <a href="index.jsp"><li><span>Home</span></li></a> <a href="ajuda.html"><li><span>Ajuda</span></li></a> <a href="about.html"><li><span>Sobre nós</span></li></a> </ul>
-            </div>
-            <div id="wrapper" class="">
-                <div style="min-width: 100%; height: 63px; padding-top: 16px; background: #668f86; box-shadow: 0px 0px 5px 6px rgba(0, 0, 0, 0.10); position: relative;">
-                    <a id="openMenu" onclick="javascript: showMenu();" class=""><img class="burguer" src="http://www.sbrnetportal.com/images/hamburger.png" style=""></a>
-                    <img src="http://i.imgur.com/r3Mrk7e.png" style="height: 50px;margin: 0 auto;display: block;">   
-                </div>
-
-                <div class="opt_container" style="
-                     text-align: center;
+                <img src="http://i.imgur.com/4LnFIn3.png" style="
+                     height: 200px;
+                     display: block;
+                     margin: 0 auto;
+                     border-radius: 100px;
+                     margin-top: 135px;
+                     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
                      ">
-                    <form name="frmEscolha" method='post'>
-                        <h1 class="form_title" style="
-                            ">Selecione uma operação para <select id="sEscolha" name="select" style="
-                                                              border: none;
-                                                              background: inherit;
-                                                              border-bottom: 1px solid #41a599;
-                                                              outline: none;
-                                                              color: rgba(191, 188, 188, 0.99);
-                                                              font-size: x-large;
-                                                              ">
-                                <option value="ambiente">Ambiente</option>
-                                <option value="curso">Curso</option>
-                                <option value="departamento">Departamento</option>
-                                <option value="disciplina">Disciplina</option>
-                                <option value="periodo">Período</option>
-                                <option value="professor">Professor</option>
-                                <option value="unidade">Unidade de ensino</option>
-                                <option value="Turma">Turma</option>
-                                <option value="horario">Horario</option>
-                                <option value="gradecurricular">Grade Curricular</option>
-                                <option value="gradedisciplina">Relação Grade Disciplina</option>
-                                <option value="professordisciplina">Relação Professor Disciplina</option>
-                                <option value="curriculoofertado">Curriculo Ofertado</option>
-                            </select></h1> </form>
-                    <ul class="opt" style="">
-                        <li onclick="redirect(1)" style="
-                            "><span style="
-                                ">Visualizar</span></li>
 
-                        <li onclick="redirect(2)" style="
-                            "><span style="
-                                ">Editar</span></li>	
+            </div>
+            <div style="
+                 height: 100%;
+                 height: 501.5px;
+                 position: relative;
+                 top: -0.5px;
+                 width: 600px;
+                 background-color: white;
+                 float: right;
+                 box-shadow: -4px 0px 10px 0px rgba(0,0,0,0.1);
+                 ">
 
-                        <li onclick="redirect(3)" style="
-                            "><span style="
-                                ">Cadastrar</span></li>
-                    </ul>
+                <h1 style="
+                    text-align: center;
+                    border-bottom: 1px solid #f1ede8;
+                    padding: 20px;
+                    color: hsl(173, 43%, 45%);
+                    font-weight: lighter;">LOGIN</h1>
+
+
+                <div style="text-align: center;margin-top: 100px;">
+                    <form name="frmLogin" method='post'>
+                        <input name="user" class="login_input" type="text" value="" placeholder="USUÁRIO">
+                        <img src="http://image.prntscr.com/image/ae011b1c9c984e2286fd8c7b94cd4ca4.png" style="
+                             position: absolute;
+                             left: 140;
+                             height: 20px;
+                             top: 182px;
+                             ">
+                        <input name="password" class="login_input" type="password" value="" placeholder="SENHA">
+                        <img src="http://image.prntscr.com/image/9830225b06084d9b9168925518733043.png" style="
+                             position: absolute;
+                             left: 140;
+                             height: 20px;
+                             top: 245px;
+                             ">
+                        <button class="login_button" onclick="validarCamposLogin()">LOGIN</button>
+                    </form>        
 
                 </div>
 
             </div>
 
-        </div>  
-    </body></html>  
+        </div>
+
+
+    </body></html>

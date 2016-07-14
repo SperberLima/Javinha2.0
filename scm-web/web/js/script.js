@@ -53,7 +53,7 @@ function closeMenu(){
 function redirect(op){ 
     var e = document.getElementById("sEscolha");
     var value = e.options[e.selectedIndex].value;
-    
+    /*
     if(op==1){
            window.location="visualizar/"+value+".jsp";      
     }else
@@ -63,8 +63,38 @@ function redirect(op){
     if(op==3){
            window.location="cadastrar/"+value+".jsp";      
     }
+     */
+    
+    alert(value);
+    
+    if(op==1 || op==2){        
+       window.location="/scm/servletweb?acao=Visualizar"+value;
+    }else
+    if(op==3){        
+       window.location="/scm/servletweb?acao=Cadastrar"+value;
+    }
 }
 
 
 // VALIDAÇOES 
 
+function validarCamposLogin() {
+    var frm = document.frmLogin;
+    var user = frm.user.value;
+    var senha = frm.password.value;
+
+    if (user == "") {
+        alert("Favor, preencha o campo usuário!");
+        frm.user.focus();
+        return false;
+    } else if (senha == "") {
+        alert("Favor, preencha o campo senha!");
+        frm.senha.focus();
+        return false;
+    } else {
+        caminhourl = "/scm/servletweb?acao=Logar";
+        document.forms[0].action = caminhourl;
+        window.document.forms[0].submit();
+        return true;
+    }
+}

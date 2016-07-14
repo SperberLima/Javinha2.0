@@ -27,7 +27,7 @@
         <div id="content" class="" style="">  
             <div id="menu" class="hide">   
                 <h1>MENU</h1>
-                <ul> <a href="../index.jsp"><li><span>Home</span></li></a> <a href="ajuda.html"><li><span>Ajuda</span></li></a> <a href="about.html"><li><span>Sobre nós</span></li></a> </ul>
+                <ul> <a href="../home.jsp"><li><span>Home</span></li></a> <a href="ajuda.html"><li><span>Ajuda</span></li></a> <a href="about.html"><li><span>Sobre nós</span></li></a> </ul>
             </div>
             <div id="wrapper" class="">
                 <div style="min-width: 100%; height: 63px; padding-top: 16px; background: #668f86; box-shadow: 0px 0px 5px 6px rgba(0, 0, 0, 0.10); position: relative;">
@@ -38,7 +38,7 @@
                 <div class="form_container">
                     <h1 class="form_title">Lista de currículos em oferta</h1>
 
-                    <form name="frmCurriculo" method="post" action="">
+                    <form name="frmCurriculo" method="post" action="/scm/servletweb">
                         <table class="view">
                             <tbody><tr style="">
                                     <th>
@@ -56,7 +56,7 @@
                                     <th style="padding-right: 0px;"></th>
                                 </tr>			
                                 <%
-                                    List<CurriculoOferta> listCurriculo = (List<CurriculoOferta>) request.getAttribute("curriculoOferta");
+                                    List<CurriculoOferta> listCurriculo = (List<CurriculoOferta>) request.getAttribute("listCurriculoOferta");
                                     for (CurriculoOferta curriculo : listCurriculo) {
                                 %>
                                 <tr>
@@ -71,7 +71,7 @@
                                     </td>
 
                                     <td style="padding-right: 10px;">                            
-                                        <a href="/scm/servletweb?acao=AlterarCurriculo&IdCurriculo=<%=curriculo.getId()%>"><div id="alterar"></div></a>
+                                        <a href="/scm/servletweb?acao=AlterarCurriculoOferta&IdCurriculoOferta=<%=curriculo.getId()%>"><div id="alterar"></div></a>
                                     </td>
                                     <td style="padding-right: 0px;">                            
                                         <button id="excluir" onclick="Excluir(<%=curriculo.getId()%>, document.frmCurriculo);"></button>
