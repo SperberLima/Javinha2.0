@@ -1,3 +1,5 @@
+//ESTÉTICA
+
 $(window).scroll(function () { 
   if ( $(this).scrollTop() > 80 && !$('header').hasClass('fixed') ) {
     $('header').addClass('fixed');  
@@ -44,3 +46,25 @@ function closeMenu(){
     
     document.getElementsByClassName("oneburguer").classList.remove("oneburguer");
 }   
+
+
+// REDIRECIONAMENTO
+
+function redirect(op){ 
+    var e = document.getElementById("sEscolha");
+    var value = e.options[e.selectedIndex].value;
+    
+    if(op==1){
+           window.location="visualizar/"+value+".jsp";      
+    }else
+    if(op==2){
+           window.location="alterar/"+value+".jsp";      
+    }else
+    if(op==3){
+           window.location="cadastrar/"+value+".jsp";      
+    }
+}
+
+
+// VALIDAÇOES 
+
