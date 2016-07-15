@@ -28,9 +28,9 @@ public class ManterTurma implements IManterTurma{
     }
 
     @Override
-    public void alterar(Turma turma) throws PersistenciaException, NegocioException {
+    public boolean alterar(Turma turma) throws PersistenciaException, NegocioException {
         ITurmaDAO turmaDAO = new TurmaDAO();
-        turmaDAO.atualizar(turma);
+        return turmaDAO.atualizar(turma);
     }
 
     @Override
@@ -40,9 +40,9 @@ public class ManterTurma implements IManterTurma{
     }
 
     @Override
-    public void excluir(Turma turma) throws PersistenciaException, NegocioException {
+    public boolean excluir(Integer id) throws PersistenciaException, NegocioException {
         ITurmaDAO turmaDAO = new TurmaDAO();
-        turmaDAO.excluir(turma.getId());
+        return turmaDAO.excluir(id);
     }
 
     @Override

@@ -52,7 +52,7 @@ public class ManterCurso implements IManterCurso{
     }
 
     @Override
-    public void alterar(Curso curso) throws PersistenciaException, NegocioException {
+    public boolean alterar(Curso curso) throws PersistenciaException, NegocioException {
         // Curso deve ter departamento
         if (curso.getDpto() == null){
             throw new NegocioException("O curso deve pertencer a um departamento");
@@ -74,7 +74,7 @@ public class ManterCurso implements IManterCurso{
         }
         
         ICursoDAO cursoDAO = new CursoDAO();
-        cursoDAO.atualizar(curso);
+        return cursoDAO.atualizar(curso);
     }
 
     @Override
@@ -87,9 +87,9 @@ public class ManterCurso implements IManterCurso{
     }
 
     @Override
-    public void excluir(Curso curso) throws PersistenciaException, NegocioException {
+    public boolean excluir(Integer id) throws PersistenciaException, NegocioException {
         ICursoDAO cursoDAO = new CursoDAO();
-        cursoDAO.excluir(curso.getId());
+        return cursoDAO.excluir(id);
     }
 
     @Override

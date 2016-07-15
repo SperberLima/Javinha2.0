@@ -44,7 +44,7 @@ public class ManterAmbienteAprendizagem implements IManterAmbienteAprendizagem{
     }
 
     @Override
-    public void alterar(AmbienteAprendizagem AmbienteAprendizagem) throws PersistenciaException, NegocioException {
+    public boolean alterar(AmbienteAprendizagem AmbienteAprendizagem) throws PersistenciaException, NegocioException {
          // Curso deve ter departamento
         if (AmbienteAprendizagem.getU_ensino()== null){
             throw new NegocioException("O curso deve pertencer a um departamento");
@@ -61,7 +61,7 @@ public class ManterAmbienteAprendizagem implements IManterAmbienteAprendizagem{
         }
         
         IAmbienteAprendizagemDAO AmbienteAprendizagemDAO = new AmbienteAprendizagemDAO();
-        AmbienteAprendizagemDAO.atualizar(AmbienteAprendizagem);
+        return AmbienteAprendizagemDAO.atualizar(AmbienteAprendizagem);
     }
 
     @Override
@@ -74,9 +74,9 @@ public class ManterAmbienteAprendizagem implements IManterAmbienteAprendizagem{
     }
 
     @Override
-    public void excluir(AmbienteAprendizagem AmbienteAprendizagem) throws PersistenciaException, NegocioException {
+    public boolean excluir(Integer id) throws PersistenciaException, NegocioException {
         IAmbienteAprendizagemDAO AmbienteAprendizagemDAO = new AmbienteAprendizagemDAO();
-        AmbienteAprendizagemDAO.excluir(AmbienteAprendizagem.getId());
+        return AmbienteAprendizagemDAO.excluir(id);
     }
 
     @Override

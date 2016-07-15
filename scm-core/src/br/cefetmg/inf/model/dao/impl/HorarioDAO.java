@@ -69,7 +69,8 @@ public class HorarioDAO implements IHorarioDAO{
     }
 
     @Override
-    public void atualizar(Horario horario) throws PersistenciaException {
+    public boolean atualizar(Horario horario) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -90,16 +91,19 @@ public class HorarioDAO implements IHorarioDAO{
             statement.setDate(4, horario.getInicio());
             statement.setDate(5, horario.getFim());
             statement.setInt(6, horario.getId());
-            statement.execute();
+            if(statement.executeUpdate() != 0)
+                sucesso = true;
 
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override
-    public void excluir(Integer id) throws PersistenciaException {
+    public boolean excluir(Integer id) throws PersistenciaException {
+        boolean sucesso = true;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -109,11 +113,13 @@ public class HorarioDAO implements IHorarioDAO{
 
             statement.setInt(1, id);
 
-            statement.execute();
+            if(statement.executeUpdate()!= 0)
+                sucesso = true;
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override

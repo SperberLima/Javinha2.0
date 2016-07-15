@@ -28,9 +28,9 @@ public class ManterProfessorDisciplina implements IManterProfessorDisciplina{
     }
 
     @Override
-    public void alterar(ProfessorDisciplina professorDisciplina) throws PersistenciaException, NegocioException {
+    public boolean alterar(ProfessorDisciplina professorDisciplina) throws PersistenciaException, NegocioException {
         IProfessorDisciplinaDAO professorDisciplinaDAO = new ProfessorDisciplinaDAO();
-        professorDisciplinaDAO.atualizar(professorDisciplina);
+        return professorDisciplinaDAO.atualizar(professorDisciplina);
     }
 
     @Override
@@ -40,9 +40,9 @@ public class ManterProfessorDisciplina implements IManterProfessorDisciplina{
     }
 
     @Override
-    public void excluir(ProfessorDisciplina professorDisciplina) throws PersistenciaException, NegocioException {
+    public boolean excluir(Integer id) throws PersistenciaException, NegocioException {
         IProfessorDisciplinaDAO professorDisciplinaDAO = new ProfessorDisciplinaDAO();
-        professorDisciplinaDAO.excluir(professorDisciplina.getId());
+        return professorDisciplinaDAO.excluir(id);
     }
 
     @Override

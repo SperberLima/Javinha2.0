@@ -93,7 +93,8 @@ public class ProfessorDAO implements IProfessorDAO {
     }
 
     @Override
-    public void atualizar(Professor professor) throws PersistenciaException {
+    public boolean atualizar(Professor professor) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -114,16 +115,19 @@ public class ProfessorDAO implements IProfessorDAO {
             statement.setString(4, professor.getCPF());                        
             statement.setString(5, professor.getDescricao());
             statement.setInt(6, professor.getId());
-            statement.execute();
+            if(statement.executeUpdate() != 0)
+                sucesso = true;
 
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override
-    public void excluir(Integer id) throws PersistenciaException {
+    public boolean excluir(Integer id) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -133,11 +137,13 @@ public class ProfessorDAO implements IProfessorDAO {
 
             statement.setInt(1, id);
 
-            statement.execute();
+            if(statement.executeUpdate()!=0)
+                sucesso = true;
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override

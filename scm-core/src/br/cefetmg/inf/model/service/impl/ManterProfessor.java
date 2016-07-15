@@ -49,7 +49,7 @@ public class ManterProfessor implements IManterProfessor{
     }
 
     @Override
-    public void alterar(Professor professor) throws PersistenciaException, NegocioException {
+    public boolean alterar(Professor professor) throws PersistenciaException, NegocioException {
         // Professor deve ter Telefone
         if (professor.getTelefone() == null){
             throw new NegocioException("O professor deve ter telefone");
@@ -71,7 +71,7 @@ public class ManterProfessor implements IManterProfessor{
         }
         
         IProfessorDAO professorDAO = new ProfessorDAO();
-        professorDAO.atualizar(professor);
+        return professorDAO.atualizar(professor);
     }
 
     @Override
@@ -84,11 +84,9 @@ public class ManterProfessor implements IManterProfessor{
     }
 
     @Override
-    public void excluir(Professor professor) throws PersistenciaException, NegocioException {
-        
+    public boolean excluir(Integer id) throws PersistenciaException, NegocioException {
         IProfessorDAO professorDAO = new ProfessorDAO();
-        Integer id = professor.getId();
-        professorDAO.excluir(id);
+        return professorDAO.excluir(id);
     }
 
     @Override
