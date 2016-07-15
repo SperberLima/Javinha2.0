@@ -28,7 +28,7 @@
         <div id="content" class="" style="">  
             <div id="menu" class="hide">   
                 <h1>MENU</h1>
-                <ul> <a href="../home.jsp"><li><span>Home</span></li></a> <a href="ajuda.html"><li><span>Ajuda</span></li></a> <a href="about.html"><li><span>Sobre nós</span></li></a> </ul>
+                <ul> <a href="scm/home.jsp"><li><span>Home</span></li></a> <a href="ajuda.html"><li><span>Ajuda</span></li></a> <a href="about.html"><li><span>Sobre nós</span></li></a> </ul>
             </div>
             <div id="wrapper" class="">
                 <div style="min-width: 100%; height: 63px; padding-top: 16px; background: #668f86; box-shadow: 0px 0px 5px 6px rgba(0, 0, 0, 0.10); position: relative;">
@@ -39,7 +39,7 @@
                 <div class="form_container">
                     <h1 class="form_title">Lista de Cursos</h1>
 
-                    <form name="frmCurso" method="post" action="/scm/servletweb">
+                    <form name="frmCurso" method="post" action="/scm/servletweb" style="padding: 0px 20px;">
                         <table class="view">
                             <tbody><tr style="
                                        ">

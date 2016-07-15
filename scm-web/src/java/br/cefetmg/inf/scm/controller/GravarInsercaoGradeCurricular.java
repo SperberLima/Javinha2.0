@@ -1,4 +1,4 @@
-package controle.gravarinsercao;
+package br.cefetmg.inf.scm.controller;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,15 +7,10 @@ package controle.gravarinsercao;
  */
 import br.cefetmg.inf.model.domain.GradeCurricular;
 import br.cefetmg.inf.model.domain.Curso;
-
 import br.cefetmg.inf.model.service.IManterGradeCurricular;
 import br.cefetmg.inf.model.service.IManterCurso;
-
 import br.cefetmg.inf.model.service.impl.ManterGradeCurricular;
 import br.cefetmg.inf.model.service.impl.ManterCurso;
-
-import br.cefetmg.inf.scm.controller.VisualizarGradeCurricular;
-
 import javax.servlet.http.HttpServletRequest;
 /**
  *

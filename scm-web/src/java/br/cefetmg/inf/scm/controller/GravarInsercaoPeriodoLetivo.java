@@ -1,4 +1,4 @@
-package controle.gravarinsercao;
+package br.cefetmg.inf.scm.controller;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -8,8 +8,6 @@ package controle.gravarinsercao;
 import br.cefetmg.inf.model.domain.PeriodoLetivo;
 import br.cefetmg.inf.model.service.IManterPeriodoLetivo;
 import br.cefetmg.inf.model.service.impl.ManterPeriodoLetivo;
-
-import br.cefetmg.inf.scm.controller.VisualizarPeriodo;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -11,12 +11,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>  
         <script type="text/javascript" src="js/script.js"></script>
         <link rel="icon" href="http://i.imgur.com/4LnFIn3.png">
-        <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Oswald:400,700|Passion+One|Anton|Source+Sans+Pro" rel="stylesheet" type="text/css">  
-        <style>
-            *{
-                font-family:"HelveticaNeue";
-            }  
-        </style></head>
+        <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Oswald:400,700|Passion+One|Anton|Source+Sans+Pro" rel="stylesheet" type="text/css">         
+	   <style>
+				*{
+					font-family: "HelveticaNeue";
+				}
+	   </style>	   
+	   </head>
 
     <body class="html" style="
           background: #20afae;
