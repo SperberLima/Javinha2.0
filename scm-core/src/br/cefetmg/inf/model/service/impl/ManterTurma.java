@@ -47,7 +47,8 @@ public class ManterTurma implements IManterTurma{
 
     @Override
     public List<Turma> listarTodos() throws PersistenciaException, NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       ITurmaDAO turmaDAO = new TurmaDAO();
+       return turmaDAO.listarTodos();
     }
     
 }
