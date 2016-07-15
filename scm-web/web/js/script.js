@@ -90,6 +90,92 @@ function GravarAlteracao(frm){
     frm.submit();
 }
 
+
+function Excluir(chave, frm) {
+    alert(frm.name);
+    var table = frm.name;
+
+    if (table == "frmAmbiente") {
+        if(confirm('Deseja excluir o ambiente de Aprendizagem de ID: '+ chave+'?')){
+           frm.action="/scm/servletweb?acao=ExcluirAmbienteAprendizagem";
+           frm.submit();
+        }
+    }
+    else if (table == "frmCurriculo") {
+        if(confirm('Deseja excluir o currículo de ID: '+ chave+'?')){
+           frm.action="/scm/servletweb?acao=ExcluirCurriculoOferta";
+           frm.submit();
+        }
+    }
+    else if (table == "frmCurso") {
+        if(confirm('Deseja excluir o curso de ID: '+ chave+'?')){
+           frm.action="/scm/servletweb?acao=ExcluirCurso";
+           frm.submit();
+        }
+    }
+    else if (table == "frmDepartamento") {
+        if(confirm('Deseja excluir o departamento de ID: '+ chave+'?')){
+           frm.action="/scm/servletweb?acao=ExcluirDepartamento";
+           frm.submit();
+        }
+    }
+    else if (table == "frmDisciplina") {
+        if(confirm('Deseja excluir a disciplina de ID: '+ chave+'?')){
+           frm.action="/scm/servletweb?acao=ExcluirDisciplina";
+           frm.submit();
+        }
+    }
+    else if (table == "frmGradeCurricular") {
+        if(confirm('Deseja excluir a grade curricular de ID: '+ chave+'?')){
+           frm.action="/scm/servletweb?acao=ExcluirGradeCurricular";
+           frm.submit();
+        }
+    }
+    else if (table == "frmGradeDisciplina") {
+        if(confirm('Deseja excluir a relação grade disciplina de ID: '+ chave+'?')){
+           frm.action="/scm/servletweb?acao=ExcluirGradeDisciplina";
+           frm.submit();
+        }
+    }
+    else if (table == "frmHorario") {
+        if(confirm('Deseja excluir o horario de ID: '+ chave+'?')){
+           frm.action="/scm/servletweb?acao=ExcluirHorario";
+           frm.submit();
+        }
+    }
+    else if (table == "frmPeriodo") {
+        if(confirm('Deseja excluir o periodo de ID: '+ chave+'?')){
+           frm.action="/scm/servletweb?acao=ExcluirPeriodo";
+           frm.submit();
+        }
+    }
+    else if (table == "frmProfessor") {
+        if(confirm('Deseja excluir o professor de ID: '+ chave+'?')){
+           frm.action="/scm/servletweb?acao=ExcluirProfessor";
+           frm.submit();
+        }
+    }
+    else if (table == "frmProfessorDisciplina") {
+        if(confirm('Deseja excluir a relação professor disciplina de ID: '+ chave+'?')){
+           frm.action="/scm/servletweb?acao=ExcluirProfessorDisciplina";
+           frm.submit();
+        }
+    }else if (table == "frmTurma") {
+        if(confirm('Deseja excluir a turma de ID: '+ chave+'?')){
+           frm.action="/scm/servletweb?acao=ExcluirTurma";
+           frm.submit();
+        }
+    }
+    else if (table == "frmUnidade") {
+        if(confirm('Deseja excluir a unidade de ensino de ID: '+ chave+'?')){
+           frm.action="/scm/servletweb?acao=ExcluirUnidadeEnsino";
+           frm.submit();
+        }
+    }
+    
+    
+}
+
 // VALIDAÇOES 
 
 function validarCamposLogin() {
@@ -112,3 +198,4 @@ function validarCamposLogin() {
         return true;
     }
 }
+

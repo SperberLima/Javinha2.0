@@ -6,11 +6,10 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class PostgresqlJDBCConnection implements JDBCConnectionFactory {
-
     private final static String dbDriver = "org.postgresql.Driver";
-    private final static String dbURL = "jdbc:postgresql://ec2-54-235-68-4.compute-1.amazonaws.com:5432/degrcm4gastrfi";
-    private final static String user = "svqygjqglpaoby";
-    private final static String pass = "GTENaP1mrjiCB-wzAwG_pREpA6";
+    private final static String dbURL = "jdbc:postgresql://localhost:5432/postgres";
+    private final static String user = "postgres";
+    private final static String pass = "123456";
     
     public PostgresqlJDBCConnection() {
     }
