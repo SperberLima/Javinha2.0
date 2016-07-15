@@ -43,7 +43,7 @@ public class ManterGradeCurricular implements IManterGradeCurricular{
     }
 
     @Override
-    public void alterar(GradeCurricular GradeCurricular) throws PersistenciaException, NegocioException {
+    public boolean alterar(GradeCurricular GradeCurricular) throws PersistenciaException, NegocioException {
          // Curso deve ter departamento
         if (GradeCurricular.getCurso()== null){
             throw new NegocioException("Toda grade deve estar associada a um curso");
@@ -55,7 +55,7 @@ public class ManterGradeCurricular implements IManterGradeCurricular{
         }
         
         IGradeCurricularDAO GradeCurricularDAO = new GradeCurricularDAO();
-        GradeCurricularDAO.atualizar(GradeCurricular);
+        return GradeCurricularDAO.atualizar(GradeCurricular);
     }
 
     @Override
@@ -68,9 +68,9 @@ public class ManterGradeCurricular implements IManterGradeCurricular{
     }
 
     @Override
-    public void excluir(GradeCurricular GradeCurricular) throws PersistenciaException, NegocioException {
+    public boolean excluir(Integer id) throws PersistenciaException, NegocioException {
         IGradeCurricularDAO GradeCurricularDAO = new GradeCurricularDAO();
-        GradeCurricularDAO.excluir(GradeCurricular.getId());
+        return GradeCurricularDAO.excluir(id);
     }
 
     @Override

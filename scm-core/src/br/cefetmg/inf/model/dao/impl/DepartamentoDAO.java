@@ -63,8 +63,8 @@ public class DepartamentoDAO implements IDepartamentoDAO {
     }
 
     @Override
-    public void atualizar(Departamento departamento) throws PersistenciaException {
-
+    public boolean atualizar(Departamento departamento) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -89,12 +89,16 @@ public class DepartamentoDAO implements IDepartamentoDAO {
             statement.setString(6, departamento.getCEP());                        // 5  interrogação.
             statement.setString(7, departamento.getSite());                        // 6  interrogação.
             statement.setInt(8, departamento.getId());
-            statement.execute();
+            
+            if(statement.executeUpdate() != 0)
+                sucesso = true;
 
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        
+        return sucesso;
     }
 
     @Override
@@ -134,8 +138,8 @@ public class DepartamentoDAO implements IDepartamentoDAO {
     }
 
     @Override
-    public void excluir(Integer id) throws PersistenciaException {
-
+    public boolean excluir(Integer id) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -145,12 +149,14 @@ public class DepartamentoDAO implements IDepartamentoDAO {
 
             statement.setInt(1, id);
 
-            statement.execute();
+            if(statement.executeUpdate()!= 0)
+                sucesso = true;
             connection.close();
             
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
 
     }
 

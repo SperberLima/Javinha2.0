@@ -67,8 +67,8 @@ public class CursoDAO implements ICursoDAO {
     }
 
     @Override
-    public void atualizar(Curso curso) throws PersistenciaException {
-
+    public boolean atualizar(Curso curso) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             // Abre a única conexão possível com o Banco de Dados.
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
@@ -93,7 +93,8 @@ public class CursoDAO implements ICursoDAO {
 
 
             // Executa a query.
-            atualiza.execute();
+            if(atualiza.executeUpdate() != 0)
+                sucesso = true;
 
             // Fecha a conexao com o BD.
             connection.close();
@@ -101,10 +102,12 @@ public class CursoDAO implements ICursoDAO {
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override
-    public void excluir(Integer id) throws PersistenciaException {
+    public boolean excluir(Integer id) throws PersistenciaException {
+        boolean sucesso = false;
 
         try {
             // Abre a única conexão possível com o Banco de Dados.
@@ -116,10 +119,11 @@ public class CursoDAO implements ICursoDAO {
             // Prepara o comando sql, a fim de evitar injeção de sql.
             PreparedStatement excluir = connection.prepareStatement(sql);
 
-            excluir.setLong(1, id);
+            excluir.setInt(1, id);
 
             // Executa a query.
-            excluir.execute();
+            if(excluir.executeUpdate()!=0)
+                sucesso = true;
 
             // Fecha a conexao com o BD.
             connection.close();
@@ -127,7 +131,7 @@ public class CursoDAO implements ICursoDAO {
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
-
+        return sucesso;
     }
 
     @Override

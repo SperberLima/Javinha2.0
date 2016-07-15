@@ -54,7 +54,7 @@ public class ManterUnidadeEnsino implements IManterUnidadeEnsino{
     }
 
     @Override
-    public void alterar(UnidadeEnsino UnidadeEnsino) throws PersistenciaException, NegocioException {
+    public boolean alterar(UnidadeEnsino UnidadeEnsino) throws PersistenciaException, NegocioException {
         //Professor deve ter CPF
         if (UnidadeEnsino.getSigla()== null){
             throw new NegocioException("A Unidade de Ensino deve ter sigla");
@@ -81,7 +81,7 @@ public class ManterUnidadeEnsino implements IManterUnidadeEnsino{
         }
         
         IUnidadeEnsinoDAO UnidadeEnsinoDAO = new UnidadeEnsinoDAO();
-        UnidadeEnsinoDAO.atualizar(UnidadeEnsino);
+        return UnidadeEnsinoDAO.atualizar(UnidadeEnsino);
     }
 
     @Override
@@ -93,9 +93,9 @@ public class ManterUnidadeEnsino implements IManterUnidadeEnsino{
     }
 
     @Override
-    public void excluir(UnidadeEnsino UnidadeEnsino) throws PersistenciaException, NegocioException {
+    public boolean excluir(Integer id) throws PersistenciaException, NegocioException {
         IUnidadeEnsinoDAO UnidadeEnsinoDAO = new UnidadeEnsinoDAO();
-        UnidadeEnsinoDAO.excluir(UnidadeEnsino.getId());
+        return UnidadeEnsinoDAO.excluir(id);
     }
 
     @Override

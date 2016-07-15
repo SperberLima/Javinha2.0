@@ -66,7 +66,8 @@ public class ProfessorDisciplinaDAO implements IProfessorDisciplinaDAO{
     }
 
     @Override
-    public void atualizar(ProfessorDisciplina professorDisciplina) throws PersistenciaException {
+    public boolean atualizar(ProfessorDisciplina professorDisciplina) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -81,16 +82,19 @@ public class ProfessorDisciplinaDAO implements IProfessorDisciplinaDAO{
             statement.setInt(1, professorDisciplina.getDisciplina().getId());                        // 1  interrogação.
             statement.setInt(2, professorDisciplina.getProfessor().getId());                          // 2  interrogação.
             statement.setInt(3, professorDisciplina.getId());
-            statement.execute();
+            if(statement.executeUpdate() != 0)
+                sucesso = true;
 
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override
-    public void excluir(Integer id) throws PersistenciaException {
+    public boolean excluir(Integer id) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -100,11 +104,13 @@ public class ProfessorDisciplinaDAO implements IProfessorDisciplinaDAO{
 
             statement.setInt(1, id);
 
-            statement.execute();
+            if(statement.executeUpdate()!=0)
+                sucesso = false;
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override

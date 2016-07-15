@@ -28,9 +28,9 @@ public class ManterHorario implements IManterHorario{
     }
 
     @Override
-    public void alterar(Horario horario) throws PersistenciaException, NegocioException {
+    public boolean alterar(Horario horario) throws PersistenciaException, NegocioException {
         IHorarioDAO horarioDAO = new HorarioDAO();
-        horarioDAO.atualizar(horario);
+        return horarioDAO.atualizar(horario);
     }
 
     @Override
@@ -40,9 +40,9 @@ public class ManterHorario implements IManterHorario{
     }
 
     @Override
-    public void excluir(Horario horario) throws PersistenciaException, NegocioException {
+    public boolean excluir(Integer id) throws PersistenciaException, NegocioException {
         IHorarioDAO horarioDAO = new HorarioDAO();
-        horarioDAO.excluir(horario.getId());
+        return horarioDAO.excluir(id);
     }
 
     @Override

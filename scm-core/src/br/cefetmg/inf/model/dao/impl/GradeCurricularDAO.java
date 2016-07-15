@@ -60,7 +60,8 @@ public class GradeCurricularDAO implements IGradeCurricularDAO {
     }
 
     @Override
-    public void atualizar(GradeCurricular gradeCurricular) throws PersistenciaException {
+    public boolean atualizar(GradeCurricular gradeCurricular) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -77,16 +78,19 @@ public class GradeCurricularDAO implements IGradeCurricularDAO {
             statement.setInt(2, gradeCurricular.getSerie());                        
             statement.setString(3, gradeCurricular.getDescricao());
             statement.setInt(4, gradeCurricular.getId());                        
-            statement.execute();
+            if(statement.executeUpdate() != 0)
+                sucesso = true;
 
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override
-    public void excluir(Integer id) throws PersistenciaException {
+    public boolean excluir(Integer id) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -96,11 +100,13 @@ public class GradeCurricularDAO implements IGradeCurricularDAO {
 
             statement.setInt(1, id);
 
-            statement.execute();
+            if(statement.executeUpdate() != 0)
+                sucesso = true;
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override

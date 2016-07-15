@@ -42,7 +42,7 @@ public class ManterDisciplina implements IManterDisciplina{
     }
 
     @Override
-    public void alterar(Disciplina disciplina) throws PersistenciaException, NegocioException {
+    public boolean alterar(Disciplina disciplina) throws PersistenciaException, NegocioException {
         // Disciplina deve ter carga horaria
         if (disciplina.getCargaHoraria() == 0){
             throw new NegocioException("A disciplina deve ter carga horaria");
@@ -54,7 +54,7 @@ public class ManterDisciplina implements IManterDisciplina{
         }
         
         IDisciplinaDAO disciplinaDAO = new DisciplinaDAO();
-        disciplinaDAO.atualizar(disciplina);
+        return disciplinaDAO.atualizar(disciplina);
     }
 
     @Override
@@ -67,12 +67,10 @@ public class ManterDisciplina implements IManterDisciplina{
     }
 
     @Override
-    public void excluir(Disciplina disciplina) throws PersistenciaException, NegocioException {
+    public boolean excluir(Integer id) throws PersistenciaException, NegocioException {
         
         IDisciplinaDAO disciplinaDAO = new DisciplinaDAO();
-        Integer id = disciplina.getId();
-        disciplinaDAO.excluir(id);
-        
+        return disciplinaDAO.excluir(id);
     }
 
     @Override

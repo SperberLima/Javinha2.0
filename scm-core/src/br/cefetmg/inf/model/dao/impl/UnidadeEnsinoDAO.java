@@ -61,7 +61,8 @@ public class UnidadeEnsinoDAO implements IUnidadeEnsinoDAO {
     }
 
     @Override
-    public void atualizar(UnidadeEnsino unidadeEnsino) throws PersistenciaException {
+    public boolean atualizar(UnidadeEnsino unidadeEnsino) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -87,16 +88,19 @@ public class UnidadeEnsinoDAO implements IUnidadeEnsinoDAO {
             statement.setInt(7, unidadeEnsino.getId());
             
             
-            statement.execute();
+            if(statement.executeUpdate() != 0)
+                sucesso = true;
 
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override
-    public void excluir(Integer id) throws PersistenciaException {
+    public boolean excluir(Integer id) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -106,11 +110,13 @@ public class UnidadeEnsinoDAO implements IUnidadeEnsinoDAO {
 
             statement.setInt(1, id);
 
-            statement.execute();
+            if(statement.executeUpdate()!= 0)
+                sucesso = true;
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override

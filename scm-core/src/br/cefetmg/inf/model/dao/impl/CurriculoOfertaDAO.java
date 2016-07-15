@@ -56,7 +56,8 @@ public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
     }
 
     @Override
-    public void atualizar(CurriculoOferta curriculoOferta) throws PersistenciaException {
+    public boolean atualizar(CurriculoOferta curriculoOferta) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -71,16 +72,18 @@ public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
             statement.setInt(1, curriculoOferta.getPeriodoLetivo().getId());                        // 1  interrogação.
             statement.setInt(2, curriculoOferta.getGradeCurricular().getId());                          // 2  interrogação.
             statement.setInt(3, curriculoOferta.getId());
-            statement.execute();
-
+            if(statement.executeUpdate() != 0)
+                sucesso = true;
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override
-    public void excluir(Integer id) throws PersistenciaException {
+    public boolean excluir(Integer id) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -90,11 +93,13 @@ public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
 
             statement.setInt(1, id);
 
-            statement.execute();
+            if(statement.executeUpdate() != 0)
+                sucesso = true;
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override

@@ -44,7 +44,7 @@ public class ManterPeriodoLetivo implements IManterPeriodoLetivo{
     }
 
     @Override
-    public void alterar(PeriodoLetivo PeriodoLetivo) throws PersistenciaException, NegocioException {
+    public boolean alterar(PeriodoLetivo PeriodoLetivo) throws PersistenciaException, NegocioException {
          // Curso deve ter departamento
         if (PeriodoLetivo.getInicio()== null){
             throw new NegocioException("O periodo letivo deve ter uma data de inicio");
@@ -61,7 +61,7 @@ public class ManterPeriodoLetivo implements IManterPeriodoLetivo{
         }
         
         IPeriodoLetivoDAO PeriodoLetivoDAO = new PeriodoLetivoDAO();
-        PeriodoLetivoDAO.atualizar(PeriodoLetivo);
+        return PeriodoLetivoDAO.atualizar(PeriodoLetivo);
     }
 
     @Override
@@ -74,9 +74,9 @@ public class ManterPeriodoLetivo implements IManterPeriodoLetivo{
     }
 
     @Override
-    public void excluir(PeriodoLetivo PeriodoLetivo) throws PersistenciaException, NegocioException {
+    public boolean excluir(Integer id) throws PersistenciaException, NegocioException {
         IPeriodoLetivoDAO PeriodoLetivoDAO = new PeriodoLetivoDAO();
-        PeriodoLetivoDAO.excluir(PeriodoLetivo.getId());
+        return PeriodoLetivoDAO.excluir(id);
     }
 
     @Override

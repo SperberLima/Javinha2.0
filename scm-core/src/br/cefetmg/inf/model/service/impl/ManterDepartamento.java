@@ -59,7 +59,7 @@ public class ManterDepartamento implements IManterDepartamento{
     }
 
     @Override
-    public void alterar(Departamento departamento) throws PersistenciaException, NegocioException {
+    public boolean alterar(Departamento departamento) throws PersistenciaException, NegocioException {
         //Departamento deve ter sigla
         if (departamento.getSigla() == null){
             throw new NegocioException("Departamento deve ter sigla");
@@ -91,7 +91,7 @@ public class ManterDepartamento implements IManterDepartamento{
         }
         
         IDepartamentoDAO departamentoDAO = new DepartamentoDAO();
-        departamentoDAO.atualizar(departamento);
+        return departamentoDAO.atualizar(departamento);
     }
 
     @Override
@@ -104,10 +104,9 @@ public class ManterDepartamento implements IManterDepartamento{
     }
 
     @Override
-    public void excluir(Departamento departamento) throws PersistenciaException, NegocioException {
-        
+    public boolean excluir(Integer id) throws PersistenciaException, NegocioException {
         IDepartamentoDAO departamentoDAO = new DepartamentoDAO();
-        departamentoDAO.excluir(departamento.getId());
+        return departamentoDAO.excluir(id);
     }
 
     @Override

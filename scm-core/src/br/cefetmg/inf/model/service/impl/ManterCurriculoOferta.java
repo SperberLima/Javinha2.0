@@ -39,7 +39,7 @@ public class ManterCurriculoOferta implements IManterCurriculoOferta{
     }
 
     @Override
-    public void alterar(CurriculoOferta curriculoOferta) throws PersistenciaException, NegocioException {
+    public boolean alterar(CurriculoOferta curriculoOferta) throws PersistenciaException, NegocioException {
         //Currículo em oferta deve ter um período letivo
         if (curriculoOferta.getPeriodoLetivo() == null){
             throw new NegocioException("Todo currículo em oferta deve ter um período letivo associado a ele");
@@ -51,7 +51,7 @@ public class ManterCurriculoOferta implements IManterCurriculoOferta{
         }
         
         ICurriculoOfertaDAO CurriculoOfertaDAO = new CurriculoOfertaDAO();
-        CurriculoOfertaDAO.atualizar(curriculoOferta);
+        return CurriculoOfertaDAO.atualizar(curriculoOferta);
     }
 
     @Override
@@ -62,9 +62,9 @@ public class ManterCurriculoOferta implements IManterCurriculoOferta{
     }
 
     @Override
-    public void excluir(CurriculoOferta curriculoOferta) throws PersistenciaException, NegocioException {
+    public boolean excluir(Integer id) throws PersistenciaException, NegocioException {
         ICurriculoOfertaDAO CurriculoOfertaDAO = new CurriculoOfertaDAO();
-        CurriculoOfertaDAO.excluir(curriculoOferta.getId());
+        return CurriculoOfertaDAO.excluir(id);
     }
 
     @Override

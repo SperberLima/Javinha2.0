@@ -62,7 +62,8 @@ public class DisciplinaDAO implements IDisciplinaDAO {
     }
 
     @Override
-    public void atualizar(Disciplina disciplina) throws PersistenciaException {
+    public boolean atualizar(Disciplina disciplina) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -81,16 +82,19 @@ public class DisciplinaDAO implements IDisciplinaDAO {
             statement.setString(2, disciplina.getNome());                        
             statement.setInt(3, disciplina.getCargaHoraria());                        
             statement.setString(4, disciplina.getEmenta());
-            statement.execute();
+            if(statement.executeUpdate() != 0)
+                sucesso = true;statement.execute();
 
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override
-    public void excluir(Integer id) throws PersistenciaException {
+    public boolean excluir(Integer id) throws PersistenciaException {
+        boolean sucesso = false;
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
@@ -100,11 +104,13 @@ public class DisciplinaDAO implements IDisciplinaDAO {
 
             statement.setInt(1, id);
 
-            statement.execute();
+            if(statement.executeUpdate()!= 0)
+                sucesso = true;
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             throw new PersistenciaException(e.getMessage(), e);
         }
+        return sucesso;
     }
 
     @Override
