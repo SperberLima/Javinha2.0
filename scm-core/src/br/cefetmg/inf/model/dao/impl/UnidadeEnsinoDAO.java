@@ -22,7 +22,7 @@ public class UnidadeEnsinoDAO implements IUnidadeEnsinoDAO {
             
             // Busca o maior id
             
-            PreparedStatement search = connection.prepareStatement("SELECT MAX(`id_unidade_de_ensino`) as id FROM `Unidade de Ensino`");
+            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_unidade_de_ensino) as id FROM \"Unidade de Ensino\"");
             
             ResultSet resultSearch = search.executeQuery();
 
@@ -33,7 +33,7 @@ public class UnidadeEnsinoDAO implements IUnidadeEnsinoDAO {
                 id = 1;
             }
             
-            String sql = "INSERT INTO `Unidade de Ensino` (`id_unidade_de_ensino`, `cod_sigla`, `txt_nome`, `txt_email`, `nro_telefone`, `cod_cep`, `txt_site` ) " + "VALUES ( ?, ?, ?, ?, ?, ?, ? ) RETURNING id_unidade_de_ensino";
+            String sql = "INSERT INTO \"Unidade de Ensino\" (id_unidade_de_ensino, cod_sigla, txt_nome, txt_email, nro_telefone, cod_cep, txt_site ) " + "VALUES ( ?, ?, ?, ?, ?, ?, ? ) RETURNING id_unidade_de_ensino";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                        
@@ -65,14 +65,14 @@ public class UnidadeEnsinoDAO implements IUnidadeEnsinoDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "UPDATE `Unidade de Ensino` "
+            String sql = "UPDATE \"Unidade de Ensino\" "
                     + " SET "
-                    + "`cod_sigla` = ?, "
-                    + "`txt_nome` = ?, "
-                    + "`txt_email` = ?, "
-                    + "`nro_telefone` = ?, "
-                    + "`cod_cep` = ?, "
-                    + "`txt_site` = ?"
+                    + "cod_sigla = ?, "
+                    + "txt_nome = ?, "
+                    + "txt_email = ?, "
+                    + "nro_telefone = ?, "
+                    + "cod_cep = ?, "
+                    + "txt_site = ?"
                     + " WHERE id_unidade_de_ensino = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -100,7 +100,7 @@ public class UnidadeEnsinoDAO implements IUnidadeEnsinoDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "DELETE FROM `Unidade de Ensino` WHERE id_unidade_ensino = ?";
+            String sql = "DELETE FROM \"Unidade de Ensino\" WHERE id_unidade_ensino = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -119,7 +119,7 @@ public class UnidadeEnsinoDAO implements IUnidadeEnsinoDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM `Unidade de Ensino` WHERE id_unidade_de_ensino = ?";
+            String sql = "SELECT * FROM \"Unidade de Ensino\" WHERE id_unidade_de_ensino = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
@@ -151,7 +151,7 @@ public class UnidadeEnsinoDAO implements IUnidadeEnsinoDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM `Unidade de Ensino`";
+            String sql = "SELECT * FROM \"Unidade de Ensino\"";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 

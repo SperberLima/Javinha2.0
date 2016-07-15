@@ -24,7 +24,7 @@ public class CursoDAO implements ICursoDAO {
             
             // Busca o maior id
             
-            PreparedStatement search = connection.prepareStatement("SELECT MAX(`id_curso`) as id FROM Curso");
+            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_curso) as id FROM Curso");
             
             ResultSet resultSearch = search.executeQuery();
 
@@ -36,7 +36,7 @@ public class CursoDAO implements ICursoDAO {
             }
             
             // Comando sql a ser executado.
-            String sql = "INSERT INTO Curso (`id_curso`, `txt_nome`, `idt_tipo`, `txt_sigla`, `id_departamento`) " + "VALUES(?, ?, ?, ?, ?) RETURNING id_curso";
+            String sql = "INSERT INTO Curso (id_curso, txt_nome, idt_tipo, txt_sigla, id_departamento) " + "VALUES(?, ?, ?, ?, ?) RETURNING id_curso";
 
             // Prepara o comando sql, a fim de evitar injeção de sql.
             PreparedStatement inserir = connection.prepareStatement(sql); // por culpa das interrogções;
@@ -76,10 +76,10 @@ public class CursoDAO implements ICursoDAO {
             // Comando sql a ser executado.
             String sql = "UPDATE Curso "
                     + " SET "
-                    + "`txt_nome` = ?, "
-                    + "`idt_tipo` = ?, "
-                    + "`txt_sigla` = ?, "
-                    + "`id_departamento` = ? "
+                    + "txt_nome = ?, "
+                    + "idt_tipo = ?, "
+                    + "txt_sigla = ?, "
+                    + "id_departamento = ? "
                     + " WHERE id_curso = ?";
 
             // Prepara o comando sql, a fim de evitar injeção de sql.
@@ -217,7 +217,7 @@ public class CursoDAO implements ICursoDAO {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             // Comando sql a ser executado.
-            String sql = "SELECT * FROM curso WHERE txt_nome = ?";
+            String sql = "SELECT * FROM Curso WHERE txt_nome = ?";
 
             // Prepara o comando sql, a fim de evitar injeção de sql.
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -254,7 +254,7 @@ public class CursoDAO implements ICursoDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM `Curso` WHERE `id_departamento` = ?";
+            String sql = "SELECT * FROM Curso WHERE id_departamento = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             

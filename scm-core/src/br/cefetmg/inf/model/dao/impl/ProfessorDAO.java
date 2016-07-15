@@ -20,7 +20,7 @@ public class ProfessorDAO implements IProfessorDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM `Professor` WHERE `txt_nome` ILIKE ?";
+            String sql = "SELECT * FROM Professor WHERE txt_nome ILIKE ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             
@@ -54,7 +54,7 @@ public class ProfessorDAO implements IProfessorDAO {
             
             // Busca o maior id
             
-            PreparedStatement search = connection.prepareStatement("SELECT MAX(`id_professor`) as id FROM Professor");
+            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_professor) as id FROM Professor");
             
             ResultSet resultSearch = search.executeQuery();
 
@@ -65,7 +65,7 @@ public class ProfessorDAO implements IProfessorDAO {
                 id = 1;
             }
             
-            String sql = "INSERT INTO `Professor` (`id_professor`, `id_departamento`, `txt_nome`, `nro_telefone`, `cod_cpf`, `txt_descricao`) " + "VALUES ( ?, ?, ? , ?, ?, ? ) RETURNING id_professor";
+            String sql = "INSERT INTO Professor (id_professor, id_departamento, txt_nome, nro_telefone, cod_cpf, txt_descricao) " + "VALUES ( ?, ?, ? , ?, ?, ? ) RETURNING id_professor";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                        
@@ -97,13 +97,13 @@ public class ProfessorDAO implements IProfessorDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "UPDATE `Professor` "
+            String sql = "UPDATE Professor "
                     + " SET  "
-                    + "`id_departamento` = ?, "
-                    + "`txt_nome` = ?, "
-                    + "`nro_telefone` = ?, "
-                    + "`cod_cpf` = ?, "
-                    + "`txt_descricao` = ?, "
+                    + "id_departamento = ?, "
+                    + "txt_nome = ?, "
+                    + "nro_telefone = ?, "
+                    + "cod_cpf = ?, "
+                    + "txt_descricao = ?, "
                     + " WHERE id_professor = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -127,7 +127,7 @@ public class ProfessorDAO implements IProfessorDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "DELETE FROM `Professor` WHERE id_professor = ?";
+            String sql = "DELETE FROM Professor WHERE id_professor = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -146,7 +146,7 @@ public class ProfessorDAO implements IProfessorDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM `Professor` WHERE id_professor = ?";
+            String sql = "SELECT * FROM Professor WHERE id_professor = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
@@ -178,7 +178,7 @@ public class ProfessorDAO implements IProfessorDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM `Professor`";
+            String sql = "SELECT * FROM Professor";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -208,7 +208,7 @@ public class ProfessorDAO implements IProfessorDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM `Disciplina` WHERE `id_disciplina` in (SELECT `id_disciplina` FROM `Professor_Disciplina` WHERE `id_professor` = ?)";
+            String sql = "SELECT * FROM Disciplina WHERE id_disciplina in (SELECT id_disciplina FROM Professor_Disciplina WHERE id_professor = ?)";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, professor.getId());

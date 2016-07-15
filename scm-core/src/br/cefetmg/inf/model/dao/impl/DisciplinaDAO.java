@@ -24,7 +24,7 @@ public class DisciplinaDAO implements IDisciplinaDAO {
             
             // Busca o maior id
             
-            PreparedStatement search = connection.prepareStatement("SELECT MAX(`id_disciplina`) as id FROM Disciplina");
+            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_disciplina) as id FROM Disciplina");
             
             ResultSet resultSearch = search.executeQuery();
 
@@ -35,7 +35,7 @@ public class DisciplinaDAO implements IDisciplinaDAO {
                 id = 1;
             }
             
-            String sql = "INSERT INTO `Disciplina` (`id_disciplina`, `id_departamento`, `txt_nome`, `qtd_carga_horaria`, `txt_ementa`) " + "VALUES ( ?, ?, ?, ? ,? ) RETURNING id_disciplina";
+            String sql = "INSERT INTO Disciplina (id_disciplina, id_departamento, txt_nome, qtd_carga_horaria, txt_ementa) " + "VALUES ( ?, ?, ?, ? ,? ) RETURNING id_disciplina";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                        
@@ -66,12 +66,12 @@ public class DisciplinaDAO implements IDisciplinaDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "UPDATE `Disciplina` "
+            String sql = "UPDATE Disciplina "
                     + " SET  "
-                    + "`id_departamento` = ?, "
-                    + "`txt_nome` = ?, "
-                    + "`qtd_carga_horaria` = ?, "
-                    + "`txt_ementa` = ?, "
+                    + "id_departamento = ?, "
+                    + "txt_nome = ?, "
+                    + "qtd_carga_horaria = ?, "
+                    + "txt_ementa = ?, "
                     + " WHERE id_disciplina = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -94,7 +94,7 @@ public class DisciplinaDAO implements IDisciplinaDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "DELETE FROM `Disciplina` WHERE id_disciplina = ?";
+            String sql = "DELETE FROM Disciplina WHERE id_disciplina = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -113,7 +113,7 @@ public class DisciplinaDAO implements IDisciplinaDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM `Disciplina` WHERE id_disciplina = ?";
+            String sql = "SELECT * FROM Disciplina WHERE id_disciplina = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
@@ -144,7 +144,7 @@ public class DisciplinaDAO implements IDisciplinaDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM `Disciplina`";
+            String sql = "SELECT * FROM Disciplina";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -175,7 +175,7 @@ public class DisciplinaDAO implements IDisciplinaDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM `Disciplina` WHERE `id_departamento` = ?";
+            String sql = "SELECT * FROM Disciplina WHERE id_departamento = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             

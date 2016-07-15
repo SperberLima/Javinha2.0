@@ -31,7 +31,7 @@ public class ProfessorDisciplinaDAO implements IProfessorDisciplinaDAO{
             
             // Busca o maior id
             
-            PreparedStatement search = connection.prepareStatement("SELECT MAX(`id_prof_disc`) as id FROM Professor_Disciplina");
+            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_prof_disc) as id FROM Professor_Disciplina");
             
             ResultSet resultSearch = search.executeQuery();
 
@@ -42,7 +42,7 @@ public class ProfessorDisciplinaDAO implements IProfessorDisciplinaDAO{
                 id = 1;
             }
             
-            String sql = "INSERT INTO `Curriculo_em_Oferta` (`id_prof_disc`, `id_disciplina`, `id_professor`) " + "VALUES ( ?, ?, ? ) RETURNING id_prof_disc";
+            String sql = "INSERT INTO Curriculo_em_Oferta (id_prof_disc, id_disciplina, id_professor) " + "VALUES ( ?, ?, ? ) RETURNING id_prof_disc";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                        
@@ -70,10 +70,10 @@ public class ProfessorDisciplinaDAO implements IProfessorDisciplinaDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "UPDATE `Professor_Disciplina` "
+            String sql = "UPDATE Professor_Disciplina "
                     + " SET  "
-                    + "`id_disciplina` = ?, "
-                    + "`id_professor` = ? "
+                    + "id_disciplina = ?, "
+                    + "id_professor = ? "
                     + " WHERE id_prof_disc = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -94,7 +94,7 @@ public class ProfessorDisciplinaDAO implements IProfessorDisciplinaDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "DELETE FROM `Professor_Disciplina` WHERE id_prof_disc = ?";
+            String sql = "DELETE FROM Professor_Disciplina WHERE id_prof_disc = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -113,7 +113,7 @@ public class ProfessorDisciplinaDAO implements IProfessorDisciplinaDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM `Professor_Disciplina` WHERE id_prof_disc = ?";
+            String sql = "SELECT * FROM Professor_Disciplina WHERE id_prof_disc = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
@@ -143,7 +143,7 @@ public class ProfessorDisciplinaDAO implements IProfessorDisciplinaDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM `Professor_Disciplina`";
+            String sql = "SELECT * FROM Professor_Disciplina";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
