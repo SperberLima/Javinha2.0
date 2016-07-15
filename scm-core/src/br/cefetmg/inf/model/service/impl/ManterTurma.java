@@ -20,9 +20,11 @@ import java.util.List;
 public class ManterTurma implements IManterTurma{
 
     @Override
-    public void cadastrar(Turma turma) throws PersistenciaException, NegocioException {
+    public Integer cadastrar(Turma turma) throws PersistenciaException, NegocioException {
         ITurmaDAO turmaDAO = new TurmaDAO();
-        turmaDAO.inserir(turma);
+        Integer id = turmaDAO.inserir(turma);
+        
+        return id;
     }
 
     @Override

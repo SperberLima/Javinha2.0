@@ -17,6 +17,8 @@ import br.cefetmg.inf.model.service.impl.ManterCurriculoOferta;
 import br.cefetmg.inf.model.service.impl.ManterPeriodoLetivo;
 import br.cefetmg.inf.model.service.impl.ManterGradeCurricular;
 
+import br.cefetmg.inf.scm.controller.VisualizarCurriculoOferta;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -45,7 +47,7 @@ public class GravarInsercaoCurriculoOferta {
             Integer id_curriculo = manterCurriculoOferta.cadastrar(curriculoOferta);
  
             if (id_curriculo != null) {
-                //jsp = ListarAmbienteAprendizagem.execute(request);
+                jsp = VisualizarCurriculoOferta.execute(request);
             } else {
                 String erro = "Não foi possível gravar esse registro!";
                 request.setAttribute("erro", erro);

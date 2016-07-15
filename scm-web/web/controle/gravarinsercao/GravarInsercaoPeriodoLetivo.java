@@ -9,6 +9,8 @@ import br.cefetmg.inf.model.domain.PeriodoLetivo;
 import br.cefetmg.inf.model.service.IManterPeriodoLetivo;
 import br.cefetmg.inf.model.service.impl.ManterPeriodoLetivo;
 
+import br.cefetmg.inf.scm.controller.VisualizarPeriodo;
+
 import javax.servlet.http.HttpServletRequest;
 
 import java.sql.Date;
@@ -36,7 +38,7 @@ public class GravarInsercaoPeriodoLetivo {
             Integer id_periodo_letivo = manterPeriodoLetivo.cadastrar(periodoLetivo);
  
             if (id_periodo_letivo != null) {
-                //jsp = ListarAmbienteAprendizagem.execute(request);
+                jsp = VisualizarPeriodo.execute(request);
             } else {
                 String erro = "Não foi possível gravar esse registro!";
                 request.setAttribute("erro", erro);

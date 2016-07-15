@@ -20,6 +20,8 @@ import br.cefetmg.inf.model.service.impl.ManterAmbienteAprendizagem;
 import br.cefetmg.inf.model.service.impl.ManterTurma;
 import br.cefetmg.inf.model.service.impl.ManterProfessorDisciplina;
 
+import br.cefetmg.inf.scm.controller.VisualizarHorario;
+
 import javax.servlet.http.HttpServletRequest;
 
 import java.sql.Date;
@@ -61,7 +63,7 @@ public class GravarInsercaoHorario {
             Integer id_curriculo = manterHorario.cadastrar(horario);
  
             if (id_curriculo != null) {
-                //jsp = ListarAmbienteAprendizagem.execute(request);
+                jsp = VisualizarHorario.execute(request);
             } else {
                 String erro = "Não foi possível gravar esse registro!";
                 request.setAttribute("erro", erro);

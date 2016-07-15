@@ -18,6 +18,8 @@ import br.cefetmg.inf.model.service.impl.ManterProfessorDisciplina;
 import br.cefetmg.inf.model.service.impl.ManterProfessor;
 import br.cefetmg.inf.model.service.impl.ManterDisciplina;
 
+import br.cefetmg.inf.scm.controller.VisualizarProfessorDisciplina;
+
 import javax.servlet.http.HttpServletRequest;
 /**
  *
@@ -45,7 +47,7 @@ public class GravarInsercaoProfessorDisciplina {
             Integer id_professor_disciplina = manterProfessorDisciplina.cadastrar(professorDisciplina);
  
             if (id_professor_disciplina != null) {
-                //jsp = ListarAmbienteAprendizagem.execute(request);
+                jsp = VisualizarProfessorDisciplina.execute(request);
             } else {
                 String erro = "Não foi possível gravar esse registro!";
                 request.setAttribute("erro", erro);

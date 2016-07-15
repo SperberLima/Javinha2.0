@@ -23,7 +23,7 @@ import java.util.List;
 public class ManterCurso implements IManterCurso{
 
     @Override
-    public void cadastrar(Curso curso) throws PersistenciaException, NegocioException {
+    public Integer cadastrar(Curso curso) throws PersistenciaException, NegocioException {
          // Curso deve ter departamento
         if (curso.getDpto() == null){
             throw new NegocioException("O curso deve pertencer a um departamento");
@@ -47,6 +47,8 @@ public class ManterCurso implements IManterCurso{
         ICursoDAO cursoDAO = new CursoDAO();
         Integer id = cursoDAO.inserir(curso);
         curso.setId(id);
+        
+        return id;
     }
 
     @Override

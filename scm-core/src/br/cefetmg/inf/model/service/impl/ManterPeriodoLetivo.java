@@ -20,7 +20,7 @@ import java.util.List;
 public class ManterPeriodoLetivo implements IManterPeriodoLetivo{
     
     @Override
-    public void cadastrar(PeriodoLetivo PeriodoLetivo) throws PersistenciaException, NegocioException {
+    public Integer cadastrar(PeriodoLetivo PeriodoLetivo) throws PersistenciaException, NegocioException {
          // Curso deve ter departamento
         if (PeriodoLetivo.getInicio()== null){
             throw new NegocioException("O periodo letivo deve ter uma data de inicio");
@@ -39,6 +39,8 @@ public class ManterPeriodoLetivo implements IManterPeriodoLetivo{
         IPeriodoLetivoDAO Periodo_LetivoDAO = new PeriodoLetivoDAO();
         Integer id = Periodo_LetivoDAO.inserir(PeriodoLetivo);
         PeriodoLetivo.setId(id);
+        
+        return id;
     }
 
     @Override

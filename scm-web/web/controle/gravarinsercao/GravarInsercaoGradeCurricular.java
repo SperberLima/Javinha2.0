@@ -7,10 +7,15 @@ package controle.gravarinsercao;
  */
 import br.cefetmg.inf.model.domain.GradeCurricular;
 import br.cefetmg.inf.model.domain.Curso;
+
 import br.cefetmg.inf.model.service.IManterGradeCurricular;
 import br.cefetmg.inf.model.service.IManterCurso;
+
 import br.cefetmg.inf.model.service.impl.ManterGradeCurricular;
 import br.cefetmg.inf.model.service.impl.ManterCurso;
+
+import br.cefetmg.inf.scm.controller.VisualizarGradeCurricular;
+
 import javax.servlet.http.HttpServletRequest;
 /**
  *
@@ -37,7 +42,7 @@ public class GravarInsercaoGradeCurricular {
             Integer id_grade_curricular = manterGradeCurricular.cadastrar(gradeCurricular);
  
             if (id_grade_curricular != null) {
-                //jsp = ListarAmbienteAprendizagem.execute(request);
+                jsp = VisualizarGradeCurricular.execute(request);
             } else {
                 String erro = "Não foi possível gravar esse registro!";
                 request.setAttribute("erro", erro);

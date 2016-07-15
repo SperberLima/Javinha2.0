@@ -7,10 +7,15 @@ package controle.gravarinsercao;
  */
 import br.cefetmg.inf.model.domain.Departamento;
 import br.cefetmg.inf.model.domain.UnidadeEnsino;
+
 import br.cefetmg.inf.model.service.IManterDepartamento;
 import br.cefetmg.inf.model.service.IManterUnidadeEnsino;
+
 import br.cefetmg.inf.model.service.impl.ManterDepartamento;
 import br.cefetmg.inf.model.service.impl.ManterUnidadeEnsino;
+
+import br.cefetmg.inf.scm.controller.VisualizarDepartamento;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -46,7 +51,7 @@ public class GravarInsercaoDepartamento {
             Integer id_departamento = manterDepartamento.cadastrar(departamento);
  
             if (id_departamento != null) {
-                //jsp = ListarAmbienteAprendizagem.execute(request);
+                jsp = VisualizarDepartamento.execute(request);
             } else {
                 String erro = "Não foi possível gravar esse registro!";
                 request.setAttribute("erro", erro);

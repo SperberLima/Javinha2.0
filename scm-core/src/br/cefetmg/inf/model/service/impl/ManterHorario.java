@@ -20,9 +20,11 @@ import java.util.List;
 public class ManterHorario implements IManterHorario{
 
     @Override
-    public void cadastrar(Horario horario) throws PersistenciaException, NegocioException {
+    public Integer cadastrar(Horario horario) throws PersistenciaException, NegocioException {
         IHorarioDAO horarioDAO = new HorarioDAO();
-        horarioDAO.inserir(horario);
+        Integer id = horarioDAO.inserir(horario);
+        
+        return id;
     }
 
     @Override

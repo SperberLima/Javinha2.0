@@ -7,10 +7,15 @@ package controle.gravarinsercao;
  */
 import br.cefetmg.inf.model.domain.AmbienteAprendizagem;
 import br.cefetmg.inf.model.domain.UnidadeEnsino;
+
 import br.cefetmg.inf.model.service.IManterAmbienteAprendizagem;
 import br.cefetmg.inf.model.service.IManterUnidadeEnsino;
+
 import br.cefetmg.inf.model.service.impl.ManterAmbienteAprendizagem;
 import br.cefetmg.inf.model.service.impl.ManterUnidadeEnsino;
+
+import br.cefetmg.inf.scm.controller.VisualizarAmbiente;
+
 import javax.servlet.http.HttpServletRequest;
 /**
  *
@@ -40,7 +45,7 @@ public class GravarInsercaoAmbienteAprendizagem {
             Integer id_ambiente = manterAmbienteAprendizagem.cadastrar(ambienteAprendizagem);
  
             if (id_ambiente != null) {
-                //jsp = ListarAmbienteAprendizagem.execute(request);
+                jsp = VisualizarAmbiente.execute(request);
             } else {
                 String erro = "Não foi possível gravar esse registro!";
                 request.setAttribute("erro", erro);

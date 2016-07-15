@@ -8,12 +8,17 @@ package controle.gravarinsercao;
 import br.cefetmg.inf.model.domain.GradeDisciplina;
 import br.cefetmg.inf.model.domain.Disciplina;
 import br.cefetmg.inf.model.domain.GradeCurricular;
+
 import br.cefetmg.inf.model.service.IManterGradeDisciplina;
 import br.cefetmg.inf.model.service.IManterDisciplina;
 import br.cefetmg.inf.model.service.IManterGradeCurricular;
+
 import br.cefetmg.inf.model.service.impl.ManterGradeDisciplina;
 import br.cefetmg.inf.model.service.impl.ManterDisciplina;
 import br.cefetmg.inf.model.service.impl.ManterGradeCurricular;
+
+import br.cefetmg.inf.scm.controller.VisualizarGradeDisciplina;
+
 import javax.servlet.http.HttpServletRequest;
 /**
  *
@@ -42,7 +47,7 @@ public class GravarInsercaoGradeDisciplina {
             Integer id_grade_disciplina = manterGradeDisciplina.cadastrar(gradeDisciplina);
  
             if (id_grade_disciplina != null) {
-                //jsp = ListarAmbienteAprendizagem.execute(request);
+                jsp = VisualizarGradeDisciplina.execute(request);
             } else {
                 String erro = "Não foi possível gravar esse registro!";
                 request.setAttribute("erro", erro);

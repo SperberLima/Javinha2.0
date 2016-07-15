@@ -20,7 +20,7 @@ import java.util.List;
 public class ManterAmbienteAprendizagem implements IManterAmbienteAprendizagem{
 
     @Override
-    public void cadastrar(AmbienteAprendizagem Ambiente_Aprendizagem) throws PersistenciaException, NegocioException {
+    public Integer cadastrar(AmbienteAprendizagem Ambiente_Aprendizagem) throws PersistenciaException, NegocioException {
          // Curso deve ter departamento
         if (Ambiente_Aprendizagem.getU_ensino()== null){
             throw new NegocioException("Todo ambiente de aprendizagem deve estar associado a uma unidade de ensino");
@@ -39,6 +39,8 @@ public class ManterAmbienteAprendizagem implements IManterAmbienteAprendizagem{
         IAmbienteAprendizagemDAO Ambiente_AprendizagemDAO = new AmbienteAprendizagemDAO();
         Integer id = Ambiente_AprendizagemDAO.inserir(Ambiente_Aprendizagem);
         Ambiente_Aprendizagem.setId(id);
+        
+        return id;
     }
 
     @Override

@@ -14,6 +14,8 @@ import br.cefetmg.inf.model.service.IManterCurriculoOferta;
 import br.cefetmg.inf.model.service.impl.ManterTurma;
 import br.cefetmg.inf.model.service.impl.ManterCurriculoOferta;
 
+import br.cefetmg.inf.scm.controller.VisualizarTurma;
+
 import javax.servlet.http.HttpServletRequest;
 /**
  *
@@ -38,7 +40,7 @@ public class GravarInsercaoTurma {
             Integer id_turma = manterTurma.cadastrar(turma);
  
             if (id_turma != null) {
-                //jsp = ListarAmbienteAprendizagem.execute(request);
+                jsp = VisualizarTurma.execute(request);
             } else {
                 String erro = "Não foi possível gravar esse registro!";
                 request.setAttribute("erro", erro);

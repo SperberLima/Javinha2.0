@@ -9,6 +9,8 @@ import br.cefetmg.inf.model.domain.UnidadeEnsino;
 import br.cefetmg.inf.model.service.IManterUnidadeEnsino;
 import br.cefetmg.inf.model.service.impl.ManterUnidadeEnsino;
 
+import br.cefetmg.inf.scm.controller.VisualizarUnidade;
+
 import javax.servlet.http.HttpServletRequest;
 /**
  *
@@ -38,7 +40,7 @@ public class GravarInsercaoUnidadeEnsino {
             Integer id_unidade_ensino = manterUnidadeEnsino.cadastrar(unidadeEnsino);
  
             if (id_unidade_ensino != null) {
-                //jsp = ListarAmbienteAprendizagem.execute(request);
+                jsp = VisualizarUnidade.execute(request);
             } else {
                 String erro = "Não foi possível gravar esse registro!";
                 request.setAttribute("erro", erro);

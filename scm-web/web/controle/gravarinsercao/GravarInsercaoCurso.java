@@ -7,10 +7,15 @@ package controle.gravarinsercao;
  */
 import br.cefetmg.inf.model.domain.Curso;
 import br.cefetmg.inf.model.domain.Departamento;
+
 import br.cefetmg.inf.model.service.IManterCurso;
 import br.cefetmg.inf.model.service.IManterDepartamento;
+
 import br.cefetmg.inf.model.service.impl.ManterCurso;
 import br.cefetmg.inf.model.service.impl.ManterDepartamento;
+
+import br.cefetmg.inf.scm.controller.VisualizarCurso;
+
 import javax.servlet.http.HttpServletRequest;
 /**
  *
@@ -39,7 +44,7 @@ public class GravarInsercaoCurso {
             Integer id_curso = manterCurso.cadastrar(curso);
  
             if (id_curso != null) {
-                //jsp = ListarAmbienteAprendizagem.execute(request);
+                jsp = VisualizarCurso.execute(request);
             } else {
                 String erro = "Não foi possível gravar esse registro!";
                 request.setAttribute("erro", erro);
