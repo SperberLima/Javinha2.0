@@ -5,24 +5,22 @@
  */
 package br.cefetmg.inf.scm.controller;
 
-import br.cefetmg.inf.model.domain.AmbienteAprendizagem;
-import br.cefetmg.inf.model.service.IManterAmbienteAprendizagem;
-import br.cefetmg.inf.model.service.impl.ManterAmbienteAprendizagem;
-import java.util.List;
+import br.cefetmg.inf.model.service.IManterCurso;
+import br.cefetmg.inf.model.service.impl.ManterCurso;
 import javax.servlet.http.HttpServletRequest;
 
 /**
  *
  * @author Nome
  */
-public class ExcluirAmbiente {
+public class ExcluirCurso {
     public static String execute(HttpServletRequest request) {
         String jsp = "";
         try {
-            IManterAmbienteAprendizagem manterAmbiente = new ManterAmbienteAprendizagem();
-            boolean sucesso = manterAmbiente.excluir(Integer.parseInt(request.getParameter("id")));
+            IManterCurso manterCurso = new ManterCurso();
+            boolean sucesso = manterCurso.excluir(Integer.parseInt(request.getParameter("id")));
             if (sucesso != false) {
-                jsp = VisualizarAmbiente.execute(request);
+                jsp = VisualizarCurso.execute(request);
             } else {
                 String erro = "Errou ao excluir!";
                 request.setAttribute("erro", erro);

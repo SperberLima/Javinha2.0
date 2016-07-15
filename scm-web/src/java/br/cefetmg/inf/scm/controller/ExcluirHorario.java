@@ -5,22 +5,20 @@
  */
 package br.cefetmg.inf.scm.controller;
 
-import br.cefetmg.inf.model.domain.AmbienteAprendizagem;
-import br.cefetmg.inf.model.service.IManterAmbienteAprendizagem;
-import br.cefetmg.inf.model.service.impl.ManterAmbienteAprendizagem;
-import java.util.List;
+import br.cefetmg.inf.model.service.IManterHorario;
+import br.cefetmg.inf.model.service.impl.ManterHorario;
 import javax.servlet.http.HttpServletRequest;
 
 /**
  *
  * @author Nome
  */
-public class ExcluirAmbiente {
+public class ExcluirHorario {
     public static String execute(HttpServletRequest request) {
         String jsp = "";
         try {
-            IManterAmbienteAprendizagem manterAmbiente = new ManterAmbienteAprendizagem();
-            boolean sucesso = manterAmbiente.excluir(Integer.parseInt(request.getParameter("id")));
+            IManterHorario manterHorario = new ManterHorario();
+            boolean sucesso = manterHorario.excluir(Integer.parseInt(request.getParameter("id")));
             if (sucesso != false) {
                 jsp = VisualizarAmbiente.execute(request);
             } else {

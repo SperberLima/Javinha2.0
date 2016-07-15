@@ -1,4 +1,4 @@
-package controle.gravar_alteracao;
+package br.cefetmg.inf.scm.controller;
 
 import br.cefetmg.inf.model.domain.*;
 import br.cefetmg.inf.model.service.impl.*;

@@ -7,7 +7,9 @@ package br.cefetmg.inf.scm.controller;
 
 import br.cefetmg.inf.model.domain.AmbienteAprendizagem;
 import br.cefetmg.inf.model.service.IManterAmbienteAprendizagem;
+import br.cefetmg.inf.model.service.IManterUnidadeEnsino;
 import br.cefetmg.inf.model.service.impl.ManterAmbienteAprendizagem;
+import br.cefetmg.inf.model.service.impl.ManterUnidadeEnsino;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,12 +17,12 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Nome
  */
-public class ExcluirAmbiente {
+public class ExcluirUnidade {
     public static String execute(HttpServletRequest request) {
         String jsp = "";
         try {
-            IManterAmbienteAprendizagem manterAmbiente = new ManterAmbienteAprendizagem();
-            boolean sucesso = manterAmbiente.excluir(Integer.parseInt(request.getParameter("id")));
+            IManterUnidadeEnsino manterUnidade = new ManterUnidadeEnsino();
+            boolean sucesso = manterUnidade.excluir(Integer.parseInt(request.getParameter("id")));
             if (sucesso != false) {
                 jsp = VisualizarAmbiente.execute(request);
             } else {
