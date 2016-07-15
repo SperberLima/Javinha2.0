@@ -41,8 +41,8 @@
 
 
 
-                    <form name="frmTurma" method="post" action=""><table style="
-                                                                         ">
+                    <form name="frmTurma" method="post" action=""><table style="">
+                            <input type="hidden" name="table" value="Turma" />
                             <tbody>
                                 <tr style="">
                                     <td id="field" style="
@@ -74,7 +74,7 @@
                     </form> 	
                     <div class="butcontainer">
                         <input type="reset" value="CANCELAR" class="cancela" style=" height: 35px; width: 120px;">
-                        <button onclick="" class="confirma" style="
+                        <button onclick="GravarInsercao(document.frmTurma)" class="confirma" style="
                                 height: 35px;
                                 width: 120px;
                                 margin-left: 15px;

@@ -75,6 +75,20 @@ function redirect(op){
     }
 }
 
+function GravarInsercao(frm){
+    var table = frm.table.value;
+    caminhourl = "/scm/servletweb?acao=GravarInsercao"+table;  
+    frm.action = caminhourl;
+    frm.submit();
+}
+
+
+function GravarAlteracao(frm){
+    var table = frm.table.value;
+    caminhourl = "/scm/servletweb?acao=GravarAlteracao"+table;
+    frm.action = caminhourl;
+    frm.submit();
+}
 
 // VALIDAÇOES 
 

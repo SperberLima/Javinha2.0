@@ -43,8 +43,8 @@
 
 
 
-                    <form name="frmAmbiente" method="post" action=""><table style="
-                                                                            ">
+                    <form name="frmAmbiente" method="post" action=""><table style="">
+                            <input type="hidden" name="table" value="AmbienteAprendizagem" />
                             <tbody>
                                 <tr style="">
                                     <td id="field" style="
@@ -87,7 +87,7 @@
                     </form> 	
                     <div class="butcontainer">
                         <input type="reset" value="CANCELAR" class="cancela" style=" height: 35px; width: 120px;">
-                        <button onclick="" class="confirma" style="height: 35px; width: 120px;margin-left: 15px;">CONFIRMA</button> 
+                        <button onclick="GravarInsercao(document.frmAmbiente)" class="confirma" style="height: 35px; width: 120px;margin-left: 15px;">CONFIRMA</button> 
 
                     </div>
                 </div>

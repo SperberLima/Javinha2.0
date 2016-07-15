@@ -43,8 +43,9 @@
 
 
 
-                    <form name="frmCPeriodo" method='post'><table style="
-                                                                  ">
+                    <form name="frmProfessor" method='post'>
+                        <input type="hidden" name="table" value="Professor" />
+                        <table style="">
                             <tbody>
                                 <tr>
                                     <td id="field" style=""><span style="font-size: 16px;">ID</span></td>
@@ -87,7 +88,7 @@
                             </tbody></table>
                     </form>	
                     <div class="butcontainer">
-                        <input type="reset" value="CANCELAR" class="cancela" style=" height: 35px; width: 120px;"><button onclick="" class="confirma" style="
+                        <input type="reset" value="CANCELAR" class="cancela" style=" height: 35px; width: 120px;"><button onclick="GravarInsercao(document.frmProfessor)" class="confirma" style="
                                                                                                                           height: 35px;
                                                                                                                           width: 120px;
                                                                                                                           margin-left: 15px;

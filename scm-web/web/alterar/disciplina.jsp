@@ -77,7 +77,7 @@
                             </tbody></table>
                         <div class="butcontainer">
                             <input type="reset" value="CANCELAR" class="cancela" style=" height: 35px; width: 120px;">
-                            <button class="redefine" style="height: 35px;width: 120px;margin-left: 15px;">REDEFINIR</button> 
+                            <button onclick="GravarAlteracao(document.frmD)" class="redefine" style="height: 35px;width: 120px;margin-left: 15px;">REDEFINIR</button> 
 
                         </div>
                 </div>
