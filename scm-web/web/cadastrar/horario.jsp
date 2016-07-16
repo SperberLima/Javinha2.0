@@ -73,7 +73,7 @@
                                     <td>
                                         <select name="STurma" class="form_input">
                                             <%
-                                                List<Turma> turma = (List<Turma>) request.getAttribute("turma");
+                                                List<Turma> turma = (List<Turma>) request.getAttribute("listTurma");
                                                 for (Turma tur : turma) {
                                             %>
                                             <option                                     
@@ -89,7 +89,7 @@
                                         <td>
                                         <select name="SProfessor" class="form_input">
                                             <%
-                                                List<ProfessorDisciplina> professor = (List<ProfessorDisciplina>) request.getAttribute("professor");
+                                                List<ProfessorDisciplina> professor = (List<ProfessorDisciplina>) request.getAttribute("listProfessor");
                                                 for (ProfessorDisciplina pro : professor) {
                                             %>
                                             <option                                     

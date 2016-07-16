@@ -20,7 +20,7 @@ public class PostgresqlJDBCConnection implements JDBCConnectionFactory {
         Properties prop = new Properties();
         prop.setProperty("user", user);
         prop.setProperty("password",pass);
-        prop.setProperty("sslmode","require");
+        //prop.setProperty("sslmode","require");
         return DriverManager.getConnection(dbURL, prop);
     }
 }

@@ -5,9 +5,9 @@
  */
 package br.cefetmg.inf.scm.controller;
 
-import br.cefetmg.inf.model.domain.Turma;
-import br.cefetmg.inf.model.service.IManterTurma;
-import br.cefetmg.inf.model.service.impl.ManterTurma;
+import br.cefetmg.inf.model.domain.*;
+import br.cefetmg.inf.model.service.*;
+import br.cefetmg.inf.model.service.impl.*;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,14 +20,14 @@ public class InserirTurma {
     public static String execute(HttpServletRequest request) {
         String jsp = "";
         try {
-            IManterTurma manterTurma = new ManterTurma();
-            List<Turma> listTurma = manterTurma.listarTodos();
+            IManterCurriculoOferta manterCurriculo = new ManterCurriculoOferta();
+            List<CurriculoOferta> listCurriculo = manterCurriculo.listarTodos();
 
-            if (listTurma != null) {
-                request.setAttribute("listTurma", listTurma);
+            if (listCurriculo != null) {
+                request.setAttribute("listCurriculo", listCurriculo);
                 jsp = "/cadastrar/turma.jsp";
             } else {
-                String erro = "Nao existe registros!";
+                String erro = "Nao existem registros!";
                 request.setAttribute("erro", erro);
                 jsp = "/erro.jsp";
             }

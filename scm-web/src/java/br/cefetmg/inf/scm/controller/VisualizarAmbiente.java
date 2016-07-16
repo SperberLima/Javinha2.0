@@ -18,8 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 public class VisualizarAmbiente {
     
     public static String execute(HttpServletRequest request) {
-        String jsp = "/index.jsp";
-       /* String jsp = "";
+        String jsp = "";
         try {
             IManterAmbienteAprendizagem manterAmbiente = new ManterAmbienteAprendizagem();
             List<AmbienteAprendizagem> listAmbiente = manterAmbiente.listarTodos();
@@ -35,7 +34,7 @@ public class VisualizarAmbiente {
         } catch (Exception e) {
             e.printStackTrace();
             jsp = "";
-        }*/
+        }
         return jsp;
     }
     

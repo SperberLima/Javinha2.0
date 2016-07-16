@@ -17,25 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class InserirPeriodoLetivo {
                   
-    public static String execute(HttpServletRequest request) {
-        String jsp = "";
-        try {
-            IManterPeriodoLetivo manterPeriodoLetivo = new ManterPeriodoLetivo();
-            List<PeriodoLetivo> listPeriodoLetivo = manterPeriodoLetivo.listarTodos();
-
-            if (listPeriodoLetivo != null) {
-                request.setAttribute("listPeriodoLetivo", listPeriodoLetivo);
-                jsp = "/cadastrar/periodo.jsp";
-            } else {
-                String erro = "Nao existe registros!";
-                request.setAttribute("erro", erro);
-                jsp = "/erro.jsp";
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            jsp = "";
-        }
-        return jsp;
+    public static String execute(HttpServletRequest request) {        
+        return "/cadastrar/periodo";
     }
 }

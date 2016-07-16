@@ -71,7 +71,7 @@ function redirect(op){
        window.location="/scm/servletweb?acao=Visualizar"+value;
     }else
     if(op==3){        
-       window.location="/scm/servletweb?acao=Cadastrar"+value;
+       window.location="/scm/servletweb?acao=Inserir"+value;
     }
 }
 
@@ -145,7 +145,7 @@ function Excluir(chave, frm) {
     }
     else if (table == "frmPeriodo") {
         if(confirm('Deseja excluir o periodo de ID: '+ chave+'?')){
-           frm.action="/scm/servletweb?acao=ExcluirPeriodo";
+           frm.action="/scm/servletweb?acao=ExcluirPeriodoLetivo";
            frm.submit();
         }
     }

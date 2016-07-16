@@ -18,24 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 public class InserirUnidadeEnsino {
                   
     public static String execute(HttpServletRequest request) {
-        String jsp = "";
-        try {
-            IManterUnidadeEnsino manterUnidadeEnsino = new ManterUnidadeEnsino();
-            List<UnidadeEnsino> listUnidadeEnsino = manterUnidadeEnsino.listarTodos();
-
-            if (listUnidadeEnsino != null) {
-                request.setAttribute("listUnidadeEnsino", listUnidadeEnsino);
-                jsp = "/cadastrar/unidade.jsp";
-            } else {
-                String erro = "Nao existe registros!";
-                request.setAttribute("erro", erro);
-                jsp = "/erro.jsp";
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            jsp = "";
-        }
-        return jsp;
+        
+        return "/cadastrar/unidade.jsp";
     }
 }

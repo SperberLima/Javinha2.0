@@ -129,6 +129,62 @@ public class ServletWeb extends HttpServlet {
             jsp = GravarInsercaoTurma.execute(request);
         else if (acao.equals("GravarInsercaoUnidadeEnsino"))
             jsp = GravarInsercaoUnidadeEnsino.execute(request);
+        else if (acao.equals("ExcluirAmbienteAprendizagem"))
+            jsp = ExcluirAmbiente.execute(request);
+        else if (acao.equals("ExcluirCurriculoOferta"))
+            jsp = ExcluirCurriculoOferta.execute(request);
+        else if (acao.equals("ExcluirCurso"))
+            jsp = ExcluirCurso.execute(request);
+        else if (acao.equals("ExcluirDepartamento"))
+            jsp = ExcluirDepartamento.execute(request);
+        else if (acao.equals("ExcluirDisciplina"))
+            jsp = ExcluirDisciplina.execute(request);
+        else if (acao.equals("ExcluirHorario"))
+            jsp = ExcluirHorario.execute(request);
+        else if (acao.equals("ExcluirPeriodoLetivo"))
+            jsp = ExcluirPeriodo.execute(request);
+        else if (acao.equals("ExcluirGradeDisciplina"))
+            jsp = ExcluirGradeDisciplina.execute(request);
+        else if (acao.equals("ExcluirGradeCurricular"))
+            jsp = ExcluirGradeCurricular.execute(request);
+        else if (acao.equals("ExcluirProfessor"))
+            jsp = ExcluirProfessor.execute(request);
+        else if (acao.equals("ExcluirProfessorDisciplina"))
+            jsp = ExcluirProfessorDisciplina.execute(request);
+        else if (acao.equals("ExcluirTurma"))
+            jsp = ExcluirTurma.execute(request);
+        else if (acao.equals("ExcluirUnidadeEnsino"))
+            jsp = ExcluirUnidade.execute(request);
+        else if (acao.equals("InserirAmbienteAprendizagem"))
+            jsp = InserirAmbiente.execute(request);
+        else if (acao.equals("InserirCurso"))
+            jsp = InserirCurso.execute(request); 
+        else if (acao.equals("InserirCurriculoOferta"))
+            jsp = InserirCurriculoOferta.execute(request);
+        else if (acao.equals("InserirDepartamento"))
+            jsp = InserirDepartamento.execute(request);
+        else if (acao.equals("InserirDisciplina"))
+            jsp = InserirDisciplina.execute(request);
+        else if (acao.equals("InserirTurma"))
+            jsp = InserirTurma.execute(request);
+        else if (acao.equals("InserirProfessor"))
+            jsp = InserirProfessor.execute(request);
+        else if (acao.equals("InserirHorario"))
+            jsp = InserirHorario.execute(request);
+        else if (acao.equals("InserirUnidade"))
+            jsp = InserirUnidadeEnsino.execute(request);
+        else if (acao.equals("InserirPeriodo"))
+            jsp = InserirPeriodoLetivo.execute(request);
+        else if (acao.equals("InserirProfessorDisciplina"))
+            jsp = InserirProfessorDisciplina.execute(request);
+        else if (acao.equals("InserirGradeCurricular"))
+            jsp = InserirGradeCurricular.execute(request);
+        else if (acao.equals("InserirGradeDisciplina"))
+            jsp = InserirGradeDisciplina.execute(request);
+
+
+        
+        
         
         //Redirecionando pagina
         RequestDispatcher rd = request.getRequestDispatcher(jsp);

@@ -5,9 +5,9 @@
  */
 package br.cefetmg.inf.scm.controller;
 
-import br.cefetmg.inf.model.domain.Horario;
-import br.cefetmg.inf.model.service.IManterHorario;
-import br.cefetmg.inf.model.service.impl.ManterHorario;
+import br.cefetmg.inf.model.domain.*;
+import br.cefetmg.inf.model.service.*;
+import br.cefetmg.inf.model.service.impl.*;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 /**
@@ -19,11 +19,19 @@ public class InserirHorario {
     public static String execute(HttpServletRequest request) {
         String jsp = "";
         try {
-            IManterHorario manterHorario = new ManterHorario();
-            List<Horario> listHorario = manterHorario.listarTodos();
+            IManterAmbienteAprendizagem manterAmbiente = new ManterAmbienteAprendizagem();
+            List<AmbienteAprendizagem> listAmbiente = manterAmbiente.listarTodos();
+            
+            IManterProfessor manterProfessor = new ManterProfessor();
+            List<Professor> listProfessor = manterProfessor.listarTodos();
+            
+            IManterTurma manterTurma = new ManterTurma();
+            List<Turma> listTurma = manterTurma.listarTodos();
 
-            if (listHorario != null) {
-                request.setAttribute("listHorario", listHorario);
+            if (listAmbiente != null && listProfessor!=null && listTurma != null) {
+                request.setAttribute("listAmbiente", listAmbiente);
+                request.setAttribute("listTurma", listTurma);
+                request.setAttribute("listProfessor", listProfessor);
                 jsp = "/cadastrar/horario.jsp";
             } else {
                 String erro = "Nao existe registros!";

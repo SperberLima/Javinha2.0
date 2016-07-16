@@ -5,9 +5,9 @@
  */
 package br.cefetmg.inf.scm.controller;
 
-import br.cefetmg.inf.model.domain.*;
-import br.cefetmg.inf.model.service.*;
-import br.cefetmg.inf.model.service.impl.*;
+import br.cefetmg.inf.model.domain.AmbienteAprendizagem;
+import br.cefetmg.inf.model.service.IManterAmbienteAprendizagem;
+import br.cefetmg.inf.model.service.impl.ManterAmbienteAprendizagem;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,17 +15,17 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Diego
  */
-public class InserirProfessor {
-                  
+public class InserirAmbiente {
+           
     public static String execute(HttpServletRequest request) {
         String jsp = "";
         try {
-            IManterDepartamento manterDepartamento = new ManterDepartamento();
-            List<Departamento> listDepartamento = manterDepartamento.listarTodos();
+            IManterAmbienteAprendizagem manterAmbienteAprendizagem = new ManterAmbienteAprendizagem();
+            List<AmbienteAprendizagem> listAmbienteAprendizagem = manterAmbienteAprendizagem.listarTodos();
 
-            if (listDepartamento != null) {
-                request.setAttribute("listDepartamento", listDepartamento);
-                jsp = "/cadastrar/professor.jsp";
+            if (listAmbienteAprendizagem != null) {
+                request.setAttribute("listAmbienteAprendizagem", listAmbienteAprendizagem);
+                jsp = "/cadastrar/curso.jsp";
             } else {
                 String erro = "Nao existe registros!";
                 request.setAttribute("erro", erro);

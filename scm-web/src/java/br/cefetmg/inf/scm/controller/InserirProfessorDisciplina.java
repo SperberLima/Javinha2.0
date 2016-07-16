@@ -5,9 +5,9 @@
  */
 package br.cefetmg.inf.scm.controller;
 
-import br.cefetmg.inf.model.domain.ProfessorDisciplina;
-import br.cefetmg.inf.model.service.IManterProfessorDisciplina;
-import br.cefetmg.inf.model.service.impl.ManterProfessorDisciplina;
+import br.cefetmg.inf.model.domain.*;
+import br.cefetmg.inf.model.service.*;
+import br.cefetmg.inf.model.service.impl.*;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,11 +20,15 @@ public class InserirProfessorDisciplina {
     public static String execute(HttpServletRequest request) {
         String jsp = "";
         try {
-            IManterProfessorDisciplina manterProfessorDisciplina = new ManterProfessorDisciplina();
-            List<ProfessorDisciplina> listProfessorDisciplina = manterProfessorDisciplina.listarTodos();
+            IManterProfessor manterProfessor = new ManterProfessor();
+            List<Professor> listProfessor = manterProfessor.listarTodos();
 
-            if (listProfessorDisciplina != null) {
-                request.setAttribute("listProfessorDisciplina", listProfessorDisciplina);
+            IManterDisciplina manterDisciplina = new ManterDisciplina();
+            List<Disciplina> listDisciplina = manterDisciplina.listarTodos();
+
+            if (listProfessor!=null && listDisciplina != null) {
+                request.setAttribute("listProfessor", listProfessor);
+                request.setAttribute("listDisciplina", listDisciplina);
                 jsp = "/cadastrar/professordisciplina.jsp";
             } else {
                 String erro = "Nao existe registros!";
