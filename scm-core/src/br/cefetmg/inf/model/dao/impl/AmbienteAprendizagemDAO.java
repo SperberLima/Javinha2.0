@@ -22,7 +22,7 @@ public class AmbienteAprendizagemDAO implements IAmbienteAprendizagemDAO {
             
             // Busca o maior id
             
-            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_ambiente) as id FROM Ambiente_Aprendizagem");
+            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_ambiente) as id FROM \"Ambiente_Aprendizagem\"");
             
             ResultSet resultSearch = search.executeQuery();
 
@@ -33,7 +33,7 @@ public class AmbienteAprendizagemDAO implements IAmbienteAprendizagemDAO {
                 id = 1;
             }
             
-            String sql = "INSERT INTO Ambiente_Aprendizagem (id_ambiente, id_unidade_de_ensino, des_ambiente, qtd_capacidade, nro_sala) " + "VALUES ( ?, ?, ?, ?, ? ) RETURNING id_ambiente";
+            String sql = "INSERT INTO \"Ambiente_Aprendizagem\" (id_ambiente, id_unidade_de_ensino, des_ambiente, qtd_capacidade, nro_sala) " + "VALUES ( ?, ?, ?, ?, ? ) RETURNING id_ambiente";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                        
@@ -64,7 +64,7 @@ public class AmbienteAprendizagemDAO implements IAmbienteAprendizagemDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "UPDATE Ambiente_Aprendizagem "
+            String sql = "UPDATE \"Ambiente_Aprendizagem\" "
                     + " SET  "
                     + "des_ambiente = ?, "
                     + "qtd_capacidade = ?, "
@@ -96,7 +96,7 @@ public class AmbienteAprendizagemDAO implements IAmbienteAprendizagemDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "DELETE FROM Ambiente_Aprendizagem WHERE id_ambiente = ?";
+            String sql = "DELETE FROM \"Ambiente_Aprendizagem\" WHERE id_ambiente = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -117,7 +117,7 @@ public class AmbienteAprendizagemDAO implements IAmbienteAprendizagemDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Ambiente_Aprendizagem WHERE id_ambiente = ?";
+            String sql = "SELECT * FROM \"Ambiente_Aprendizagem\" WHERE id_ambiente = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
@@ -151,7 +151,7 @@ public class AmbienteAprendizagemDAO implements IAmbienteAprendizagemDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Ambiente_Aprendizagem";
+            String sql = "SELECT * FROM \"Ambiente_Aprendizagem\"";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 

@@ -21,7 +21,7 @@ public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
             
             // Busca o maior id
             
-            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_curriculo_oferta) as id FROM Curriculo_em_Oferta");
+            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_curriculo_oferta) as id FROM \"Curriculo_em_Oferta\"");
             
             ResultSet resultSearch = search.executeQuery();
 
@@ -32,7 +32,7 @@ public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
                 id = 1;
             }
             
-            String sql = "INSERT INTO Curriculo_em_Oferta (id_curriculo_oferta, id_periodo, id_grade) " + "VALUES ( ?, ?, ? ) RETURNING id_curriculo_oferta";
+            String sql = "INSERT INTO \"Curriculo_em_Oferta\" (id_curriculo_oferta, id_periodo, id_grade) " + "VALUES ( ?, ?, ? ) RETURNING id_curriculo_oferta";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                        
@@ -61,7 +61,7 @@ public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "UPDATE Curriculo_em_Oferta "
+            String sql = "UPDATE \"Curriculo_em_Oferta\" "
                     + " SET  "
                     + "id_periodo = ?, "
                     + "id_grade = ?, "
@@ -87,7 +87,7 @@ public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "DELETE FROM Curriculo_em_Oferta WHERE id_curriculo_oferta = ?";
+            String sql = "DELETE FROM \"Curriculo_em_Oferta\" WHERE id_curriculo_oferta = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -108,7 +108,7 @@ public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Curriculo_em_Oferta WHERE id_curriculo_oferta = ?";
+            String sql = "SELECT * FROM \"Curriculo_em_Oferta\" WHERE id_curriculo_oferta = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
@@ -138,7 +138,7 @@ public class CurriculoOfertaDAO implements ICurriculoOfertaDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Curriculo_em_Oferta";
+            String sql = "SELECT * FROM \"Curriculo_em_Oferta\"";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 

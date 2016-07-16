@@ -24,7 +24,7 @@ public class CursoDAO implements ICursoDAO {
             
             // Busca o maior id
             
-            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_curso) as id FROM Curso");
+            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_curso) as id FROM \"Curso\"");
             
             ResultSet resultSearch = search.executeQuery();
 
@@ -36,7 +36,7 @@ public class CursoDAO implements ICursoDAO {
             }
             
             // Comando sql a ser executado.
-            String sql = "INSERT INTO Curso (id_curso, txt_nome, idt_tipo, txt_sigla, id_departamento) " + "VALUES(?, ?, ?, ?, ?) RETURNING id_curso";
+            String sql = "INSERT INTO \"Curso\" (id_curso, txt_nome, idt_tipo, txt_sigla, id_departamento) " + "VALUES(?, ?, ?, ?, ?) RETURNING id_curso";
 
             // Prepara o comando sql, a fim de evitar injeção de sql.
             PreparedStatement inserir = connection.prepareStatement(sql); // por culpa das interrogções;
@@ -74,7 +74,7 @@ public class CursoDAO implements ICursoDAO {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             // Comando sql a ser executado.
-            String sql = "UPDATE Curso "
+            String sql = "UPDATE \"Curso\" "
                     + " SET "
                     + "txt_nome = ?, "
                     + "idt_tipo = ?, "
@@ -114,7 +114,7 @@ public class CursoDAO implements ICursoDAO {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             // Comando sql a ser executado.
-            String sql = "DELETE FROM Curso WHERE id_curso = ?";
+            String sql = "DELETE FROM \"Curso\" WHERE id_curso = ?";
 
             // Prepara o comando sql, a fim de evitar injeção de sql.
             PreparedStatement excluir = connection.prepareStatement(sql);
@@ -143,7 +143,7 @@ public class CursoDAO implements ICursoDAO {
             // Abre a única conexão possível com o Banco de Dados.            
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Curso";
+            String sql = "SELECT * FROM \"Curso\"";
 
             PreparedStatement listar = connection.prepareStatement(sql);
 
@@ -181,7 +181,7 @@ public class CursoDAO implements ICursoDAO {
             // Abre a única conexão possível com o Banco de Dados.
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Curso ";
+            String sql = "SELECT * FROM \"Curso\" ";
 
             // Prepara o comando sql, a fim de evitar injeção de sql.
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -221,7 +221,7 @@ public class CursoDAO implements ICursoDAO {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
             // Comando sql a ser executado.
-            String sql = "SELECT * FROM Curso WHERE txt_nome = ?";
+            String sql = "SELECT * FROM \"Curso\" WHERE txt_nome = ?";
 
             // Prepara o comando sql, a fim de evitar injeção de sql.
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -258,7 +258,7 @@ public class CursoDAO implements ICursoDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Curso WHERE id_departamento = ?";
+            String sql = "SELECT * FROM \"Curso\" WHERE id_departamento = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             

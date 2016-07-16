@@ -22,13 +22,14 @@ public class InserirGradeCurricular {
             IManterCurso manterCurso = new ManterCurso();
             List<Curso> listCurso = manterCurso.listarTodos();
 
-            if (listCurso == null) {
+            if (listCurso != null) {
+                request.setAttribute("listCurso", listCurso);
+                jsp = "/cadastrar/gradecurricular.jsp";
+            } else {
+                
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
                 jsp = "/erro.jsp";
-            } else {
-                request.setAttribute("listCurso", listCurso);
-                jsp = "/cadastrar/gradecurricular.jsp";
             }
 
         } catch (Exception e) {

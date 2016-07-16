@@ -23,7 +23,7 @@ public class PeriodoLetivoDAO implements IPeriodoLetivoDAO {
 
             // Busca o maior id
             
-            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_periodo) as id FROM Periodo_Letivo");
+            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_periodo) as id FROM \"Periodo_Letivo\"");
             
             ResultSet resultSearch = search.executeQuery();
 
@@ -34,7 +34,7 @@ public class PeriodoLetivoDAO implements IPeriodoLetivoDAO {
                 id = 1;
             }
             
-            String sql = "INSERT INTO Periodo_Letivo ( id_periodo, dat_inicio, dat_fim, txt_descricao ) " + "VALUES( ?, ?, ?, ? ) RETURNING id_periodo";
+            String sql = "INSERT INTO \"Periodo_Letivo\" ( id_periodo, dat_inicio, dat_fim, txt_descricao ) " + "VALUES( ?, ?, ?, ? ) RETURNING id_periodo";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                        
@@ -63,7 +63,7 @@ public class PeriodoLetivoDAO implements IPeriodoLetivoDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "UPDATE Periodo_Letivo "
+            String sql = "UPDATE \"Periodo_Letivo\" "
                     + " SET  "
                     + "dat_inicio = ?, "
                     + "dat_fim = ?, "
@@ -92,7 +92,7 @@ public class PeriodoLetivoDAO implements IPeriodoLetivoDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "DELETE FROM Periodo_Letivo WHERE id_periodo = ?";
+            String sql = "DELETE FROM \"Periodo_Letivo\" WHERE id_periodo = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -113,7 +113,7 @@ public class PeriodoLetivoDAO implements IPeriodoLetivoDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Periodo_Letivo WHERE id_periodo = ?";
+            String sql = "SELECT * FROM \"Periodo_Letivo\" WHERE id_periodo = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setLong(1, id);
@@ -143,7 +143,7 @@ public class PeriodoLetivoDAO implements IPeriodoLetivoDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Periodo_Letivo";
+            String sql = "SELECT * FROM \"Periodo_Letivo\"";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 

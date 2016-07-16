@@ -32,14 +32,15 @@ public class InserirGradeDisciplina {
             IManterGradeCurricular manterGradeCurricular = new ManterGradeCurricular();
             List<GradeCurricular> listGradeCurricular = manterGradeCurricular.listarTodos();
 
-            if (listDisciplina == null || listGradeCurricular == null) {
-                String erro = "Nao existe registro!";
-                request.setAttribute("erro", erro);
-                jsp = "/erro.jsp";
-            } else {
+            if (listDisciplina != null && listGradeCurricular != null) {
+                
                 request.setAttribute("listDisciplina", listDisciplina);
                 request.setAttribute("listGradeCurricular", listGradeCurricular);
                 jsp = "/cadastrar/gradedisciplina.jsp";
+            } else {
+                String erro = "Nao existe registro!";
+                request.setAttribute("erro", erro);
+                jsp = "/erro.jsp";
             }
 
         } catch (Exception e) {

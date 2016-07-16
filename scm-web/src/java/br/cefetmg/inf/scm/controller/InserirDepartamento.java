@@ -23,13 +23,14 @@ public class InserirDepartamento {
             IManterUnidadeEnsino manterUnidadeEnsino = new ManterUnidadeEnsino();
             List<UnidadeEnsino> listUnidadeEnsino = manterUnidadeEnsino.listarTodos();
 
-            if (listUnidadeEnsino == null) {
-                String erro = "Nao existe registro!";
-                request.setAttribute("erro", erro);
-                jsp = "/erro.jsp";
-            } else {
+            if (listUnidadeEnsino != null) {
+               
                 request.setAttribute("listUnidadeEnsino",listUnidadeEnsino);
                 jsp = "/cadastrar/departamento.jsp";
+            } else {
+                 String erro = "Nao existe registro!";
+                request.setAttribute("erro", erro);
+                jsp = "/erro.jsp";
             }
 
         } catch (Exception e) {

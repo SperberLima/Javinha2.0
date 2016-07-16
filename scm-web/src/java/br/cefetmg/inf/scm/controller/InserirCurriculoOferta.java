@@ -31,14 +31,14 @@ public class InserirCurriculoOferta {
             IManterGradeCurricular manterGradeCurricular = new ManterGradeCurricular();
             List<GradeCurricular> listGradeCurricular = manterGradeCurricular.listarTodos();
             
-            if (listPeriodoLetivo == null || listGradeCurricular == null) {
-                String erro = "Nao existe registro!";
-                request.setAttribute("erro", erro);
-                jsp = "/erro.jsp";
-            } else {
+            if (listPeriodoLetivo != null && listGradeCurricular != null) {
                 request.setAttribute("listPeriodoLetivo",listPeriodoLetivo);
                 request.setAttribute("listGradeCurricular", listGradeCurricular);
                 jsp = "/cadastrar/curriculooferta.jsp";
+            } else {               
+                String erro = "Nao existe registro!";
+                request.setAttribute("erro", erro);
+                jsp = "/erro.jsp";
             }
 
         } catch (Exception e) {

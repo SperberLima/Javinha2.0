@@ -23,13 +23,13 @@ public class InserirAmbienteAprendizagem {
             IManterUnidadeEnsino manterUnidadeEnsino = new ManterUnidadeEnsino();
             List<UnidadeEnsino> listUnidadeEnsino = manterUnidadeEnsino.listarTodos();
             
-            if (listUnidadeEnsino == null) {
+            if (listUnidadeEnsino != null) {
+                request.setAttribute("listUnidadeEnsino", listUnidadeEnsino);
+                jsp = "/cadastrar/ambiente.jsp";
+            } else {
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
                 jsp = "/erro.jsp";
-            } else {
-                request.setAttribute("listUnidadeEnsino", listUnidadeEnsino);
-                jsp = "/cadastrar/ambiente.jsp";
             }
         } catch (Exception e) {
             e.printStackTrace();

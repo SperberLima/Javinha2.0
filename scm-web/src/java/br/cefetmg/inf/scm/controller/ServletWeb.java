@@ -22,7 +22,7 @@ public class ServletWeb extends HttpServlet {
         
         request.setCharacterEncoding("UTF-8");
         String acao = request.getParameter("acao");
-         
+        
         if(acao.equals("Logar"))
             jsp = Login.execute(request);
         else if (acao.equals("VisualizarAmbienteAprendizagem"))

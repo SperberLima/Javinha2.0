@@ -31,7 +31,7 @@ public class HorarioDAO implements IHorarioDAO{
             
             // Busca o maior id
             
-            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_horario) as id FROM Horario");
+            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_horario) as id FROM \"Horario\"");
             
             ResultSet resultSearch = search.executeQuery();
 
@@ -42,7 +42,7 @@ public class HorarioDAO implements IHorarioDAO{
                 id = 1;
             }
             
-            String sql = "INSERT INTO Horario (id_horario, id_ambiente, id_turma, id_prof_disc, dat_inicio, dat_fim) " + "VALUES ( ?, ?, ?, ?, ?, ?) RETURNING id_horario";
+            String sql = "INSERT INTO \"Horario\" (id_horario, id_ambiente, id_turma, id_prof_disc, dat_inicio, dat_fim) " + "VALUES ( ?, ?, ?, ?, ?, ?) RETURNING id_horario";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                        
@@ -74,7 +74,7 @@ public class HorarioDAO implements IHorarioDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "UPDATE Professor_Disciplina "
+            String sql = "UPDATE \"Professor_Disciplina\" "
                     + " SET  "
                     + "id_ambiente = ?, "
                     + "id_turma = ?, "
@@ -107,7 +107,7 @@ public class HorarioDAO implements IHorarioDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "DELETE FROM Horario WHERE id_horario = ?";
+            String sql = "DELETE FROM \"Horario\" WHERE id_horario = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -128,7 +128,7 @@ public class HorarioDAO implements IHorarioDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Horario WHERE id_horario = ?";
+            String sql = "SELECT * FROM \"Horario\" WHERE id_horario = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
@@ -162,7 +162,7 @@ public class HorarioDAO implements IHorarioDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Horario";
+            String sql = "SELECT * FROM \"Horario\"";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 

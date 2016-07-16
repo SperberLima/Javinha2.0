@@ -23,13 +23,14 @@ public class InserirCurso {
             IManterDepartamento manterDepartamento = new ManterDepartamento();
             List<Departamento> listDepartamento = manterDepartamento.listarTodos();
 
-            if (listDepartamento == null) {
+            if (listDepartamento != null) {
+               request.setAttribute("listDepartamento",listDepartamento);
+                jsp = "/cadastrar/curso.jsp";
+            } else {
+                
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
                 jsp = "/erro.jsp";
-            } else {
-                request.setAttribute("listDepartamento",listDepartamento);
-                jsp = "/cadastrar/curso.jsp";
             }
 
         } catch (Exception e) {

@@ -39,7 +39,7 @@ public class TurmaDAO implements ITurmaDAO{
                 id = 1;
             }
             
-            String sql = "INSERT INTO Turma (id_turma, id_curriculo_oferta, txt_nome) " + "VALUES ( ?, ?, ? ) RETURNING id_turma";
+            String sql = "INSERT INTO \"Turma\" (id_turma, id_curriculo_oferta, txt_nome) " + "VALUES ( ?, ?, ? ) RETURNING id_turma";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                        
@@ -68,17 +68,18 @@ public class TurmaDAO implements ITurmaDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "UPDATE Curriculo_em_Oferta "
+            String sql = "UPDATE \"Turma\""
                     + " SET  "
-                    + "id_curriculo_oferta = ?, "
-                    + "txt_nome = ? "
+                    + "id_curriculo_oferta = ? "
+                    + "txt_nome= ? "
                     + " WHERE id_turma = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
-            statement.setInt(1, turma.getCurriculoOferta().getId());                        // 1  interrogação.
-            statement.setString(2, turma.getNome());                          // 2  interrogação.
-            statement.setInt(3, turma.getId());
+                                  
+            statement.setInt(1, turma.getCurriculoOferta().getId());  
+            statement.setString(2, turma.getNome()); 
+            statement.setInt(3, turma.getId());  
             if(statement.executeUpdate() != 0)
                 sucesso = true;
 
@@ -95,7 +96,7 @@ public class TurmaDAO implements ITurmaDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "DELETE FROM Turma WHERE id_turma = ?";
+            String sql = "DELETE FROM \"Turma\" WHERE id_turma = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -116,7 +117,7 @@ public class TurmaDAO implements ITurmaDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Curriculo_em_Oferta WHERE id_curriculo_oferta = ?";
+            String sql = "SELECT * FROM Turma WHERE id_turma = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);

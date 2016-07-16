@@ -1,147 +1,31 @@
-﻿/*
-Created: 12/06/2016
-Modified: 15/07/2016
-Model: PostgreSQL 9.4
-Database: PostgreSQL 9.4
-*/
-
-
-
-
--- Drop relationships section -------------------------------------------------
-
-ALTER TABLE "Horario" DROP CONSTRAINT IF EXISTS "Relationship87"
+﻿
+DROP TABLE IF EXISTS "Usuario" CASCADE
 ;
-ALTER TABLE "Grade_Disciplina" DROP CONSTRAINT IF EXISTS "Relationship83"
+DROP TABLE IF EXISTS "Professor_Disciplina" CASCADE
 ;
-ALTER TABLE "Professor_Disciplina" DROP CONSTRAINT IF EXISTS "Relationship81"
+DROP TABLE IF EXISTS "Horario" CASCADE
 ;
-ALTER TABLE "Professor_Disciplina" DROP CONSTRAINT IF EXISTS "Relationship80"
+DROP TABLE IF EXISTS "Grade_Disciplina" CASCADE
 ;
-ALTER TABLE "Horario" DROP CONSTRAINT IF EXISTS "Relationship79"
+DROP TABLE IF EXISTS "Turma" CASCADE
+; 
+DROP TABLE IF EXISTS "Grade_Curricular" CASCADE
 ;
-ALTER TABLE "Horario" DROP CONSTRAINT IF EXISTS "Relationship78"
+DROP TABLE IF EXISTS "Curriculo_em_Oferta" CASCADE
 ;
-ALTER TABLE "Grade_Disciplina" DROP CONSTRAINT IF EXISTS "Relationship76"
+DROP TABLE IF EXISTS "Período_Letivo" CASCADE
 ;
-ALTER TABLE "Turma" DROP CONSTRAINT IF EXISTS "Relationship70"
+DROP TABLE IF EXISTS "Professor" CASCADE
 ;
-ALTER TABLE "Disciplina" DROP CONSTRAINT IF EXISTS "Relationship69"
+DROP TABLE IF EXISTS "Ambiente_Aprendizagem" CASCADE
 ;
-ALTER TABLE "Grade_Curricular" DROP CONSTRAINT IF EXISTS "Relationship58"
+DROP TABLE IF EXISTS "Curso" CASCADE
+; 
+DROP TABLE IF EXISTS "Disciplina" CASCADE
 ;
-ALTER TABLE "Curriculo_em_Oferta" DROP CONSTRAINT IF EXISTS "Relationship57"
+DROP TABLE IF EXISTS "Departamento" CASCADE
 ;
-ALTER TABLE "Departamento" DROP CONSTRAINT IF EXISTS "Relationship51"
-;
-ALTER TABLE "Ambiente_Aprendizagem" DROP CONSTRAINT IF EXISTS "Relationship47"
-;
-ALTER TABLE "Professor" DROP CONSTRAINT IF EXISTS "Relationship43"
-;
-ALTER TABLE "Curriculo_em_Oferta" DROP CONSTRAINT IF EXISTS "Relationship8"
-;
-ALTER TABLE "Curso" DROP CONSTRAINT IF EXISTS "tem_Dpto"
-;
-
-
-
-
--- Drop keys for tables section -------------------------------------------------
-
-ALTER TABLE "Usuario" DROP CONSTRAINT IF EXISTS "Key37"
-;
-ALTER TABLE "Professor_Disciplina" DROP CONSTRAINT IF EXISTS "Key36"
-;
-ALTER TABLE "Horario" DROP CONSTRAINT IF EXISTS "Key35"
-;
-ALTER TABLE "Grade_Disciplina" DROP CONSTRAINT IF EXISTS "Key34"
-;
-ALTER TABLE "Turma" DROP CONSTRAINT IF EXISTS "Key32"
-;
-ALTER TABLE "Grade_Curricular" DROP CONSTRAINT IF EXISTS "Key27"
-;
-ALTER TABLE "Curriculo_em_Oferta" DROP CONSTRAINT IF EXISTS "Key18"
-;
-ALTER TABLE "Período_Letivo" DROP CONSTRAINT IF EXISTS "Key13"
-;
-ALTER TABLE "Professor" DROP CONSTRAINT IF EXISTS "Key12"
-;
-ALTER TABLE "Ambiente_Aprendizagem" DROP CONSTRAINT IF EXISTS "Key11"
-;
-ALTER TABLE "Curso" DROP CONSTRAINT IF EXISTS "id_curso"
-;
-ALTER TABLE "Disciplina" DROP CONSTRAINT IF EXISTS "Key8"
-;
-ALTER TABLE "Departamento" DROP CONSTRAINT IF EXISTS "Key7"
-;
-ALTER TABLE "Unidade de Ensino" DROP CONSTRAINT IF EXISTS "Key1"
-;
-
-
--- Drop indexes section -------------------------------------------------
-
-DROP INDEX IF EXISTS "IX_Relationship80"
-;
-DROP INDEX IF EXISTS "IX_Relationship81"
-;
-DROP INDEX IF EXISTS "IX_Relationship79"
-;
-DROP INDEX IF EXISTS "IX_Relationship78"
-;
-DROP INDEX IF EXISTS "IX_Relationship87"
-;
-DROP INDEX IF EXISTS "IX_Relationship76"
-;
-DROP INDEX IF EXISTS "IX_Relationship83"
-;
-DROP INDEX IF EXISTS "IX_Relationship70"
-;
-DROP INDEX IF EXISTS "IX_Relationship58"
-;
-DROP INDEX IF EXISTS "IX_Relationship8"
-;
-DROP INDEX IF EXISTS "IX_Relationship57"
-;
-DROP INDEX IF EXISTS "IX_Relationship43"
-;
-DROP INDEX IF EXISTS "IX_Relationship47"
-;
-DROP INDEX IF EXISTS "IX_Relationship1"
-;
-DROP INDEX IF EXISTS "IX_Relationship69"
-;
-DROP INDEX IF EXISTS "IX_Relationship51"
-;
-
--- Drop tables section ---------------------------------------------------
-
-DROP TABLE IF EXISTS "Usuario"
-;
-DROP TABLE IF EXISTS "Professor_Disciplina"
-;
-DROP TABLE IF EXISTS "Horario"
-;
-DROP TABLE IF EXISTS "Grade_Disciplina"
-;
-DROP TABLE IF EXISTS "Turma"
-;
-DROP TABLE IF EXISTS "Grade_Curricular"
-;
-DROP TABLE IF EXISTS "Curriculo_em_Oferta"
-;
-DROP TABLE IF EXISTS "Período_Letivo"
-;
-DROP TABLE IF EXISTS "Professor"
-;
-DROP TABLE IF EXISTS "Ambiente_Aprendizagem"
-;
-DROP TABLE IF EXISTS "Curso"
-;
-DROP TABLE IF EXISTS "Disciplina"
-;
-DROP TABLE IF EXISTS "Departamento"
-;
-DROP TABLE IF EXISTS "Unidade de Ensino"
+DROP TABLE IF EXISTS "Unidade de Ensino" CASCADE
 ;
 
 -- Create tables section -------------------------------------------------
@@ -494,9 +378,5 @@ ALTER TABLE "Grade_Disciplina" ADD CONSTRAINT "Relationship83" FOREIGN KEY ("id_
 
 ALTER TABLE "Horario" ADD CONSTRAINT "Relationship87" FOREIGN KEY ("id_prof_disc") REFERENCES "Professor_Disciplina" ("id_prof_disc") ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
-
-
-
-
 
 

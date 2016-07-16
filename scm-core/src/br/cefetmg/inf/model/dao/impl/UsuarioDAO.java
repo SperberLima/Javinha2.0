@@ -25,7 +25,7 @@ public class UsuarioDAO implements IUsuarioDAO{
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
                     
             
-            String sql = "INSERT INTO Usuario (txt_nome, txt_nome) " + "VALUES ( ?, ? )";
+            String sql = "INSERT INTO \"Usuario\" (txt_nome, txt_nome) " + "VALUES ( ?, ? )";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                          
@@ -48,7 +48,7 @@ public class UsuarioDAO implements IUsuarioDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "UPDATE Usuario "
+            String sql = "UPDATE \"Usuario\" "
                     + " SET  "
                     + "txt_nome = ?, "
                     + "txt_senha = ? ";
@@ -75,7 +75,7 @@ public class UsuarioDAO implements IUsuarioDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "DELETE FROM Usuario WHERE txt_nome = ?";
+            String sql = "DELETE FROM \"Usuario\" WHERE txt_nome = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -96,7 +96,7 @@ public class UsuarioDAO implements IUsuarioDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Usuario WHERE txt_nome = ?";
+            String sql = "SELECT * FROM \"Usuario\" WHERE txt_nome = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, id);
@@ -124,7 +124,7 @@ public class UsuarioDAO implements IUsuarioDAO{
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Usuario";
+            String sql = "SELECT * FROM \"Usuario\"";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 

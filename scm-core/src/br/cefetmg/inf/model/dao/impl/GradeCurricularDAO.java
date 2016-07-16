@@ -23,7 +23,7 @@ public class GradeCurricularDAO implements IGradeCurricularDAO {
             
             // Busca o maior id
             
-            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_grade) as id FROM Grade_Curricular");
+            PreparedStatement search = connection.prepareStatement("SELECT MAX(id_grade) as id FROM \"Grade_Curricular\"");
             
             ResultSet resultSearch = search.executeQuery();
 
@@ -34,7 +34,7 @@ public class GradeCurricularDAO implements IGradeCurricularDAO {
                 id = 1;
             }
             
-            String sql = "INSERT INTO Grade_Curricular (id_grade, id_curso, nro_serie, txt_descricao) " + "VALUES ( ?, ?, ? ,? ) RETURNING id_grade";
+            String sql = "INSERT INTO \"Grade_Curricular\" (id_grade, id_curso, nro_serie, txt_descricao) " + "VALUES ( ?, ?, ? ,? ) RETURNING id_grade";
 
             PreparedStatement statement = connection.prepareStatement(sql); // por culpa dos ????;
             // assim se evita a injeção de SQL                        
@@ -65,7 +65,7 @@ public class GradeCurricularDAO implements IGradeCurricularDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "UPDATE Grade_Curricular "
+            String sql = "UPDATE \"Grade_Curricular\" "
                     + " SET  "
                     + "id_curso = ?, "
                     + "nro_serie = ?, "
@@ -94,7 +94,7 @@ public class GradeCurricularDAO implements IGradeCurricularDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "DELETE FROM GradeCurricular WHERE id_disciplina = ?";
+            String sql = "DELETE FROM \"GradeCurricular\" WHERE id_disciplina = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -115,7 +115,7 @@ public class GradeCurricularDAO implements IGradeCurricularDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Grade_Curricular WHERE id_grade = ?";
+            String sql = "SELECT * FROM \"Grade_Curricular\" WHERE id_grade = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
@@ -145,7 +145,7 @@ public class GradeCurricularDAO implements IGradeCurricularDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Grade_Curricular";
+            String sql = "SELECT * FROM \"Grade_Curricular\"";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -176,7 +176,7 @@ public class GradeCurricularDAO implements IGradeCurricularDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Grade_Curricular WHERE id_grade = ?";
+            String sql = "SELECT * FROM \"Grade_Curricular\" WHERE id_grade = ?";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             
@@ -206,7 +206,7 @@ public class GradeCurricularDAO implements IGradeCurricularDAO {
         try {
             Connection connection = JDBCConnectionManager.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Disciplina WHERE id_disciplina in (SELECT id_disciplina FROM Grade_Disciplina WHERE id_grade = ?)";
+            String sql = "SELECT * FROM \"Disciplina\" WHERE id_disciplina in (SELECT id_disciplina FROM Grade_Disciplina WHERE id_grade = ?)";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             

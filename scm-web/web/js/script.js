@@ -53,20 +53,7 @@ function closeMenu(){
 function redirect(op){ 
     var e = document.getElementById("sEscolha");
     var value = e.options[e.selectedIndex].value;
-    /*
-    if(op==1){
-           window.location="visualizar/"+value+".jsp";      
-    }else
-    if(op==2){
-           window.location="alterar/"+value+".jsp";      
-    }else
-    if(op==3){
-           window.location="cadastrar/"+value+".jsp";      
-    }
-     */
-    
-    alert(value);
-    
+       
     if(op==1 || op==2){        
        window.location="/scm/servletweb?acao=Visualizar"+value;
     }else
@@ -92,7 +79,6 @@ function GravarAlteracao(frm){
 
 
 function Excluir(chave, frm) {
-    alert(frm.name);
     var table = frm.name;
 
     if (table == "frmAmbiente") {

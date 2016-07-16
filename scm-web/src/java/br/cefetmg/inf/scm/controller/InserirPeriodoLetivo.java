@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class InserirPeriodoLetivo {
                   
-    public static String execute(HttpServletRequest request) {        
+    public static String execute(HttpServletRequest request) {  
         return "/cadastrar/periodo";
     }
 }
