@@ -5,9 +5,15 @@
  */
 package br.cefetmg.inf.scm.controller;
 
-import br.cefetmg.inf.model.domain.CurriculoOferta;
-import br.cefetmg.inf.model.service.IManterCurriculoOferta;
-import br.cefetmg.inf.model.service.impl.ManterCurriculoOferta;
+import br.cefetmg.inf.model.domain.PeriodoLetivo;
+import br.cefetmg.inf.model.domain.GradeCurricular;
+
+import br.cefetmg.inf.model.service.IManterPeriodoLetivo;
+import br.cefetmg.inf.model.service.IManterGradeCurricular;
+
+import br.cefetmg.inf.model.service.impl.ManterPeriodoLetivo;
+import br.cefetmg.inf.model.service.impl.ManterGradeCurricular;
+
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 /**
@@ -19,16 +25,20 @@ public class InserirCurriculoOferta {
     public static String execute(HttpServletRequest request) {
         String jsp = "";
         try {
-            IManterCurriculoOferta manterCurriculoOferta = new ManterCurriculoOferta();
-            List<CurriculoOferta> listCurriculoOferta = manterCurriculoOferta.listarTodos();
+            IManterPeriodoLetivo manterPeriodoLetivo = new ManterPeriodoLetivo();
+            List<PeriodoLetivo> listPeriodoLetivo = manterPeriodoLetivo.listarTodos();
 
-            if (listCurriculoOferta != null) {
-                request.setAttribute("listCurriculoOferta", listCurriculoOferta);
-                jsp = "/cadastrar/curriculooferta.jsp";
-            } else {
-                String erro = "Nao existe registros!";
+            IManterGradeCurricular manterGradeCurricular = new ManterGradeCurricular();
+            List<GradeCurricular> listGradeCurricular = manterGradeCurricular.listarTodos();
+            
+            if (listPeriodoLetivo == null || listGradeCurricular == null) {
+                String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
                 jsp = "/erro.jsp";
+            } else {
+                request.setAttribute("listPeriodoLetivo",listPeriodoLetivo);
+                request.setAttribute("listGradeCurricular", listGradeCurricular);
+                jsp = "/cadastrar/curriculooferta.jsp";
             }
 
         } catch (Exception e) {
