@@ -17,60 +17,75 @@ import java.util.List;
  *
  * @author Administrador
  */
-public class ManterPeriodoLetivo implements IManterPeriodoLetivo{
-    
+public class ManterPeriodoLetivo implements IManterPeriodoLetivo {
+
     @Override
-    public Integer cadastrar(PeriodoLetivo PeriodoLetivo) throws PersistenciaException, NegocioException {
-         // Curso deve ter departamento
-        if (PeriodoLetivo.getInicio()== null){
+    public Integer cadastrar(PeriodoLetivo periodoLetivo) throws PersistenciaException, NegocioException {
+        // RN01 : O período deve ser informado
+        if (periodoLetivo == null) {
+            throw new NegocioException("O periodo letivo deve ser informado");
+        }
+
+        // RN02 : O período deve ter uma data de início
+        if (periodoLetivo.getInicio() == null) {
             throw new NegocioException("O periodo letivo deve ter uma data de inicio");
         }
-        
-        //Curso deve ter Nome
-        if (PeriodoLetivo.getFim()== null){
+
+        // RN03 : O período deve ter uma data de encerramento
+        if (periodoLetivo.getFim() == null) {
             throw new NegocioException("O periodo letivo deve ter uma data de encerramento");
         }
-        
-        //Curso deve ter sigla
-        if (PeriodoLetivo.getDescricao()== null){
+
+        // RN04 : O período deve ter uma descrição
+        if (periodoLetivo.getDescricao() == null) {
             throw new NegocioException("O periodo letivo deve ter uma descricao");
         }
-        
+
         IPeriodoLetivoDAO Periodo_LetivoDAO = new PeriodoLetivoDAO();
-        Integer id = Periodo_LetivoDAO.inserir(PeriodoLetivo);
-        PeriodoLetivo.setId(id);
-        
+        Integer id = Periodo_LetivoDAO.inserir(periodoLetivo);
+        periodoLetivo.setId(id);
+
         return id;
     }
 
     @Override
-    public boolean alterar(PeriodoLetivo PeriodoLetivo) throws PersistenciaException, NegocioException {
-         // Curso deve ter departamento
-        if (PeriodoLetivo.getInicio()== null){
+    public boolean alterar(PeriodoLetivo periodoLetivo) throws PersistenciaException, NegocioException {
+        // RN01 : O período deve ser informado
+        if (periodoLetivo == null) {
+            throw new NegocioException("O periodo letivo deve ser informado");
+        }
+
+        // RN01 : O período deve ser informado
+        if (periodoLetivo.getId() == null) {
+            throw new NegocioException("O periodo letivo deve ser informado");
+        }
+
+        // RN02 : O período deve ter uma data de início
+        if (periodoLetivo.getInicio() == null) {
             throw new NegocioException("O periodo letivo deve ter uma data de inicio");
         }
-        
-        //Curso deve ter Nome
-        if (PeriodoLetivo.getFim()== null){
-            throw new NegocioException("O periodo letivo deve ter uma data de termino");
+
+        // RN03 : O período deve ter uma data de encerramento
+        if (periodoLetivo.getFim() == null) {
+            throw new NegocioException("O periodo letivo deve ter uma data de encerramento");
         }
-        
-        //Curso deve ter sigla
-        if (PeriodoLetivo.getDescricao()== null){
+
+        // RN04 : O período deve ter uma descrição
+        if (periodoLetivo.getDescricao() == null) {
             throw new NegocioException("O periodo letivo deve ter uma descricao");
         }
-        
+
         IPeriodoLetivoDAO PeriodoLetivoDAO = new PeriodoLetivoDAO();
-        return PeriodoLetivoDAO.atualizar(PeriodoLetivo);
+        return PeriodoLetivoDAO.atualizar(periodoLetivo);
     }
 
     @Override
     public PeriodoLetivo buscarPorId(Integer id) throws PersistenciaException, NegocioException {
-        
+
         IPeriodoLetivoDAO PeriodoLetivoDAO = new PeriodoLetivoDAO();
         PeriodoLetivo PeriodoLetivo = PeriodoLetivoDAO.consultarPorId(id);
         return PeriodoLetivo;
-        
+
     }
 
     @Override
@@ -85,5 +100,5 @@ public class ManterPeriodoLetivo implements IManterPeriodoLetivo{
         List<PeriodoLetivo> listPeriodoLetivo = PeriodoLetivoDAO.listarTodos();
         return listPeriodoLetivo;
     }
-    
+
 }

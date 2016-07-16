@@ -17,66 +17,91 @@ import java.util.List;
  *
  * @author Administrador
  */
-public class ManterProfessor implements IManterProfessor{
+public class ManterProfessor implements IManterProfessor {
 
     @Override
     public Integer cadastrar(Professor professor) throws PersistenciaException, NegocioException {
-        // Professor deve ter Telefone
-        if (professor.getTelefone() == null){
+        // RN01 : Professor deve ser informado
+        if (professor == null) {
+            throw new NegocioException("O professor deve ser informado");
+        }
+
+        // RN02 : Professor deve ter Telefone
+        if (professor.getTelefone() == null) {
             throw new NegocioException("O professor deve ter telefone");
         }
-        
-        //Professor deve ter Nome
-        if (professor.getNome() == null){
+
+        // RN03 :  Professor deve ter Nome
+        if (professor.getNome() == null) {
             throw new NegocioException("O professor deve ter nome");
         }
-        
-        //Professor deve ter Departamento
-        if (professor.getDpto() == null){
+
+        // RN04 : Professor deve ter Departamento
+        if (professor.getDpto() == null) {
             throw new NegocioException("O professor deve ter departamento");
         }
-        
-        //Professor deve ter CPF
-        if (professor.getCPF()== null){
+
+        // RN05 : Professor deve ter CPF
+        if (professor.getCPF() == null) {
             throw new NegocioException("O professor deve ter CPF");
         }
-        
+
+        // RN06 : Professor deve ter uma descrição
+        if (professor.getDescricao() == null) {
+            throw new NegocioException("O professor deve ter uma Descrição");
+        }
+
         IProfessorDAO professorDAO = new ProfessorDAO();
         Integer id = professorDAO.inserir(professor);
         professor.setId(id);
-        
+
         return id;
     }
 
     @Override
     public boolean alterar(Professor professor) throws PersistenciaException, NegocioException {
-        // Professor deve ter Telefone
-        if (professor.getTelefone() == null){
+        // RN01 : Professor deve ser informado
+        if (professor == null) {
+            throw new NegocioException("O professor deve ser informado");
+        }
+
+        // RN01 : Professor deve ser informado
+        if (professor.getId() == null) {
+            throw new NegocioException("O professor deve ser informado");
+        }
+
+        // RN02 : Professor deve ter Telefone
+        if (professor.getTelefone() == null) {
             throw new NegocioException("O professor deve ter telefone");
         }
-        
-        //Professor deve ter Nome
-        if (professor.getNome() == null){
+
+        // RN03 :  Professor deve ter Nome
+        if (professor.getNome() == null) {
             throw new NegocioException("O professor deve ter nome");
         }
-        
-        //Professor deve ter Departamento
-        if (professor.getDpto() == null){
+
+        // RN04 : Professor deve ter Departamento
+        if (professor.getDpto() == null) {
             throw new NegocioException("O professor deve ter departamento");
         }
-        
-        //Professor deve ter CPF
-        if (professor.getCPF()== null){
+
+        // RN05 : Professor deve ter CPF
+        if (professor.getCPF() == null) {
             throw new NegocioException("O professor deve ter CPF");
         }
-        
+
+        // RN06 : Professor deve ter uma descrição
+        if (professor.getDescricao() == null) {
+            throw new NegocioException("O professor deve ter uma Descrição");
+        }
+
         IProfessorDAO professorDAO = new ProfessorDAO();
         return professorDAO.atualizar(professor);
     }
 
     @Override
     public Professor buscarPorId(Integer id) throws PersistenciaException, NegocioException {
-        
+
         IProfessorDAO professorDAO = new ProfessorDAO();
         Professor professor = new Professor();
         professorDAO.consultarPorId(id);
@@ -91,10 +116,10 @@ public class ManterProfessor implements IManterProfessor{
 
     @Override
     public List<Professor> listarTodos() throws PersistenciaException, NegocioException {
-        
+
         IProfessorDAO professorDAO = new ProfessorDAO();
         List<Professor> listProfessor = professorDAO.listarTodos();
         return listProfessor;
     }
-    
+
 }

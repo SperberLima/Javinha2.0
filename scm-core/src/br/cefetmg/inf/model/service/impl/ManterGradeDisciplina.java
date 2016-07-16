@@ -20,15 +20,50 @@ import java.util.List;
 public class ManterGradeDisciplina implements IManterGradeDisciplina{
 
     @Override
-    public Integer cadastrar(GradeDisciplina e) throws PersistenciaException, NegocioException {
+    public Integer cadastrar(GradeDisciplina gradeDisciplina) throws PersistenciaException, NegocioException {
+        // RN01 : A grade curricular e a disciplina devem ser informadas
+        if(gradeDisciplina == null) {
+            throw new NegocioException("A grade curricular e a disciplina devem ser informadas");
+        }
+        
+        // RN02 : A disciplina deve ser informada
+        if(gradeDisciplina == null) {
+            throw new NegocioException("A disciplina deve ser informada");
+        }
+        
+        // RN03 : A grade curricular deve ser informada
+        if(gradeDisciplina == null) {
+            throw new NegocioException("A grade curricular deve ser informada");
+        }
+        
         IGradeDisciplinaDAO gradeDisciplinaDAO = new GradeDisciplinaDAO();
-        return gradeDisciplinaDAO.inserir(e);
+        return gradeDisciplinaDAO.inserir(gradeDisciplina);
     }
 
     @Override
-    public boolean alterar(GradeDisciplina e) throws PersistenciaException, NegocioException {
+    public boolean alterar(GradeDisciplina gradeDisciplina) throws PersistenciaException, NegocioException {
+        // RN01 : A grade curricular e a disciplina devem ser informadas
+        if(gradeDisciplina == null) {
+            throw new NegocioException("A grade curricular e a disciplina devem ser informadas");
+        }
+        
+        // RN01 : A grade curricular e a disciplina devem ser informadas
+        if(gradeDisciplina.getId() == null) {
+            throw new NegocioException("A grade curricular e a disciplina devem ser informadas");
+        }
+        
+        // RN02 : A disciplina deve ser informada
+        if(gradeDisciplina == null) {
+            throw new NegocioException("A disciplina deve ser informada");
+        }
+        
+        // RN03 : A grade curricular deve ser informada
+        if(gradeDisciplina == null) {
+            throw new NegocioException("A grade curricular deve ser informada");
+        }
+        
         IGradeDisciplinaDAO gradeDisciplinaDAO = new GradeDisciplinaDAO();
-        return gradeDisciplinaDAO.atualizar(e);
+        return gradeDisciplinaDAO.atualizar(gradeDisciplina);
     }
 
     @Override

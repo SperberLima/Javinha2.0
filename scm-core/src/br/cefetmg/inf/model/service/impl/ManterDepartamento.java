@@ -17,90 +17,105 @@ import java.util.List;
  *
  * @author Administrador
  */
-public class ManterDepartamento implements IManterDepartamento{
+public class ManterDepartamento implements IManterDepartamento {
 
     @Override
     public Integer cadastrar(Departamento departamento) throws PersistenciaException, NegocioException {
-        //Departamento deve ter sigla
-        if (departamento.getSigla() == null){
+        // RN01 : Departamento deve ser informado
+        if (departamento == null) {
+            throw new NegocioException("Departamento deve ser informado");
+        }
+
+        // RN02 : Departamento deve ter sigla
+        if (departamento.getSigla() == null) {
             throw new NegocioException("Departamento deve ter sigla");
         }
-        
-        //Departamento deve ter nome
-        if (departamento.getNome() == null){
+
+        // RN03 : Departamento deve ter nome
+        if (departamento.getNome() == null) {
             throw new NegocioException("Departamento deve ter nome");
         }
-        
-        //Departamento deve ter email
-        if (departamento.getEmail() == null){
+
+        // RN04 : Departamento deve ter email
+        if (departamento.getEmail() == null) {
             throw new NegocioException("Departamento deve ter email");
         }
-        
-        //Departamento deve ter telefone
-        if (departamento.getTelefone() == null){
+
+        // RN05 : Departamento deve ter telefone
+        if (departamento.getTelefone() == null) {
             throw new NegocioException("Departamento deve ter telefone");
         }
-        
-        //Departamento deve ter CEP
-        if (departamento.getCEP() == null){
+
+        // RN06 : Departamento deve ter CEP
+        if (departamento.getCEP() == null) {
             throw new NegocioException("Departamento deve ter CEP");
         }
-        
-        //Departamento deve estar associado a uma unidade de ensino
-        if (departamento.getUnidadeEnsino().getId() == null){
+
+        // RN07 : Departamento deve estar associado a uma unidade de ensino
+        if (departamento.getUnidadeEnsino().getId() == null) {
             throw new NegocioException("Departamento deve estar associado a uma unidade de ensino");
         }
-        
+
         IDepartamentoDAO departamentoDAO = new DepartamentoDAO();
         Integer id = departamentoDAO.inserir(departamento);
         departamento.setId(id);
-        
+
         return id;
     }
 
     @Override
     public boolean alterar(Departamento departamento) throws PersistenciaException, NegocioException {
-        //Departamento deve ter sigla
-        if (departamento.getSigla() == null){
+        // RN01 : Departamento deve ser informado
+        if (departamento == null) {
+            throw new NegocioException("Departamento deve ser informado");
+        }
+
+        // RN01 : Departamento deve ser informado
+        if (departamento.getId() == null) {
+            throw new NegocioException("Departamento deve ser informado");
+        }
+
+        // RN02 : Departamento deve ter sigla
+        if (departamento.getSigla() == null) {
             throw new NegocioException("Departamento deve ter sigla");
         }
-        
-        //Departamento deve ter nome
-        if (departamento.getNome() == null){
+
+        // RN03 : Departamento deve ter nome
+        if (departamento.getNome() == null) {
             throw new NegocioException("Departamento deve ter nome");
         }
-        
-        //Departamento deve ter email
-        if (departamento.getEmail() == null){
+
+        // RN04 : Departamento deve ter email
+        if (departamento.getEmail() == null) {
             throw new NegocioException("Departamento deve ter email");
         }
-        
-        //Departamento deve ter telefone
-        if (departamento.getTelefone() == null){
+
+        // RN05 : Departamento deve ter telefone
+        if (departamento.getTelefone() == null) {
             throw new NegocioException("Departamento deve ter telefone");
         }
-        
-        //Departamento deve ter CEP
-        if (departamento.getCEP() == null){
+
+        // RN06 : Departamento deve ter CEP
+        if (departamento.getCEP() == null) {
             throw new NegocioException("Departamento deve ter CEP");
         }
-        
-        //Departamento deve estar associado a uma unidade de ensino
-        if (departamento.getUnidadeEnsino().getId() == null){
+
+        // RN07 : Departamento deve estar associado a uma unidade de ensino
+        if (departamento.getUnidadeEnsino().getId() == null) {
             throw new NegocioException("Departamento deve estar associado a uma unidade de ensino");
         }
-        
+
         IDepartamentoDAO departamentoDAO = new DepartamentoDAO();
         return departamentoDAO.atualizar(departamento);
     }
 
     @Override
     public Departamento buscarPorId(Integer id) throws PersistenciaException, NegocioException {
-        
+
         IDepartamentoDAO departamentoDAO = new DepartamentoDAO();
         Departamento departamento = departamentoDAO.consultarPorId(id);
         return departamento;
-        
+
     }
 
     @Override
@@ -115,5 +130,5 @@ public class ManterDepartamento implements IManterDepartamento{
         List<Departamento> listDepartamento = departamentoDAO.listarTodos();
         return listDepartamento;
     }
-    
+
 }

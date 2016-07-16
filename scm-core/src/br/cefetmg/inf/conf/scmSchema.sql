@@ -1,21 +1,160 @@
-/*
+﻿/*
 Created: 12/06/2016
-Modified: 09/07/2016
+Modified: 15/07/2016
 Model: PostgreSQL 9.4
 Database: PostgreSQL 9.4
 */
+
+
+
+
+-- Drop relationships section -------------------------------------------------
+
+ALTER TABLE "Horario" DROP CONSTRAINT IF EXISTS "Relationship87"
+;
+ALTER TABLE "Grade_Disciplina" DROP CONSTRAINT IF EXISTS "Relationship83"
+;
+ALTER TABLE "Professor_Disciplina" DROP CONSTRAINT IF EXISTS "Relationship81"
+;
+ALTER TABLE "Professor_Disciplina" DROP CONSTRAINT IF EXISTS "Relationship80"
+;
+ALTER TABLE "Horario" DROP CONSTRAINT IF EXISTS "Relationship79"
+;
+ALTER TABLE "Horario" DROP CONSTRAINT IF EXISTS "Relationship78"
+;
+ALTER TABLE "Grade_Disciplina" DROP CONSTRAINT IF EXISTS "Relationship76"
+;
+ALTER TABLE "Turma" DROP CONSTRAINT IF EXISTS "Relationship70"
+;
+ALTER TABLE "Disciplina" DROP CONSTRAINT IF EXISTS "Relationship69"
+;
+ALTER TABLE "Grade_Curricular" DROP CONSTRAINT IF EXISTS "Relationship58"
+;
+ALTER TABLE "Curriculo_em_Oferta" DROP CONSTRAINT IF EXISTS "Relationship57"
+;
+ALTER TABLE "Departamento" DROP CONSTRAINT IF EXISTS "Relationship51"
+;
+ALTER TABLE "Ambiente_Aprendizagem" DROP CONSTRAINT IF EXISTS "Relationship47"
+;
+ALTER TABLE "Professor" DROP CONSTRAINT IF EXISTS "Relationship43"
+;
+ALTER TABLE "Curriculo_em_Oferta" DROP CONSTRAINT IF EXISTS "Relationship8"
+;
+ALTER TABLE "Curso" DROP CONSTRAINT IF EXISTS "tem_Dpto"
+;
+
+
+
+
+-- Drop keys for tables section -------------------------------------------------
+
+ALTER TABLE "Usuario" DROP CONSTRAINT IF EXISTS "Key37"
+;
+ALTER TABLE "Professor_Disciplina" DROP CONSTRAINT IF EXISTS "Key36"
+;
+ALTER TABLE "Horario" DROP CONSTRAINT IF EXISTS "Key35"
+;
+ALTER TABLE "Grade_Disciplina" DROP CONSTRAINT IF EXISTS "Key34"
+;
+ALTER TABLE "Turma" DROP CONSTRAINT IF EXISTS "Key32"
+;
+ALTER TABLE "Grade_Curricular" DROP CONSTRAINT IF EXISTS "Key27"
+;
+ALTER TABLE "Curriculo_em_Oferta" DROP CONSTRAINT IF EXISTS "Key18"
+;
+ALTER TABLE "Período_Letivo" DROP CONSTRAINT IF EXISTS "Key13"
+;
+ALTER TABLE "Professor" DROP CONSTRAINT IF EXISTS "Key12"
+;
+ALTER TABLE "Ambiente_Aprendizagem" DROP CONSTRAINT IF EXISTS "Key11"
+;
+ALTER TABLE "Curso" DROP CONSTRAINT IF EXISTS "id_curso"
+;
+ALTER TABLE "Disciplina" DROP CONSTRAINT IF EXISTS "Key8"
+;
+ALTER TABLE "Departamento" DROP CONSTRAINT IF EXISTS "Key7"
+;
+ALTER TABLE "Unidade de Ensino" DROP CONSTRAINT IF EXISTS "Key1"
+;
+
+
+-- Drop indexes section -------------------------------------------------
+
+DROP INDEX IF EXISTS "IX_Relationship80"
+;
+DROP INDEX IF EXISTS "IX_Relationship81"
+;
+DROP INDEX IF EXISTS "IX_Relationship79"
+;
+DROP INDEX IF EXISTS "IX_Relationship78"
+;
+DROP INDEX IF EXISTS "IX_Relationship87"
+;
+DROP INDEX IF EXISTS "IX_Relationship76"
+;
+DROP INDEX IF EXISTS "IX_Relationship83"
+;
+DROP INDEX IF EXISTS "IX_Relationship70"
+;
+DROP INDEX IF EXISTS "IX_Relationship58"
+;
+DROP INDEX IF EXISTS "IX_Relationship8"
+;
+DROP INDEX IF EXISTS "IX_Relationship57"
+;
+DROP INDEX IF EXISTS "IX_Relationship43"
+;
+DROP INDEX IF EXISTS "IX_Relationship47"
+;
+DROP INDEX IF EXISTS "IX_Relationship1"
+;
+DROP INDEX IF EXISTS "IX_Relationship69"
+;
+DROP INDEX IF EXISTS "IX_Relationship51"
+;
+
+-- Drop tables section ---------------------------------------------------
+
+DROP TABLE IF EXISTS "Usuario"
+;
+DROP TABLE IF EXISTS "Professor_Disciplina"
+;
+DROP TABLE IF EXISTS "Horario"
+;
+DROP TABLE IF EXISTS "Grade_Disciplina"
+;
+DROP TABLE IF EXISTS "Turma"
+;
+DROP TABLE IF EXISTS "Grade_Curricular"
+;
+DROP TABLE IF EXISTS "Curriculo_em_Oferta"
+;
+DROP TABLE IF EXISTS "Período_Letivo"
+;
+DROP TABLE IF EXISTS "Professor"
+;
+DROP TABLE IF EXISTS "Ambiente_Aprendizagem"
+;
+DROP TABLE IF EXISTS "Curso"
+;
+DROP TABLE IF EXISTS "Disciplina"
+;
+DROP TABLE IF EXISTS "Departamento"
+;
+DROP TABLE IF EXISTS "Unidade de Ensino"
+;
 
 -- Create tables section -------------------------------------------------
 
 -- Table Unidade de Ensino
 
 CREATE TABLE "Unidade de Ensino"(
- "id_unidade_de_ensino" Integer NOT NULL,
+ "id_unidade_de_ensino" Serial NOT NULL,
  "cod_sigla" Character(8) NOT NULL,
  "txt_nome" Character varying(60) NOT NULL,
  "txt_email" Character varying(80) NOT NULL,
  "nro_telefone" Character varying(15) NOT NULL,
- "cod_cep" Smallint NOT NULL,
+ "cod_cep" Character varying(9) NOT NULL,
  "txt_site" Character varying(80)
 )
 ;
@@ -30,13 +169,13 @@ ALTER TABLE "Unidade de Ensino" ADD CONSTRAINT "Key1" PRIMARY KEY ("id_unidade_d
 -- Table Departamento
 
 CREATE TABLE "Departamento"(
- "id_departamento" Integer NOT NULL,
+ "id_departamento" Serial NOT NULL,
  "id_unidade_de_ensino" Integer NOT NULL,
  "cod_sigla" Character(10) NOT NULL,
  "txt_nome" Character varying(40) NOT NULL,
  "txt_email" Character varying(80) NOT NULL,
  "nro_telefone" Character(8) NOT NULL,
- "cod_cep" Character varying(8) NOT NULL,
+ "cod_cep" Character varying(9) NOT NULL,
  "txt_site" Character varying(100)
 )
 ;
@@ -56,7 +195,7 @@ ALTER TABLE "Departamento" ADD CONSTRAINT "Key7" PRIMARY KEY ("id_departamento")
 -- Table Disciplina
 
 CREATE TABLE "Disciplina"(
- "id_disciplina" Integer NOT NULL,
+ "id_disciplina" Serial NOT NULL,
  "id_departamento" Integer,
  "txt_nome" Character varying(20) NOT NULL,
  "qtd_carga_horaria" Integer NOT NULL,
@@ -77,7 +216,7 @@ ALTER TABLE "Disciplina" ADD CONSTRAINT "Key8" PRIMARY KEY ("id_disciplina")
 -- Table Curso
 
 CREATE TABLE "Curso"(
- "id_curso" Integer NOT NULL,
+ "id_curso" Serial NOT NULL,
  "id_departamento" Integer NOT NULL,
  "idt_tipo" Character(1) NOT NULL,
  "txt_nome" Character varying(30) NOT NULL,
@@ -103,7 +242,7 @@ ALTER TABLE "Curso" ADD CONSTRAINT "id_curso" PRIMARY KEY ("id_curso")
 -- Table Ambiente_Aprendizagem
 
 CREATE TABLE "Ambiente_Aprendizagem"(
- "id_ambiente" Integer NOT NULL,
+ "id_ambiente" Serial NOT NULL,
  "id_unidade_de_ensino" Integer NOT NULL,
  "des_ambiente" Varchar NOT NULL,
  "qtd_capacidade" Integer NOT NULL,
@@ -124,7 +263,7 @@ ALTER TABLE "Ambiente_Aprendizagem" ADD CONSTRAINT "Key11" PRIMARY KEY ("id_ambi
 -- Table Professor
 
 CREATE TABLE "Professor"(
- "id_professor" Integer NOT NULL,
+ "id_professor" Serial NOT NULL,
  "id_departamento" Integer NOT NULL,
  "txt_nome" Character varying(60) NOT NULL,
  "nro_telefone" Character varying(9) NOT NULL,
@@ -146,7 +285,7 @@ ALTER TABLE "Professor" ADD CONSTRAINT "Key12" PRIMARY KEY ("id_professor")
 -- Table Período_Letivo
 
 CREATE TABLE "Período_Letivo"(
- "id_periodo" Integer NOT NULL,
+ "id_periodo" Serial NOT NULL,
  "dat_inicio" Date NOT NULL,
  "dat_fim" Date NOT NULL,
  "txt_descricao" Character varying(20) NOT NULL
@@ -163,7 +302,7 @@ ALTER TABLE "Período_Letivo" ADD CONSTRAINT "Key13" PRIMARY KEY ("id_periodo")
 -- Table Curriculo_em_Oferta
 
 CREATE TABLE "Curriculo_em_Oferta"(
- "id_curriculo_oferta" Integer NOT NULL,
+ "id_curriculo_oferta" Serial NOT NULL,
  "id_periodo" Integer NOT NULL,
  "id_grade" Integer NOT NULL
 )
@@ -185,7 +324,7 @@ ALTER TABLE "Curriculo_em_Oferta" ADD CONSTRAINT "Key18" PRIMARY KEY ("id_curric
 -- Table Grade_Curricular
 
 CREATE TABLE "Grade_Curricular"(
- "id_grade" Integer NOT NULL,
+ "id_grade" Serial NOT NULL,
  "id_curso" Integer,
  "nro_serie" Integer NOT NULL,
  "txt_descricao" Text NOT NULL
@@ -205,7 +344,7 @@ ALTER TABLE "Grade_Curricular" ADD CONSTRAINT "Key27" PRIMARY KEY ("id_grade")
 -- Table Turma
 
 CREATE TABLE "Turma"(
- "id_turma" Integer NOT NULL,
+ "id_turma" Serial NOT NULL,
  "id_curriculo_oferta" Integer NOT NULL,
  "txt_nome" Character varying(30) NOT NULL
 )
@@ -224,7 +363,7 @@ ALTER TABLE "Turma" ADD CONSTRAINT "Key32" PRIMARY KEY ("id_turma")
 -- Table Grade_Disciplina
 
 CREATE TABLE "Grade_Disciplina"(
- "id_grade_disc" Integer NOT NULL,
+ "id_grade_disc" Serial NOT NULL,
  "id_grade" Integer NOT NULL,
  "id_disciplina" Integer
 )
@@ -246,7 +385,7 @@ ALTER TABLE "Grade_Disciplina" ADD CONSTRAINT "Key34" PRIMARY KEY ("id_grade_dis
 -- Table Horario
 
 CREATE TABLE "Horario"(
- "id_horario" Integer NOT NULL,
+ "id_horario" Serial NOT NULL,
  "id_ambiente" Integer NOT NULL,
  "id_turma" Integer NOT NULL,
  "id_prof_disc" Integer NOT NULL,
@@ -274,7 +413,7 @@ ALTER TABLE "Horario" ADD CONSTRAINT "Key35" PRIMARY KEY ("id_horario")
 -- Table Professor_Disciplina
 
 CREATE TABLE "Professor_Disciplina"(
- "id_prof_disc" Integer NOT NULL,
+ "id_prof_disc" Serial NOT NULL,
  "id_professor" Integer NOT NULL,
  "id_disciplina" Integer NOT NULL
 )
@@ -291,6 +430,19 @@ CREATE INDEX "IX_Relationship81" ON "Professor_Disciplina" ("id_disciplina")
 -- Add keys for table Professor_Disciplina
 
 ALTER TABLE "Professor_Disciplina" ADD CONSTRAINT "Key36" PRIMARY KEY ("id_prof_disc")
+;
+
+-- Table Usuario
+
+CREATE TABLE "Usuario"(
+ "txt_nome" Character varying(40) NOT NULL,
+ "txt_senha" Varchar NOT NULL
+)
+;
+
+-- Add keys for table Usuario
+
+ALTER TABLE "Usuario" ADD CONSTRAINT "Key37" PRIMARY KEY ("txt_nome")
 ;
 
 -- Create relationships section ------------------------------------------------- 
@@ -342,4 +494,9 @@ ALTER TABLE "Grade_Disciplina" ADD CONSTRAINT "Relationship83" FOREIGN KEY ("id_
 
 ALTER TABLE "Horario" ADD CONSTRAINT "Relationship87" FOREIGN KEY ("id_prof_disc") REFERENCES "Professor_Disciplina" ("id_prof_disc") ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
+
+
+
+
+
 

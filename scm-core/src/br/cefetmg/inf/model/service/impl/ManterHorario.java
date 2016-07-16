@@ -17,18 +17,83 @@ import java.util.List;
  *
  * @author Nome
  */
-public class ManterHorario implements IManterHorario{
+public class ManterHorario implements IManterHorario {
 
     @Override
     public Integer cadastrar(Horario horario) throws PersistenciaException, NegocioException {
+        // RN01 : O horário deve ser informado
+        if (horario == null) {
+            throw new NegocioException("O horário deve ser informado");
+        }
+
+        // RN02 : A data de início deve ser informada
+        if (horario.getInicio() == null) {
+            throw new NegocioException("A data de início deve ser informada");
+        }
+
+        // RN03 : A data de fim deve ser informada
+        if (horario.getFim() == null) {
+            throw new NegocioException("A data de fim deve ser informada");
+        }
+
+        // RN04 : O professor e a disciplina devem ser informados
+        if (horario.getProfessorDisciplina() == null) {
+            throw new NegocioException("O professor e a disciplina devem ser informados");
+        }
+
+        // RN05 : A turma deve ser informada
+        if (horario.getTurma() == null) {
+            throw new NegocioException("A turma deve ser informada");
+        }
+
+        // RN06 : O ambiente de aprendizagem deve ser informado
+        if (horario.getAmbiente() == null) {
+            throw new NegocioException("O ambiente de aprendizagem deve ser informado");
+        }
+
         IHorarioDAO horarioDAO = new HorarioDAO();
         Integer id = horarioDAO.inserir(horario);
-        
+
         return id;
     }
 
     @Override
     public boolean alterar(Horario horario) throws PersistenciaException, NegocioException {
+        // RN01 : O horário deve ser informado
+        if (horario == null) {
+            throw new NegocioException("O horário deve ser informado");
+        }
+
+        // RN01 : O horário deve ser informado
+        if (horario.getId() == null) {
+            throw new NegocioException("O horário deve ser informado");
+        }
+
+        // RN02 : A data de início deve ser informada
+        if (horario.getInicio() == null) {
+            throw new NegocioException("A data de início deve ser informada");
+        }
+
+        // RN03 : A data de fim deve ser informada
+        if (horario.getFim() == null) {
+            throw new NegocioException("A data de fim deve ser informada");
+        }
+
+        // RN04 : O professor e a disciplina devem ser informados
+        if (horario.getProfessorDisciplina() == null) {
+            throw new NegocioException("O professor e a disciplina devem ser informados");
+        }
+
+        // RN05 : A turma deve ser informada
+        if (horario.getTurma() == null) {
+            throw new NegocioException("A turma deve ser informada");
+        }
+
+        // RN06 : O ambiente de aprendizagem deve ser informado
+        if (horario.getAmbiente() == null) {
+            throw new NegocioException("O ambiente de aprendizagem deve ser informado");
+        }
+
         IHorarioDAO horarioDAO = new HorarioDAO();
         return horarioDAO.atualizar(horario);
     }
@@ -50,5 +115,5 @@ public class ManterHorario implements IManterHorario{
         IHorarioDAO horarioDAO = new HorarioDAO();
         return horarioDAO.listarTodos();
     }
-    
+
 }

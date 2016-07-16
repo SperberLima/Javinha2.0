@@ -17,18 +17,53 @@ import java.util.List;
  *
  * @author Nome
  */
-public class ManterProfessorDisciplina implements IManterProfessorDisciplina{
+public class ManterProfessorDisciplina implements IManterProfessorDisciplina {
 
     @Override
     public Integer cadastrar(ProfessorDisciplina professorDisciplina) throws PersistenciaException, NegocioException {
+        // RN01 : A disciplina e o professor devem ser informados
+        if (professorDisciplina == null) {
+            throw new NegocioException("A disciplina e o professor devem ser informados");
+        }
+
+        // RN02 : A disciplina deve ser informada
+        if (professorDisciplina.getDisciplina() == null) {
+            throw new NegocioException("A disciplina deve ser informada");
+        }
+
+        // RN03 : O professor deve ser informado
+        if (professorDisciplina.getProfessor() == null) {
+            throw new NegocioException("O professor deve ser informado");
+        }
+
         IProfessorDisciplinaDAO professorDisciplinaDAO = new ProfessorDisciplinaDAO();
         Integer id = professorDisciplinaDAO.inserir(professorDisciplina);
-        
+
         return id;
     }
 
     @Override
     public boolean alterar(ProfessorDisciplina professorDisciplina) throws PersistenciaException, NegocioException {
+        // RN01 : A disciplina e o professor devem ser informados
+        if (professorDisciplina == null) {
+            throw new NegocioException("A disciplina e o professor devem ser informados");
+        }
+
+        // RN01 : A disciplina e o professor devem ser informados
+        if (professorDisciplina.getId() == null) {
+            throw new NegocioException("A disciplina e o professor devem ser informados");
+        }
+
+        // RN02 : A disciplina deve ser informada
+        if (professorDisciplina.getDisciplina() == null) {
+            throw new NegocioException("A disciplina deve ser informada");
+        }
+
+        // RN03 : O professor deve ser informado
+        if (professorDisciplina.getProfessor() == null) {
+            throw new NegocioException("O professor deve ser informado");
+        }
+
         IProfessorDisciplinaDAO professorDisciplinaDAO = new ProfessorDisciplinaDAO();
         return professorDisciplinaDAO.atualizar(professorDisciplina);
     }
@@ -50,5 +85,5 @@ public class ManterProfessorDisciplina implements IManterProfessorDisciplina{
         IProfessorDisciplinaDAO professorDisciplinaDAO = new ProfessorDisciplinaDAO();
         return professorDisciplinaDAO.listarTodos();
     }
-    
+
 }

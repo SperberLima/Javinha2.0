@@ -17,60 +17,76 @@ import java.util.List;
  *
  * @author Administrador
  */
-public class ManterAmbienteAprendizagem implements IManterAmbienteAprendizagem{
+public class ManterAmbienteAprendizagem implements IManterAmbienteAprendizagem {
 
     @Override
     public Integer cadastrar(AmbienteAprendizagem Ambiente_Aprendizagem) throws PersistenciaException, NegocioException {
-         // Curso deve ter departamento
-        if (Ambiente_Aprendizagem.getU_ensino()== null){
+        // RN01 : Todo ambiente de aprendizagem deve ser informado
+        if (Ambiente_Aprendizagem == null) {
+            throw new NegocioException("Todo ambiente de aprendizagem deve ser informado");
+        }
+
+        // RN02 : Todo ambiente de aprendizagem deve estar associado a uma unidade de ensino
+        if (Ambiente_Aprendizagem.getU_ensino() == null) {
             throw new NegocioException("Todo ambiente de aprendizagem deve estar associado a uma unidade de ensino");
         }
-        
-        //Curso deve ter Nome
-        if (Ambiente_Aprendizagem.getDescricao()== null){
+
+        // RN03 : Todo ambiente de aprendizagem necessita de uma descricao
+        if (Ambiente_Aprendizagem.getDescricao() == null) {
             throw new NegocioException("Todo ambiente de aprendizagem necessita de uma descricao");
         }
-        
-        //Curso deve ter sigla
-        if (Ambiente_Aprendizagem.getCapacidade() <= 0){
+
+        // RN04 : Um ambiente de aprendizagem só pode ter capacidade superior a zero
+        if (Ambiente_Aprendizagem.getCapacidade() <= 0) {
             throw new NegocioException("Um ambiente de aprendizagem só pode ter capacidade superior a zero");
         }
-        
+
         IAmbienteAprendizagemDAO Ambiente_AprendizagemDAO = new AmbienteAprendizagemDAO();
         Integer id = Ambiente_AprendizagemDAO.inserir(Ambiente_Aprendizagem);
         Ambiente_Aprendizagem.setId(id);
-        
+
         return id;
     }
 
     @Override
     public boolean alterar(AmbienteAprendizagem AmbienteAprendizagem) throws PersistenciaException, NegocioException {
-         // Curso deve ter departamento
-        if (AmbienteAprendizagem.getU_ensino()== null){
-            throw new NegocioException("O curso deve pertencer a um departamento");
+
+        // RN01 : Todo ambiente de aprendizagem deve ser informado
+        if (AmbienteAprendizagem == null) {
+            throw new NegocioException("Todo ambiente de aprendizagem deve ser informado");
         }
-        
-        //Curso deve ter Nome
-        if (AmbienteAprendizagem.getDescricao()== null){
-            throw new NegocioException("O curso deve ter nome");
+
+        // RN01 : Todo ambiente de aprendizagem deve ser informado
+        if (AmbienteAprendizagem.getId() == null) {
+            throw new NegocioException("Todo ambiente de aprendizagem deve ser informado");
         }
-        
-        //Curso deve ter sigla
-        if (AmbienteAprendizagem.getCapacidade() == 0){
-            throw new NegocioException("O curso deve ter sigla");
+
+        // RN02 : Todo ambiente de aprendizagem deve estar associado a uma unidade de ensino
+        if (AmbienteAprendizagem.getU_ensino() == null) {
+            throw new NegocioException("Todo ambiente de aprendizagem deve estar associado a uma unidade de ensino");
         }
-        
+
+        // RN03 : Todo ambiente de aprendizagem necessita de uma descricao
+        if (AmbienteAprendizagem.getDescricao() == null) {
+            throw new NegocioException("Todo ambiente de aprendizagem necessita de uma descricao");
+        }
+
+        // RN04 : Um ambiente de aprendizagem só pode ter capacidade superior a zero
+        if (AmbienteAprendizagem.getCapacidade() <= 0) {
+            throw new NegocioException("Um ambiente de aprendizagem só pode ter capacidade superior a zero");
+        }
+
         IAmbienteAprendizagemDAO AmbienteAprendizagemDAO = new AmbienteAprendizagemDAO();
         return AmbienteAprendizagemDAO.atualizar(AmbienteAprendizagem);
     }
 
     @Override
     public AmbienteAprendizagem buscarPorId(Integer id) throws PersistenciaException, NegocioException {
-        
+
         IAmbienteAprendizagemDAO AmbienteAprendizagemDAO = new AmbienteAprendizagemDAO();
         AmbienteAprendizagem AmbienteAprendizagem = AmbienteAprendizagemDAO.consultarPorId(id);
         return AmbienteAprendizagem;
-        
+
     }
 
     @Override
@@ -85,5 +101,5 @@ public class ManterAmbienteAprendizagem implements IManterAmbienteAprendizagem{
         List<AmbienteAprendizagem> listCurso = AmbienteAprendizagemDAO.listarTodos();
         return listCurso;
     }
-    
+
 }

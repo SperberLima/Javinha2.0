@@ -17,39 +17,55 @@ import java.util.List;
  *
  * @author Diego
  */
-public class ManterCurriculoOferta implements IManterCurriculoOferta{
+public class ManterCurriculoOferta implements IManterCurriculoOferta {
 
     @Override
     public Integer cadastrar(CurriculoOferta curriculoOferta) throws PersistenciaException, NegocioException {
-        //Currículo em oferta deve ter um período letivo
-        if (curriculoOferta.getPeriodoLetivo() == null){
+
+        // RN01 : Currículo em oferta deve ser informado
+        if (curriculoOferta == null) {
+            throw new NegocioException("Todo currículo em oferta deve ser informado");
+        }
+
+        // RN02 : Currículo em oferta deve ter um período letivo
+        if (curriculoOferta.getPeriodoLetivo() == null) {
             throw new NegocioException("Todo currículo em oferta deve ter um período letivo associado a ele");
         }
-        
-        //Currículo em oferta deve ter uma grade curricular associada a ele
-        if (curriculoOferta.getGradeCurricular() == null){
+
+        // RN03 : Currículo em oferta deve ter uma grade curricular associada a ele
+        if (curriculoOferta.getGradeCurricular() == null) {
             throw new NegocioException("Todo currículo em oferta deve ter uma grade curricular associada a ele");
         }
-        
+
         ICurriculoOfertaDAO Curriculo_OfertaDAO = new CurriculoOfertaDAO();
         Integer id = Curriculo_OfertaDAO.inserir(curriculoOferta);
         curriculoOferta.setId(id);
-        
+
         return id;
     }
 
     @Override
     public boolean alterar(CurriculoOferta curriculoOferta) throws PersistenciaException, NegocioException {
-        //Currículo em oferta deve ter um período letivo
-        if (curriculoOferta.getPeriodoLetivo() == null){
+        // RN01 : Currículo em oferta deve ser informado
+        if (curriculoOferta == null) {
+            throw new NegocioException("Todo currículo em oferta deve ser informado");
+        }
+
+        // RN01 : Currículo em oferta deve ser informado
+        if (curriculoOferta.getId() == null) {
+            throw new NegocioException("Todo currículo em oferta deve ser informado");
+        }
+
+        // RN02 : Currículo em oferta deve ter um período letivo
+        if (curriculoOferta.getPeriodoLetivo() == null) {
             throw new NegocioException("Todo currículo em oferta deve ter um período letivo associado a ele");
         }
-        
-        //Currículo em oferta deve ter uma grade curricular associada a ele
-        if (curriculoOferta.getGradeCurricular() == null){
+
+        // RN03 : Currículo em oferta deve ter uma grade curricular associada a ele
+        if (curriculoOferta.getGradeCurricular() == null) {
             throw new NegocioException("Todo currículo em oferta deve ter uma grade curricular associada a ele");
         }
-        
+
         ICurriculoOfertaDAO CurriculoOfertaDAO = new CurriculoOfertaDAO();
         return CurriculoOfertaDAO.atualizar(curriculoOferta);
     }
@@ -73,5 +89,5 @@ public class ManterCurriculoOferta implements IManterCurriculoOferta{
         List<CurriculoOferta> listCurriculoOferta = CurriculoOfertaDAO.listarTodos();
         return listCurriculoOferta;
     }
-    
+
 }

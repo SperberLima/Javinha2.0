@@ -21,50 +21,77 @@ import java.util.List;
  *
  * @author Administrador
  */
-public class ManterGradeCurricular implements IManterGradeCurricular{
-    
+public class ManterGradeCurricular implements IManterGradeCurricular {
+
     @Override
-    public Integer cadastrar(GradeCurricular GradeCurricular) throws PersistenciaException, NegocioException {
-         // Curso deve ter departamento
-        if (GradeCurricular.getCurso()== null){
+    public Integer cadastrar(GradeCurricular gradeCurricular) throws PersistenciaException, NegocioException {
+
+        // RN01 : A grade curricular deve ser informada
+        if (gradeCurricular == null) {
+            throw new NegocioException("A grade curricular deve ser informada");
+        }
+
+        // RN02 : A grade curricular deve ter uma decsrição
+        if (gradeCurricular.getDescricao() == null) {
+            throw new NegocioException("A grade curricular deve ter uma descrição");
+        }
+
+        // RN03 : A grade curricular deve representar uma série válida
+        if (gradeCurricular.getSerie() < 0) {
+            throw new NegocioException("A grade curricular deve representar uma série válida");
+        }
+
+        // RN04 : A grade curricular deve estar associada a um curso
+        if (gradeCurricular.getCurso() == null) {
             throw new NegocioException("Toda grade deve estar associada a um curso");
         }
-        
-        //Curso deve ter Nome
-        if (GradeCurricular.getDescricao()== null){
-            throw new NegocioException("Toda grade precissa de uma descricao");
-        }
-        
+
         IGradeCurricularDAO GradeCurricularDAO = new GradeCurricularDAO();
-        Integer id = GradeCurricularDAO.inserir(GradeCurricular);
-        GradeCurricular.setId(id);
-        
+        Integer id = GradeCurricularDAO.inserir(gradeCurricular);
+        gradeCurricular.setId(id);
+
         return id;
     }
 
     @Override
-    public boolean alterar(GradeCurricular GradeCurricular) throws PersistenciaException, NegocioException {
-         // Curso deve ter departamento
-        if (GradeCurricular.getCurso()== null){
+    public boolean alterar(GradeCurricular gradeCurricular) throws PersistenciaException, NegocioException {
+
+        // RN01 : A grade curricular deve ser informada
+        if (gradeCurricular == null) {
+            throw new NegocioException("A grade curricular deve ser informada");
+        }
+
+        // RN01 : A grade curricular deve ser informada
+        if (gradeCurricular.getId() == null) {
+            throw new NegocioException("A grade curricular deve ser informada");
+        }
+
+        // RN02 : A grade curricular deve ter uma decsrição
+        if (gradeCurricular.getDescricao() == null) {
+            throw new NegocioException("A grade curricular deve ter uma descrição");
+        }
+
+        // RN03 : A grade curricular deve representar uma série válida
+        if (gradeCurricular.getSerie() < 0) {
+            throw new NegocioException("A grade curricular deve representar uma série válida");
+        }
+
+        // RN04 : A grade curricular deve estar associada a um curso
+        if (gradeCurricular.getCurso() == null) {
             throw new NegocioException("Toda grade deve estar associada a um curso");
         }
-        
-        //Curso deve ter Nome
-        if (GradeCurricular.getDescricao()== null){
-            throw new NegocioException("Toda grade necessita de uma descricao");
-        }
-        
+
         IGradeCurricularDAO GradeCurricularDAO = new GradeCurricularDAO();
-        return GradeCurricularDAO.atualizar(GradeCurricular);
+        return GradeCurricularDAO.atualizar(gradeCurricular);
     }
 
     @Override
     public GradeCurricular buscarPorId(Integer id) throws PersistenciaException, NegocioException {
-        
+
         IGradeCurricularDAO GradeCurricularDAO = new GradeCurricularDAO();
         GradeCurricular GradeCurricular = GradeCurricularDAO.consultarPorId(id);
         return GradeCurricular;
-        
+
     }
 
     @Override
@@ -79,11 +106,17 @@ public class ManterGradeCurricular implements IManterGradeCurricular{
         List<GradeCurricular> listGrade = GradeCurricularDAO.listarTodos();
         return listGrade;
     }
-    
+
     public List<Disciplina> listarDisciplinas(GradeCurricular gradeCurricular) throws PersistenciaException, NegocioException {
+
+        // RN01 : A grade curricular deve ser informada
+        if (gradeCurricular == null) {
+            throw new NegocioException("A grade curricular deve ser informada");
+        }
+
         IGradeCurricularDAO gradeDAO = new GradeCurricularDAO();
         List<Disciplina> listDisciplina = gradeDAO.listarDisciplinas(gradeCurricular);
         return listDisciplina;
     }
-    
+
 }
